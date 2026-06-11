@@ -3,534 +3,1833 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power of Thor | Official eCommerce Store</title>
+    <title>THOR Wellness | Premium Men's Health & Vitality Store</title>
+    <!-- Google Fonts: Premium Clinical Sans-Serif -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
-        /* --- RESET & VARIABLES --- */
+        /* --- DESIGN SYSTEM & CSS VARIABLES --- */
+        :root {
+            --primary: #0f172a;        /* Deep Premium Slate */
+            --secondary: #475569;      /* Elegant Slate Gray */
+            --accent: #0f766e;         /* Natural Clinical Teal */
+            --accent-hover: #115e59;   /* Darker Teal for interaction */
+            --accent-light: #f0fdfa;   /* Fresh light teal background */
+            --bg-pure: #ffffff;        /* Pure White base */
+            --bg-light: #f8fafc;       /* Ultra soft gray background */
+            --border: #e2e8f0;         /* Soft clean divider border */
+            --success: #16a34a;        /* Safe Green */
+            --shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 8px -1px rgba(15, 23, 42, 0.03);
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* --- BASIC RESET & BASE STYLING --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, sans-serif;
-        }
-
-        :root {
-            --bg-dark: #0d0f12;
-            --bg-card: #161920;
-            --gold: #d4af37;
-            --gold-hover: #f3cf55;
-            --text-light: #ffffff;
-            --text-gray: #a0a5b5;
-            --accent-red: #e74c3c;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
+            background-color: var(--bg-pure);
+            color: var(--primary);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
-        /* --- HEADER & NAVIGATION --- */
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        button, .btn {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        /* --- HEADER NAVIGATION (STICKY & WHITE) --- */
         header {
-            background-color: rgba(13, 15, 18, 0.95);
+            background-color: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(8px);
             position: sticky;
             top: 0;
-            z-index: 100;
-            border-bottom: 1px solid #232731;
+            z-index: 999;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
         }
 
-        .nav-container {
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            height: 80px;
         }
 
-        .logo {
-            font-size: 24px;
+        .brand-logo {
+            font-size: 22px;
             font-weight: 800;
-            letter-spacing: 1px;
+            letter-spacing: -0.5px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .logo span {
-            color: var(--gold);
+        .brand-logo span {
+            color: var(--accent);
+            font-weight: 500;
+            font-size: 14px;
+            border: 1px solid var(--accent);
+            padding: 2px 8px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
-        .cart-icon-container {
+        nav {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        nav a {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--secondary);
             position: relative;
-            cursor: pointer;
-            background: #1c202b;
-            padding: 10px 15px;
-            border-radius: 5px;
-            border: 1px solid #333;
+            padding: 8px 0;
         }
 
-        .cart-count {
+        nav a:hover, nav a.active {
+            color: var(--accent);
+        }
+
+        nav a.active::after {
+            content: '';
             position: absolute;
-            top: -8px;
-            right: -8px;
-            background-color: var(--accent-red);
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .cart-trigger {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border);
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+        }
+
+        .cart-trigger:hover {
+            border-color: var(--accent);
+            background-color: var(--accent-light);
+            color: var(--accent);
+        }
+
+        .cart-indicator {
+            background-color: var(--accent);
             color: white;
             font-size: 12px;
-            font-weight: bold;
-            padding: 2px 7px;
-            border-radius: 50%;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 12px;
         }
 
-        /* --- HERO BANNER --- */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), radial-gradient(circle, rgba(214,175,55,0.1) 0%, transparent 70%);
-            padding: 80px 0;
-            text-align: center;
+        /* --- PAGE SYSTEM (SPA TAB VISIBILITY) --- */
+        .app-page {
+            display: none;
+            animation: fadeIn 0.4s ease;
         }
 
-        .hero h1 {
-            font-size: 42px;
-            margin-bottom: 15px;
-        }
-
-        .hero h1 span {
-            color: var(--gold);
-        }
-
-        .hero p {
-            color: var(--text-gray);
-            font-size: 18px;
-            max-width: 600px;
-            margin: 0 auto 30px;
-        }
-
-        /* --- PRODUCT SECTION --- */
-        .shop-section {
-            padding: 60px 0;
-        }
-
-        .section-title {
-            font-size: 32px;
-            text-align: center;
-            margin-bottom: 40px;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
+        .app-page.active {
             display: block;
-            width: 60px;
-            height: 3px;
-            background: var(--gold);
-            margin: 10px auto 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- HERO BANNER (CLEAN LIFESTYLE) --- */
+        .hero {
+            background: linear-gradient(135deg, var(--bg-light) 0%, #ffffff 100%);
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 54px;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+        }
+
+        .hero-content h1 span {
+            color: var(--accent);
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: var(--secondary);
+            margin-bottom: 36px;
+            max-width: 550px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+            padding: 16px 36px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 16px;
+            box-shadow: 0 4px 14px rgba(15, 118, 110, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(15, 118, 110, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 1px solid var(--border);
+            padding: 16px 36px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--bg-light);
+            border-color: var(--primary);
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            background-color: #f1f5f9;
+            border-radius: 24px;
+            overflow: hidden;
+            height: 480px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .hero-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- TRUST BADGES BAR --- */
+        .trust-bar {
+            border-bottom: 1px solid var(--border);
+            padding: 30px 0;
+            background-color: #ffffff;
+        }
+
+        .trust-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            color: var(--secondary);
+            font-size: 15px;
+        }
+
+        .trust-item svg {
+            color: var(--accent);
+            width: 24px;
+            height: 24px;
+        }
+
+        /* --- PRODUCT GRID SECTION --- */
+        .product-section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .section-header p {
+            font-size: 16px;
+            color: var(--secondary);
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
         }
 
         .product-card {
-            background-color: var(--bg-card);
-            border-radius: 10px;
+            background-color: var(--bg-pure);
+            border-radius: 16px;
+            border: 1px solid var(--border);
             overflow: hidden;
-            border: 1px solid #232731;
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
         }
 
         .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-            border-color: var(--gold);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+            border-color: var(--accent);
         }
 
-        .product-image-placeholder {
-            height: 250px;
-            background: linear-gradient(45deg, #1f242e, #111317);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .product-image {
+            height: 280px;
+            background-color: var(--bg-light);
             position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border);
         }
 
-        .badge {
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.04);
+        }
+
+        .tag-badge {
             position: absolute;
-            top: 15px;
-            left: 15px;
-            background-color: var(--gold);
-            color: #000;
-            font-weight: bold;
-            font-size: 12px;
-            padding: 4px 10px;
-            border-radius: 3px;
+            top: 16px;
+            left: 16px;
+            background-color: var(--accent);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 4px 10px;
+            border-radius: 4px;
         }
 
         .product-info {
-            padding: 25px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
-        .product-title {
-            font-size: 22px;
-            margin-bottom: 10px;
+        .product-info h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--primary);
         }
 
         .product-desc {
-            color: var(--text-gray);
             font-size: 14px;
+            color: var(--secondary);
             margin-bottom: 20px;
-            height: 44px;
-            overflow: hidden;
+            flex-grow: 1;
         }
 
-        .price-container {
+        .product-meta {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
+            margin-top: auto;
         }
 
-        .current-price {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--gold);
-        }
-
-        .old-price {
-            text-decoration: line-through;
-            color: var(--accent-red);
-            font-size: 16px;
-        }
-
-        .btn-add-cart {
-            width: 100%;
-            background-color: var(--gold);
-            color: #000;
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: background 0.3s;
-        }
-
-        .btn-add-cart:hover {
-            background-color: var(--gold-hover);
-        }
-
-        /* --- SIDE CART SLIDEOUT --- */
-        .cart-sidebar {
-            position: fixed;
-            top: 0;
-            right: -400px;
-            width: 400px;
-            height: 100%;
-            background-color: var(--bg-card);
-            box-shadow: -5px 0 15px rgba(0,0,0,0.5);
-            z-index: 1000;
-            transition: right 0.3s ease;
+        .price-tag {
             display: flex;
             flex-direction: column;
         }
 
-        .cart-sidebar.active {
-            right: 0;
-        }
-
-        .cart-header {
-            padding: 20px;
-            border-bottom: 1px solid #232731;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .close-cart {
-            font-size: 28px;
-            cursor: pointer;
-            color: var(--text-gray);
-        }
-
-        .cart-items-list {
-            padding: 20px;
-            flex-grow: 1;
-            overflow-y: auto;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            background: var(--bg-dark);
-            padding: 10px;
-            border-radius: 5px;
-        }
-
-        .cart-item-details h4 {
+        .price-tag .old-price {
             font-size: 14px;
+            text-decoration: line-through;
+            color: #94a3b8;
         }
 
-        .cart-item-details p {
-            color: var(--gold);
-            font-size: 13px;
+        .price-tag .new-price {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--accent);
         }
 
-        .remove-btn {
-            color: var(--accent-red);
-            cursor: pointer;
+        .add-to-cart-btn {
+            background-color: var(--primary);
+            color: white;
             font-size: 14px;
-            background: none;
-            border: none;
+            font-weight: 700;
+            padding: 12px 20px;
+            border-radius: 8px;
         }
 
-        .cart-footer {
-            padding: 20px;
-            border-top: 1px solid #232731;
-            background-color: #11141a;
+        .add-to-cart-btn:hover {
+            background-color: var(--accent);
         }
 
-        .total-price-box {
-            display: flex;
-            justify-content: space-between;
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 15px;
+        /* --- DETAILED INGREDIENTS PAGE --- */
+        .ingredients-hero {
+            background-color: var(--bg-light);
+            padding: 80px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
         }
 
-        .btn-checkout {
-            width: 100%;
-            background-color: #2ecc71;
-            color: #fff;
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
+        .ingredients-hero h1 {
+            font-size: 44px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .ingredients-hero p {
+            color: var(--secondary);
+            max-width: 600px;
+            margin: 0 auto;
             font-size: 16px;
         }
 
-        /* --- FOOTER --- */
-        footer {
-            background-color: #090a0d;
-            padding: 30px 0;
+        .ingredient-details-section {
+            padding: 80px 0;
+        }
+
+        .ingredient-block {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 80px;
+        }
+
+        .ingredient-block:nth-child(even) {
+            direction: rtl;
+        }
+
+        .ingredient-block:nth-child(even) .ingredient-text {
+            direction: ltr;
+        }
+
+        .ingredient-img {
+            background-color: var(--bg-light);
+            border-radius: 20px;
+            overflow: hidden;
+            height: 380px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .ingredient-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ingredient-text h2 {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 16px;
+        }
+
+        .ingredient-scientific {
+            font-size: 14px;
+            font-style: italic;
+            color: var(--accent);
+            display: inline-block;
+            margin-bottom: 16px;
+            background-color: var(--accent-light);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .ingredient-text p {
+            color: var(--secondary);
+            font-size: 16px;
+            margin-bottom: 24px;
+        }
+
+        .benefits-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .benefit-tag {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border);
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+
+        /* --- ABOUT US PAGE --- */
+        .about-hero {
+            padding: 80px 0;
+            background: linear-gradient(to bottom, var(--bg-light), #ffffff);
             text-align: center;
-            border-top: 1px solid #232731;
-            color: var(--text-gray);
+        }
+
+        .about-hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .about-hero p {
+            font-size: 18px;
+            color: var(--secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            padding: 80px 0;
+        }
+
+        .mission-card {
+            background-color: #ffffff;
+            border: 1px solid var(--border);
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .mission-card .icon-box {
+            background-color: var(--accent-light);
+            color: var(--accent);
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .mission-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .mission-card p {
+            font-size: 14px;
+            color: var(--secondary);
+        }
+
+        /* --- POLICIES PAGE --- */
+        .policy-container {
+            max-width: 800px;
+            margin: 60px auto 100px;
+            padding: 0 24px;
+        }
+
+        .policy-tabs {
+            display: flex;
+            border-bottom: 2px solid var(--border);
+            gap: 24px;
+            margin-bottom: 40px;
+            overflow-x: auto;
+        }
+
+        .policy-tab {
+            padding: 16px 8px;
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--secondary);
+            background: none;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .policy-tab.active {
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+            margin-bottom: -2px;
+        }
+
+        .policy-content-pane {
+            display: none;
+            line-height: 1.8;
+        }
+
+        .policy-content-pane.active {
+            display: block;
+        }
+
+        .policy-content-pane h2 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-top: 32px;
+            margin-bottom: 16px;
+        }
+
+        .policy-content-pane p {
+            color: var(--secondary);
+            margin-bottom: 16px;
+            font-size: 15px;
+        }
+
+        .policy-content-pane ul {
+            padding-left: 24px;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .policy-content-pane li {
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        /* --- DYNAMIC CART DRAWER SIDEBAR --- */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.4);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .cart-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 450px;
+            max-width: 100%;
+            height: 100%;
+            background-color: var(--bg-pure);
+            z-index: 1001;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-overlay.active .cart-drawer {
+            right: 0;
+        }
+
+        .cart-drawer-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-drawer-header h3 {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .close-drawer-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--secondary);
+        }
+
+        .cart-items-container {
+            padding: 24px;
+            flex-grow: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .empty-cart-msg {
+            text-align: center;
+            color: var(--secondary);
+            margin-top: 40px;
+            font-size: 15px;
+        }
+
+        .cart-drawer-item {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cart-item-preview-img {
+            width: 64px;
+            height: 64px;
+            background-color: var(--bg-light);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .cart-item-preview-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-info {
+            flex-grow: 1;
+        }
+
+        .cart-item-info h4 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .cart-item-info p {
+            font-size: 14px;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .qty-control {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+            background-color: var(--bg-light);
+        }
+
+        .qty-btn {
+            background: none;
+            padding: 4px 10px;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+
+        .qty-val {
+            padding: 4px 8px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .remove-item-btn {
+            background: none;
+            border: none;
+            color: #ef4444;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 4px;
+        }
+
+        .cart-drawer-footer {
+            padding: 24px;
+            border-top: 1px solid var(--border);
+            background-color: var(--bg-light);
+        }
+
+        .bill-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .bill-row.total {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--primary);
+            border-top: 1px solid var(--border);
+            padding-top: 12px;
+            margin-bottom: 20px;
+        }
+
+        /* --- CHECKOUT SYSTEM (POPUP MODAL) --- */
+        .checkout-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.5);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .checkout-modal-overlay.active {
+            display: flex;
+        }
+
+        .checkout-box {
+            background-color: var(--bg-pure);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes modalPop {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .checkout-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .checkout-header h3 {
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .close-checkout-btn {
+            background: none;
+            font-size: 24px;
+            color: var(--secondary);
+        }
+
+        .checkout-body {
+            padding: 24px;
+            overflow-y: auto;
+            max-height: 75vh;
+        }
+
+        .form-section-title {
+            font-size: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        .form-control {
+            border: 1px solid var(--border);
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: var(--primary);
+            background-color: var(--bg-light);
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--accent);
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+        }
+
+        .payment-options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .pay-option-card {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .pay-option-card input {
+            accent-color: var(--accent);
+            width: 18px;
+            height: 18px;
+        }
+
+        .pay-option-card.selected {
+            border-color: var(--accent);
+            background-color: var(--accent-light);
+        }
+
+        .success-box {
+            text-align: center;
+            padding: 40px 24px;
+        }
+
+        .success-icon {
+            font-size: 48px;
+            color: var(--success);
+            margin-bottom: 16px;
+        }
+
+        /* --- FOOTER (WITH POLICIES & COMPLIANCE) --- */
+        footer {
+            background-color: var(--bg-light);
+            border-top: 1px solid var(--border);
+            padding: 80px 0 40px;
+            margin-top: auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo-desc h3 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .footer-logo-desc p {
+            color: var(--secondary);
+            font-size: 14px;
+            line-height: 1.7;
+            max-width: 280px;
+        }
+
+        .footer-col h4 {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-col a {
+            color: var(--secondary);
             font-size: 14px;
         }
 
-        /* Responsive Fixes */
-        @media (max-width: 450px) {
-            .cart-sidebar {
-                width: 100%;
-                right: -100%;
+        .footer-col a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-bottom p {
+            font-size: 13px;
+            color: var(--secondary);
+        }
+
+        .footer-certificates {
+            display: flex;
+            gap: 16px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        .footer-disclaimer {
+            font-size: 11px;
+            color: #94a3b8;
+            margin-top: 24px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        /* --- RESPONSIVE FIXES --- */
+        @media (max-width: 991px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content h1 {
+                font-size: 38px;
+            }
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-actions {
+                justify-content: center;
+            }
+            .hero-image-wrapper {
+                height: 350px;
+            }
+            .ingredient-block {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .ingredient-block:nth-child(even) {
+                direction: ltr;
+            }
+            .mission-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAV BAR -->
+    <!-- --- HEADER HEADER --- -->
     <header>
-        <div class="container nav-container">
-            <div class="logo">POWER OF <span>THOR</span></div>
-            <div class="cart-icon-container" onclick="toggleCart()">
-                🛒 Cart <span class="cart-count" id="cartCount">0</span>
+        <div class="container header-container">
+            <a href="#shop" class="brand-logo" onclick="navigateTo('shop')">
+                THOR <span>wellness</span>
+            </a>
+            
+            <nav>
+                <a href="#shop" id="nav-shop" class="active" onclick="navigateTo('shop')">Shop</a>
+                <a href="#ingredients" id="nav-ingredients" onclick="navigateTo('ingredients')">Ingredients</a>
+                <a href="#about" id="nav-about" onclick="navigateTo('about')">About Us</a>
+                <a href="#policies" id="nav-policies" onclick="navigateTo('policies')">Policies</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="cart-trigger" onclick="toggleCartDrawer(true)">
+                    <span>🛒</span> Cart
+                    <span class="cart-indicator" id="cartBadgeCount">0</span>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- HERO BANNER -->
-    <section class="hero">
-        <div class="container">
-            <h1>Premium <span>Men's Health</span> Store</h1>
-            <p>Direct authentic wellness supplements formulated to maximize your daily energy, focus, and physical endurance.</p>
-        </div>
-    </section>
 
-    <!-- PRODUCTS SECTION -->
-    <section class="shop-section">
-        <div class="container">
-            <h2 class="section-title">Our Products</h2>
-            
-            <div class="products-grid">
-                
-                <!-- Product 1 -->
-                <div class="product-card">
-                    <div class="product-image-placeholder">
-                        <span class="badge">Best Seller</span>
-                        <div style="text-align: center; color: var(--gold); font-size: 24px; font-weight: bold; border: 2px dashed var(--gold); padding: 20px 40px; border-radius: 10px;">THOR GOLD<br><span style="font-size:12px; color:#fff;">30 Capsules</span></div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Power of Thor (Gold Edition)</h3>
-                        <p class="product-desc">Premium Ayurvedic booster with pure Himalayan Shilajit and Ashwagandha for ultimate stamina.</p>
-                        <div class="price-container">
-                            <span class="current-price">₹1,499</span>
-                            <span class="old-price">₹2,999</span>
-                        </div>
-                        <button class="btn-add-cart" onclick="addToCart('Power of Thor (Gold)', 1499)">Add To Cart</button>
+    <!-- ==================== SHOP PAGE (HOME) ==================== -->
+    <div id="page-shop" class="app-page active">
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <h1>Strength & Vitality, <span>Evolved Safely.</span></h1>
+                    <p>Unlock robust clinical stamina, cognitive drive, and biological cellular energy. High-performance wellness designed transparently for the modern male physiology.</p>
+                    <div class="hero-actions">
+                        <a href="#products-section" class="btn btn-primary">Browse Formulae</a>
+                        <button class="btn btn-outline" onclick="navigateTo('ingredients')">Deep-Dive Science</button>
                     </div>
                 </div>
-
-                <!-- Product 2 -->
-                <div class="product-card">
-                    <div class="product-image-placeholder">
-                        <span class="badge" style="background-color: #3498db; color: #fff;">New Launch</span>
-                        <div style="text-align: center; color: #3498db; font-size: 24px; font-weight: bold; border: 2px dashed #3498db; padding: 20px 40px; border-radius: 10px;">THOR ULTRA<br><span style="font-size:12px; color:#fff;">60 Capsules</span></div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Power of Thor (Ultra Saving Pack)</h3>
-                        <p class="product-desc">Double dosage pack containing Safed Musli extracts engineered for rapid muscle recovery.</p>
-                        <div class="price-container">
-                            <span class="current-price">₹2,499</span>
-                            <span class="old-price">₹4,999</span>
-                        </div>
-                        <button class="btn-add-cart" onclick="addToCart('Power of Thor (Ultra)', 2499)">Add To Cart</button>
-                    </div>
+                <div class="hero-image-wrapper">
+                    <img src="http://googleusercontent.com/image_collection/image_retrieval/18198049813223163179_1" alt="Clean minimal aesthetic healthcare container reflecting safety and strength">
                 </div>
+            </div>
+        </section>
 
-                <!-- Product 3 -->
-                <div class="product-card">
-                    <div class="product-image-placeholder">
-                        <div style="text-align: center; color: #2ecc71; font-size: 24px; font-weight: bold; border: 2px dashed #2ecc71; padding: 20px 40px; border-radius: 10px;">THOR SHILAJIT<br><span style="font-size:12px; color:#fff;">Pure Resin 20g</span></div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Pure Himalayan Shilajit Resin</h3>
-                        <p class="product-desc">Lab-tested, 100% organic resin rich in fulvic acid to supercharge raw power generation.</p>
-                        <div class="price-container">
-                            <span class="current-price">₹999</span>
-                            <span class="old-price">₹1,999</span>
-                        </div>
-                        <button class="btn-add-cart" onclick="addToCart('Pure Himalayan Shilajit', 999)">Add To Cart</button>
-                    </div>
+        <!-- Trust Badges Compliance -->
+        <div class="trust-bar">
+            <div class="container trust-container">
+                <div class="trust-item">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+                    AYUSH Certified Ayurvedic
                 </div>
-
+                <div class="trust-item">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                    Third-Party Lab Tested
+                </div>
+                <div class="trust-item">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                    Free Insured Shipping & COD
+                </div>
             </div>
         </div>
-    </section>
 
-    <!-- SHOPPING CART SIDEBAR -->
-    <div class="cart-sidebar" id="cartSidebar">
-        <div class="cart-header">
-            <h3>Your Shopping Cart</h3>
-            <span class="close-cart" onclick="toggleCart()">&times;</span>
-        </div>
-        <div class="cart-items-list" id="cartItemsList">
-            <!-- Items dynamically added here via JS -->
-            <p style="color: var(--text-gray); text-align: center; margin-top: 30px;">Your cart is empty.</p>
-        </div>
-        <div class="cart-footer">
-            <div class="total-price-box">
-                <span>Total:</span>
-                <span id="cartTotalPrice">₹0</span>
+        <!-- Products List Area -->
+        <section id="products-section" class="product-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our Certified Range</h2>
+                    <p>Transparent active extracts bottled cleanly under ISO certified conditions. Zero chemical fillers, pure therapeutic power.</p>
+                </div>
+
+                <div class="products-grid">
+                    <!-- Product 1 Card -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <span class="tag-badge">Best Seller</span>
+                            <img src="http://googleusercontent.com/image_collection/image_retrieval/18198049813223163179_0" alt="Thor Gold Daily Strength Formula Capsules Container">
+                        </div>
+                        <div class="product-info">
+                            <h3>Thor Gold Strength</h3>
+                            <p class="product-desc">Our flagship daily Ayurvedic formulation containing KSM-66 Ashwagandha and active Safed Musli for overall daily health restoration.</p>
+                            <div class="product-meta">
+                                <div class="price-tag">
+                                    <span class="old-price">₹2,999</span>
+                                    <span class="new-price">₹1,499</span>
+                                </div>
+                                <button class="add-to-cart-btn" onclick="cartAction('add', 'p1')">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 Card -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <span class="tag-badge" style="background-color: var(--primary);">Ultra Pack</span>
+                            <img src="http://googleusercontent.com/image_collection/image_retrieval/18198049813223163179_2" alt="Thor Ultra Stamina Capsules Bulk Pack">
+                        </div>
+                        <div class="product-info">
+                            <h3>Thor Ultra Vitality</h3>
+                            <p class="product-desc">Advanced high-stamina bulk container optimized specifically with pure standard elements for muscle recovery and metabolic rate normalization.</p>
+                            <div class="product-meta">
+                                <div class="price-tag">
+                                    <span class="old-price">₹4,999</span>
+                                    <span class="new-price">₹2,499</span>
+                                </div>
+                                <button class="add-to-cart-btn" onclick="cartAction('add', 'p2')">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 Card -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="http://googleusercontent.com/image_collection/image_retrieval/18198049813223163179_1" alt="Pure Himalayan Shilajit Liquid Resin by Thor Wellness">
+                        </div>
+                        <div class="product-info">
+                            <h3>Himalayan Shilajit Resin</h3>
+                            <p class="product-desc">100% Raw Himalayan Gold Shilajit resin, rich in fulvic acids to provide ultimate cell energy metabolism support.</p>
+                            <div class="product-meta">
+                                <div class="price-tag">
+                                    <span class="old-price">₹1,999</span>
+                                    <span class="new-price">₹999</span>
+                                </div>
+                                <button class="add-to-cart-btn" onclick="cartAction('add', 'p3')">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <button class="btn-checkout" onclick="checkoutAlert()">Proceed to Checkout (COD)</button>
+        </section>
+    </div>
+
+
+    <!-- ==================== DETAILED INGREDIENTS PAGE ==================== -->
+    <div id="page-ingredients" class="app-page">
+        <section class="ingredients-hero">
+            <div class="container">
+                <h1>Pure Standardized Phytology</h1>
+                <p>We source standard-grade therapeutic botanical extracts from pristine biological zones. Transparently formulated, medically backed.</p>
+            </div>
+        </section>
+
+        <section class="ingredient-details-section">
+            <div class="container">
+                <!-- Ingredient Block 1 -->
+                <div class="ingredient-block">
+                    <div class="ingredient-img">
+                        <img src="http://googleusercontent.com/image_collection/image_retrieval/6409771160361036054_0" alt="Premium organic raw root herbs representation">
+                    </div>
+                    <div class="ingredient-text">
+                        <span class="ingredient-scientific">KSM-66® Ashwagandha</span>
+                        <h2>Standardized Adaptogen</h2>
+                        <p>Our ashwagandha undergoes full-spectrum clean clinical extraction processes ensuring a high percentage of naturally balanced withanolides. It aids significantly in limiting physical cortisol production, combating anxiety profiles, and restoring physical stamina boundaries safely.</p>
+                        <div class="benefits-tags">
+                            <span class="benefit-tag">Reduces Cortisol</span>
+                            <span class="benefit-tag">Stamina Support</span>
+                            <span class="benefit-tag">Mental Peace</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ingredient Block 2 -->
+                <div class="ingredient-block">
+                    <div class="ingredient-img">
+                        <img src="http://googleusercontent.com/image_collection/image_retrieval/6409771160361036054_1" alt="Pure organic Himalayan minerals source shilajit">
+                    </div>
+                    <div class="ingredient-text">
+                        <span class="ingredient-scientific">Purified Shilajit (Asphaltum)</span>
+                        <h2>Bio-Energy Accelerator</h2>
+                        <p>Gathered directly above altitudes of 16,000 feet in the pristine mountain passes, this nutrient-dense resin is subjected to strict purification filters. Its high concentration of active Fulvic Acid is clinically critical for transporting essential mineral nourishment directly across our cellular systems.</p>
+                        <div class="benefits-tags">
+                            <span class="benefit-tag">80+ Trace Minerals</span>
+                            <span class="benefit-tag">Fulvic Acid Rich</span>
+                            <span class="benefit-tag">Mitochondria Optimizer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ingredient Block 3 -->
+                <div class="ingredient-block">
+                    <div class="ingredient-img">
+                        <img src="http://googleusercontent.com/image_collection/image_retrieval/6409771160361036054_2" alt="Clean biological root extract raw form white environment">
+                    </div>
+                    <div class="ingredient-text">
+                        <span class="ingredient-scientific">Chlorophytum Borivilianum</span>
+                        <h2>Safed Musli Extract</h2>
+                        <p>Historically hailed in traditional science as a premium recovery herbal root. Safed Musli serves directly to enhance cellular tissue protein structures and aids muscle synthesis naturally after intensive athletic exercises.</p>
+                        <div class="benefits-tags">
+                            <span class="benefit-tag">Tissue Vitality</span>
+                            <span class="benefit-tag">Natural Recovery</span>
+                            <span class="benefit-tag">Joint Wellness</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <!-- ==================== ABOUT US PAGE ==================== -->
+    <div id="page-about" class="app-page">
+        <section class="about-hero">
+            <div class="container">
+                <h1>Democratizing Men's Holistic Wellness</h1>
+                <p>We established THOR Wellness out of a core necessity: a total absence of clean, standard-grade, clinical products in the male nutraceutical market.</p>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="mission-grid">
+                <div class="mission-card">
+                    <div class="icon-box">01</div>
+                    <h3>True Transparency</h3>
+                    <p>We refuse complex, confusing "proprietary chemical blends". What you observe on our clinical label is precisely what populates our capsule matrices.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="icon-box">02</div>
+                    <h3>Quality Benchmarks</h3>
+                    <p>Our collaborative state-of-the-art facilities possess stringent GMP, ISO 22000, and AYUSH regulatory compliance validations.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="icon-box">03</div>
+                    <h3>Modern Scientific Methods</h3>
+                    <p>We respect historical ancient clinical Ayurveda but adapt its application using modern microbiological testing protocols.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <!-- ==================== POLICIES & LEGAL TERMS PAGE ==================== -->
+    <div id="page-policies" class="app-page">
+        <section class="ingredients-hero" style="background-color: var(--primary); color: white;">
+            <div class="container">
+                <h1>Compliance & Protection Policies</h1>
+                <p style="color: var(--border);">Your safety, privacy, and smooth shopping journey remain our highest priorities.</p>
+            </div>
+        </section>
+
+        <div class="container policy-container">
+            <div class="policy-tabs">
+                <button class="policy-tab active" onclick="switchPolicyTab('policy-privacy', this)">Privacy Policy</button>
+                <button class="policy-tab" onclick="switchPolicyTab('policy-terms', this)">Terms of Service</button>
+                <button class="policy-tab" onclick="switchPolicyTab('policy-refund', this)">Refund & Returns</button>
+            </div>
+
+            <!-- Privacy Policy Tab Pane -->
+            <div id="policy-privacy" class="policy-content-pane active">
+                <h2>Privacy & Data Security Rules</h2>
+                <p>At THOR Wellness, accessible via this online eCommerce portal, one of our main priorities is the absolute security and privacy of our visitors. This Privacy Policy document outlines the precise classifications of information that is gathered and recorded by our database layers.</p>
+                <p>If you have additional inquiries or demand deeper data verification regarding our Privacy Policy rules, feel free to coordinate with our administrative teams.</p>
+                <h2>1. Information We Collect</h2>
+                <p>When you conduct an order purchase on our eCommerce platform, we request operational shipping data elements to coordinate proper physical distribution:</p>
+                <ul>
+                    <li>Personal Contact Parameters (Full Name, Contact Phone, E-mail coordinate)</li>
+                    <li>Geographical Delivery Details (Shipping address, state details, Pin-code values)</li>
+                    <li>Digital metadata (IP addresses, active browser types, duration trackers)</li>
+                </ul>
+                <h2>2. Secure SSL Frameworks</h2>
+                <p>We maintain full SSL data encryption layers across our payment gateways ensuring no operational credit, debit, or banking parameter is stored in plain text formats.</p>
+            </div>
+
+            <!-- Terms of Service Tab Pane -->
+            <div id="policy-terms" class="policy-content-pane">
+                <h2>eCommerce Terms of Service</h2>
+                <p>Please review these terms and conditions of service thoroughly before purchasing from our online digital domain storefront.</p>
+                <h2>1. Store Access & Age Criteria</h2>
+                <p>By agreeing directly to these Terms of Service protocols, you affirm that you have attained the age of majority in your respective state or territory of residence to purchase nutritional supplements.</p>
+                <h2>2. Nutritional Supplement Disclaimer</h2>
+                <p>The botanical formulas available are classified purely as nutritional herbal supplements. They are not built, manufactured, or optimized to serve as a substitute for certified medical guidance or treatment setups.</p>
+                <h2>3. Pricing Adjustments</h2>
+                <p>Prices specified for our supplement ranges are subject to updates without manual notifications.</p>
+            </div>
+
+            <!-- Refund & Returns Tab Pane -->
+            <div id="policy-refund" class="policy-content-pane">
+                <h2>Refund, Cancellation & Returns Guidelines</h2>
+                <p>We stand firmly behind the efficacy and structural quality of our wellness supplements. Please read our guidelines regarding product returns:</p>
+                <h2>1. Damage Protection</h2>
+                <p>If you receive a package that shows visible shipping damage or structural bottle fractures, please alert our support division within 48 hours of transit acceptance with photographic proof to secure a zero-cost exchange.</p>
+                <h2>2. Standard 15-Day Policy</h2>
+                <p>Unopened containers possessing their original factory neck seal layers can be processed for returns within 15 calendar days from the delivery date.</p>
+                <h2>3. Return Execution Coordinates</h2>
+                <p>Please mail a clean return request referencing your purchase order ID to support@thorwellness.com. We will coordinate pick-ups through our logistic channel partners.</p>
+            </div>
         </div>
     </div>
 
-    <!-- FOOTER -->
+
+    <!-- ==================== SIDE CART DRAWER OVERLAY ==================== -->
+    <div class="cart-overlay" id="cartOverlay">
+        <div class="cart-drawer">
+            <div class="cart-drawer-header">
+                <h3>Shopping Bag</h3>
+                <button class="close-drawer-btn" onclick="toggleCartDrawer(false)">&times;</button>
+            </div>
+            
+            <div class="cart-items-container" id="cartItemsList">
+                <!-- Dynamically Populated items will render here via JavaScript -->
+            </div>
+
+            <div class="cart-drawer-footer">
+                <div class="bill-row">
+                    <span>Shipping Charges</span>
+                    <span style="color: var(--success); font-weight: 700;">FREE Delivery</span>
+                </div>
+                <div class="bill-row">
+                    <span>GST (Included)</span>
+                    <span>₹0</span>
+                </div>
+                <div class="bill-row total">
+                    <span>Subtotal</span>
+                    <span id="cartSubtotalVal">₹0</span>
+                </div>
+                <button class="btn btn-primary" style="width: 100%;" onclick="openCheckoutModal()">Proceed to Order</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ==================== CHECKOUT SYSTEM MODAL ==================== -->
+    <div class="checkout-modal-overlay" id="checkoutModal">
+        <div class="checkout-box">
+            <div class="checkout-header">
+                <h3>Finalize Order</h3>
+                <button class="close-checkout-btn" onclick="closeCheckoutModal()">&times;</button>
+            </div>
+
+            <div class="checkout-body" id="checkoutMainBody">
+                <form id="checkoutForm" onsubmit="executeOrder(event)">
+                    <p class="form-section-title">1. Shipping Address</p>
+                    <div class="form-group">
+                        <label for="custName">Receiver's Full Name</label>
+                        <input type="text" id="custName" class="form-control" required placeholder="E.g., Rajesh Kumar">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="custPhone">Phone Number (For Delivery OTP)</label>
+                            <input type="tel" id="custPhone" class="form-control" required placeholder="10-digit mobile number">
+                        </div>
+                        <div class="form-group">
+                            <label for="custPincode">Pin Code</label>
+                            <input type="text" id="custPincode" class="form-control" required placeholder="6-digit PIN" pattern="[0-9]{6}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="custAddress">Full Delivery Address (House No, Building, Area)</label>
+                        <input type="text" id="custAddress" class="form-control" required placeholder="Complete residential address details">
+                    </div>
+
+                    <p class="form-section-title">2. Choose Payment Method</p>
+                    <div class="payment-options-grid">
+                        <div class="pay-option-card selected" id="payOptCod" onclick="selectPayment('cod')">
+                            <input type="radio" id="payCodRadio" name="paymentType" value="cod" checked>
+                            <div>
+                                <div style="font-weight: 700;">Cash on Delivery (COD)</div>
+                                <div style="font-size: 11px; color: var(--secondary); font-weight: normal;">Pay when package arrives</div>
+                            </div>
+                        </div>
+                        <div class="pay-option-card" id="payOptOnline" onclick="selectPayment('online')">
+                            <input type="radio" id="payOnlineRadio" name="paymentType" value="online">
+                            <div>
+                                <div style="font-weight: 700;">Online Cards/UPI</div>
+                                <div style="font-size: 11px; color: var(--secondary); font-weight: normal;">Instant secure clearance</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background-color: var(--bg-light); border: 1px solid var(--border); padding: 16px; border-radius: 8px; margin-bottom: 24px;">
+                        <div style="display: flex; justify-content: space-between; font-weight: 700;">
+                            <span>Total Payable Amount</span>
+                            <span id="checkoutTotalVal" style="color: var(--accent); font-size: 18px;">₹0</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px;">Place Cash On Delivery Order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ==================== FOOTER SECTION ==================== -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 Power of Thor eCommerce Store. All Rights Reserved.</p>
-            <p style="font-size: 11px; color: #555; margin-top: 10px;">Disclaimer: Secure 256-bit SSL encrypted payments. Cash on delivery available cross-nationally.</p>
+            <div class="footer-grid">
+                <div class="footer-logo-desc">
+                    <h3>THOR <span>wellness</span></h3>
+                    <p>Standardized men's clinical health and metabolic optimization supplements. Engineered with pure Ayurvedic extracts and modern biological laboratory testing controls.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Direct Shop</h4>
+                    <ul>
+                        <li><a href="#shop" onclick="navigateTo('shop')">All Products</a></li>
+                        <li><a href="#ingredients" onclick="navigateTo('ingredients')">Science & Sourcing</a></li>
+                        <li><a href="#about" onclick="navigateTo('about')">Brand Journey</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal & Trust</h4>
+                    <ul>
+                        <li><a href="#policies" onclick="navigateTo('policies'); switchPolicyTab('policy-privacy')">Privacy Policy</a></li>
+                        <li><a href="#policies" onclick="navigateTo('policies'); switchPolicyTab('policy-terms')">Terms of Service</a></li>
+                        <li><a href="#policies" onclick="navigateTo('policies'); switchPolicyTab('policy-refund')">Refund & Cancellation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Customer Support</h4>
+                    <p style="font-size: 14px; color: var(--secondary); margin-bottom: 8px;">📧 support@thorwellness.com</p>
+                    <p style="font-size: 14px; color: var(--secondary);">📍 New Delhi, India</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 THOR Wellness Private Limited. All Rights Reserved.</p>
+                <div class="footer-certificates">
+                    <span>🔬 GMP CERTIFIED</span>
+                    <span>🌿 AYUSH COMPLIANT</span>
+                    <span>🛡️ ISO 9001:2015</span>
+                </div>
+            </div>
+
+            <div class="footer-disclaimer">
+                Disclaimer: These statements have not been evaluated by the Food and Drug Administration or AYUSH departments. These wellness formulas are strictly categorized as herbal nutritional dietary supplements. They are not engineered, researched, or optimized to inspect, intercept, mitigate, or treat any clinical physical condition or physiological disorder.
+            </div>
         </div>
     </footer>
 
-    <!-- INTERACTIVE ECOMMERCE JAVASCRIPT -->
+
+    <!-- ==================== INTERACTIVE ECOMMERCE ENGINE ==================== -->
     <script>
-        // Global Cart state Array
-        let cart = [];
-
-        // Cart Slide out Toggle
-        function toggleCart() {
-            const sidebar = document.getElementById('cartSidebar');
-            sidebar.classList.toggle('active');
-        }
-
-        // Add Product to Cart Functionality
-        function addToCart(productName, price) {
-            // Check if item already exists
-            const existingItem = cart.find(item => item.name === productName);
-            
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({
-                    name: productName,
-                    price: price,
-                    quantity: 1
-                });
+        // --- 1. PRODUCT METADATA ---
+        const productsDatabase = {
+            p1: {
+                id: 'p1',
+                name: 'Thor Gold Strength',
+                price: 1499,
+                img: 'http://googleusercontent.com/image_collection/image_retrieval/18198049813223163179_0'
+            },
+            p2: {
+                id: 'p2',
+                name: 'Thor Ultra Vitality',
+                price: 2499,
+                img: 'http://googleusercontent.com/image_collection/image_retrieval/18198049813223163179_2'
+            },
+            p3: {
+                id: 'p3',
+                name: 'Himalayan Shilajit Resin',
+                price: 999,
+                img: 'http://googleusercontent.com/image_collection/image_retrieval/18198049813223163179_1'
             }
-            
-            updateCartUI();
-            
-            // Auto open cart drawer to show updated state
-            document.getElementById('cartSidebar').classList.add('active');
-        }
+        };
 
-        // Remove item from Cart
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCartUI();
-        }
+        let cartState = [];
 
-        // Update Counter, Item lists, and Totals
-        function updateCartUI() {
-            const cartCountElement = document.getElementById('cartCount');
-            const cartItemsList = document.getElementById('cartItemsList');
-            const cartTotalPrice = document.getElementById('cartTotalPrice');
-            
-            // 1. Calculate items total count
-            let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartCountElement.innerText = totalItems;
+        // --- 2. MULTI-PAGE VIEW ROUTING (SPA ENGINE) ---
+        function navigateTo(pageId) {
+            // Hide all active pages
+            const pages = document.querySelectorAll('.app-page');
+            pages.forEach(page => page.classList.remove('active'));
 
-            // 2. Clear out older list structure
-            cartItemsList.innerHTML = '';
-
-            if (cart.length === 0) {
-                cartItemsList.innerHTML = '<p style="color: var(--text-gray); text-align: center; margin-top: 30px;">Your cart is empty.</p>';
-                cartTotalPrice.innerText = '₹0';
-                return;
+            // Show target page
+            const targetPage = document.getElementById(`page-${pageId}`);
+            if (targetPage) {
+                targetPage.classList.add('active');
             }
 
-            // 3. Populate fresh active listings
-            let grandTotal = 0;
-            cart.forEach((item, index) => {
-                let itemTotalCost = item.price * item.quantity;
-                grandTotal += itemTotalCost;
-
-                const itemHTML = `
-                    <div class="cart-item">
-                        <div class="cart-item-details">
-                            <h4>${item.name}</h4>
-                            <p>₹${item.price} x ${item.quantity}</p>
-                        </div>
-                        <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
-                    </div>
-                `;
-                cartItemsList.innerHTML += itemHTML;
+            // Update Header Nav active CSS styling
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.id === `nav-${pageId}`) {
+                    link.classList.add('active');
+                }
             });
 
-            // 4. Update the footer bill values
-            cartTotalPrice.innerText = '₹' + grandTotal.toLocaleString('en-IN');
+            // Scroll smoothly back to top of page
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Checkout Trigger
-        function checkoutAlert() {
-            if(cart.length === 0) {
-                alert("Apka cart khali hai! Kripya pehle koi product add karein.");
+        // --- 3. TAB ROUTING FOR POLICIES ---
+        function switchPolicyTab(policyId, triggerBtn) {
+            const panes = document.querySelectorAll('.policy-content-pane');
+            panes.forEach(pane => pane.classList.remove('active'));
+
+            const targetPane = document.getElementById(policyId);
+            if (targetPane) {
+                targetPane.classList.add('active');
+            }
+
+            if (triggerBtn) {
+                const tabs = document.querySelectorAll('.policy-tab');
+                tabs.forEach(tab => tab.classList.remove('active'));
+                triggerBtn.classList.add('active');
+            } else {
+                // If triggered by footer click
+                const tabs = document.querySelectorAll('.policy-tab');
+                tabs.forEach(tab => {
+                    tab.classList.remove('active');
+                    if (tab.getAttribute('onclick').includes(policyId)) {
+                        tab.classList.add('active');
+                    }
+                });
+            }
+        }
+
+        // --- 4. CART OPERATION MOTIONS ---
+        function toggleCartDrawer(open) {
+            const overlay = document.getElementById('cartOverlay');
+            if (open) {
+                overlay.classList.add('active');
+            } else {
+                overlay.classList.remove('active');
+            }
+        }
+
+        function cartAction(action, productId) {
+            const existingItem = cartState.find(item => item.id === productId);
+
+            if (action === 'add') {
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cartState.push({
+                        id: productId,
+                        quantity: 1
+                    });
+                }
+                toggleCartDrawer(true); // Automatically slide out cart preview
+            } else if (action === 'increment') {
+                if (existingItem) existingItem.quantity += 1;
+            } else if (action === 'decrement') {
+                if (existingItem) {
+                    existingItem.quantity -= 1;
+                    if (existingItem.quantity <= 0) {
+                        cartState = cartState.filter(item => item.id !== productId);
+                    }
+                }
+            } else if (action === 'remove') {
+                cartState = cartState.filter(item => item.id !== productId);
+            }
+
+            renderCartUI();
+        }
+
+        function renderCartUI() {
+            const cartItemsList = document.getElementById('cartItemsList');
+            const cartBadgeCount = document.getElementById('cartBadgeCount');
+            const cartSubtotalVal = document.getElementById('cartSubtotalVal');
+
+            // Set total items badge
+            let totalItems = cartState.reduce((acc, item) => acc + item.quantity, 0);
+            cartBadgeCount.innerText = totalItems;
+
+            cartItemsList.innerHTML = '';
+
+            if (cartState.length === 0) {
+                cartItemsList.innerHTML = `<div class="empty-cart-msg">Your shopping bag is currently empty.</div>`;
+                cartSubtotalVal.innerText = '₹0';
                 return;
             }
-            alert("🔒 Secure Checkout Gateway par bheja ja raha hai...\n\nAgle step par apna Address bharein aur Cash on Delivery (COD) select karein!");
+
+            let subtotal = 0;
+            cartState.forEach(item => {
+                const product = productsDatabase[item.id];
+                const itemTotal = product.price * item.quantity;
+                subtotal += itemTotal;
+
+                const cartItemHTML = `
+                    <div class="cart-drawer-item">
+                        <div class="cart-item-preview-img">
+                            <img src="${product.img}" alt="${product.name}">
+                        </div>
+                        <div class="cart-item-info">
+                            <h4>${product.name}</h4>
+                            <p>₹${product.price.toLocaleString('en-IN')}</p>
+                            <button class="remove-item-btn" onclick="cartAction('remove', '${product.id}')">Remove</button>
+                        </div>
+                        <div class="qty-control">
+                            <button class="qty-btn" onclick="cartAction('decrement', '${product.id}')">−</button>
+                            <span class="qty-val">${item.quantity}</span>
+                            <button class="qty-btn" onclick="cartAction('increment', '${product.id}')">+</button>
+                        </div>
+                    </div>
+                `;
+                cartItemsList.innerHTML += cartItemHTML;
+            });
+
+            cartSubtotalVal.innerText = '₹' + subtotal.toLocaleString('en-IN');
+        }
+
+        // --- 5. CHECKOUT FLOW LOGIC ---
+        function openCheckoutModal() {
+            if (cartState.length === 0) {
+                alert("Your cart is empty! Please add products before checking out.");
+                return;
+            }
+            toggleCartDrawer(false); // Close cart drawer
+
+            const modal = document.getElementById('checkoutModal');
+            modal.classList.add('active');
+
+            // Calculate overall bill for modal calculation display
+            let subtotal = cartState.reduce((acc, item) => acc + (productsDatabase[item.id].price * item.quantity), 0);
+            document.getElementById('checkoutTotalVal').innerText = '₹' + subtotal.toLocaleString('en-IN');
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkoutModal').classList.remove('active');
+        }
+
+        function selectPayment(type) {
+            const codCard = document.getElementById('payOptCod');
+            const onlineCard = document.getElementById('payOptOnline');
+            const codRadio = document.getElementById('payCodRadio');
+            const onlineRadio = document.getElementById('payOnlineRadio');
+            const submitBtn = document.querySelector('#checkoutForm button[type="submit"]');
+
+            if (type === 'cod') {
+                codCard.classList.add('selected');
+                onlineCard.classList.remove('selected');
+                codRadio.checked = true;
+                submitBtn.innerText = "Place Cash On Delivery Order";
+            } else {
+                onlineCard.classList.add('selected');
+                codCard.classList.remove('selected');
+                onlineRadio.checked = true;
+                submitBtn.innerText = "Proceed to Online Payment";
+            }
+        }
+
+        function executeOrder(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('custName').value;
+            const phone = document.getElementById('custPhone').value;
+            const address = document.getElementById('custAddress').value;
+            const pincode = document.getElementById('custPincode').value;
+            const payMethod = document.querySelector('input[name="paymentType"]:checked').value;
+
+            // Simple loading simulation
+            const checkoutMainBody = document.getElementById('checkoutMainBody');
+            checkoutMainBody.innerHTML = `
+                <div class="success-box">
+                    <div style="font-size: 24px; color: var(--accent); margin-bottom: 20px;">🔒 Packing Order securely...</div>
+                </div>
+            `;
+
+            setTimeout(() => {
+                let statusMessage = "";
+                if(payMethod === 'cod') {
+                    statusMessage = `Thank you, ${name}! Your Cash on Delivery order is successfully registered. Our executive will call you on ${phone} before delivery.`;
+                } else {
+                    statusMessage = `Payment Link has been simulated successfully! Order for ${name} is reserved.`;
+                }
+
+                checkoutMainBody.innerHTML = `
+                    <div class="success-box">
+                        <div class="success-icon">✓</div>
+                        <h2 style="font-size: 24px; font-weight:800; margin-bottom: 12px;">Order Placed Successfully!</h2>
+                        <p style="color: var(--secondary); margin-bottom: 24px; font-size:15px;">${statusMessage}</p>
+                        <p style="font-size: 14px; font-weight: 700; color: var(--accent);">Shipment to address: ${address}, Pin: ${pincode}</p>
+                        <button class="btn btn-primary" style="margin-top: 30px;" onclick="closeAndReset()">Continue Shopping</button>
+                    </div>
+                `;
+
+                // Clear out active cart
+                cartState = [];
+                renderCartUI();
+            }, 1500);
+        }
+
+        function closeAndReset() {
+            closeCheckoutModal();
+            // Restore checkout form to initial state for subsequent orders
+            setTimeout(() => {
+                document.getElementById('checkoutMainBody').innerHTML = `
+                    <form id="checkoutForm" onsubmit="executeOrder(event)">
+                        <p class="form-section-title">1. Shipping Address</p>
+                        <div class="form-group">
+                            <label for="custName">Receiver's Full Name</label>
+                            <input type="text" id="custName" class="form-control" required placeholder="E.g., Rajesh Kumar">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="custPhone">Phone Number (For Delivery OTP)</label>
+                                <input type="tel" id="custPhone" class="form-control" required placeholder="10-digit mobile number">
+                            </div>
+                            <div class="form-group">
+                                <label for="custPincode">Pin Code</label>
+                                <input type="text" id="custPincode" class="form-control" required placeholder="6-digit PIN" pattern="[0-9]{6}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="custAddress">Full Delivery Address (House No, Building, Area)</label>
+                            <input type="text" id="custAddress" class="form-control" required placeholder="Complete residential address details">
+                        </div>
+
+                        <p class="form-section-title">2. Choose Payment Method</p>
+                        <div class="payment-options-grid">
+                            <div class="pay-option-card selected" id="payOptCod" onclick="selectPayment('cod')">
+                                <input type="radio" id="payCodRadio" name="paymentType" value="cod" checked>
+                                <div>
+                                    <div style="font-weight: 700;">Cash on Delivery (COD)</div>
+                                    <div style="font-size: 11px; color: var(--secondary); font-weight: normal;">Pay when package arrives</div>
+                                </div>
+                            </div>
+                            <div class="pay-option-card" id="payOptOnline" onclick="selectPayment('online')">
+                                <input type="radio" id="payOnlineRadio" name="paymentType" value="online">
+                                <div>
+                                    <div style="font-weight: 700;">Online Cards/UPI</div>
+                                    <div style="font-size: 11px; color: var(--secondary); font-weight: normal;">Instant secure clearance</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="background-color: var(--bg-light); border: 1px solid var(--border); padding: 16px; border-radius: 8px; margin-bottom: 24px;">
+                            <div style="display: flex; justify-content: space-between; font-weight: 700;">
+                                <span>Total Payable Amount</span>
+                                <span id="checkoutTotalVal" style="color: var(--accent); font-size: 18px;">₹0</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px;">Place Cash On Delivery Order</button>
+                    </form>
+                `;
+            }, 500);
         }
     </script>
 </body>
 </html>
+```eof
+
+I have successfully generated your customized eCommerce storefront! Here is what we changed and added:
+1. **White & Teal Premium Minimalist Aesthetic:** We swapped the black-and-gold design for a highly trustworthy, clinical, and clean white layout accented with organic slate-gray and teal.
+2. **True Multi-Page Routing Architecture:** Integrated a Single Page Application (SPA) engine into the file (`index.html`) using tabs (`Shop`, `Ingredients`, `About Us`, and `Policies`). You can click any header/footer link to switch tabs instantly without getting any 404 page errors.
+3. **Dedicated Policy Center:** Under the "Policies" page, users can read clean, formatted blocks of your store's legal parameters (Privacy Policy, Terms & Conditions, and Return Policies).
+4. **Enhanced Interactive Cart & COD Checkout:** Features a sliding side cart to adjust quantities and remove items, alongside a smooth checkout modal simulating shipping collection and dynamic order placement with Cash on Delivery (COD) functionality.
