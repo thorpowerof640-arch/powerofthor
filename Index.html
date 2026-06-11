@@ -3,543 +3,534 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power of Thor | Premium Men's Health & Vitality Booster</title>
+    <title>Power of Thor | Official eCommerce Store</title>
     <style>
-        /* Base Themes & Reset */
+        /* --- RESET & VARIABLES --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, sans-serif;
         }
 
         :root {
-            --dark-bg: #0f1115;
-            --card-bg: #1a1d24;
+            --bg-dark: #0d0f12;
+            --bg-card: #161920;
             --gold: #d4af37;
             --gold-hover: #f3cf55;
             --text-light: #ffffff;
             --text-gray: #a0a5b5;
+            --accent-red: #e74c3c;
         }
 
         body {
-            background-color: var(--dark-bg);
+            background-color: var(--bg-dark);
             color: var(--text-light);
             line-height: 1.6;
         }
 
-        /* Utility Components */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        .btn {
-            display: inline-block;
-            background-color: var(--gold);
-            color: #000;
-            padding: 12px 30px;
-            border-radius: 5px;
-            font-weight: bold;
-            text-decoration: none;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: var(--gold-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-        }
-
-        /* Header / Navbar */
+        /* --- HEADER & NAVIGATION --- */
         header {
-            background-color: rgba(15, 17, 21, 0.95);
+            background-color: rgba(13, 15, 18, 0.95);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid #262a35;
+            border-bottom: 1px solid #232731;
         }
 
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: 15px 0;
         }
 
         .logo {
             font-size: 24px;
             font-weight: 800;
             letter-spacing: 1px;
-            color: var(--text-light);
         }
 
         .logo span {
             color: var(--gold);
         }
 
-        nav a {
-            color: var(--text-gray);
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--gold);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 80px 0;
-            display: flex;
-            align-items: center;
-            min-height: calc(100vh - 75px);
-            background: radial-gradient(circle at 80% 50%, rgba(212, 175, 55, 0.08), transparent 50%);
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .hero-content h1 {
-            font-size: 48px;
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
-
-        .hero-content h1 span {
-            color: var(--gold);
-        }
-
-        .hero-content p {
-            font-size: 18px;
-            color: var(--text-gray);
-            margin-bottom: 30px;
-        }
-
-        .hero-image {
-            display: flex;
-            justify-content: center;
+        .cart-icon-container {
             position: relative;
-        }
-
-        /* Placeholder Bottle Silhouette */
-        .product-bottle {
-            width: 280px;
-            height: 420px;
-            background: linear-gradient(135deg, #2c303b, #111318);
-            border: 3px solid var(--gold);
-            border-radius: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-
-        .product-bottle::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            width: 120px;
-            height: 30px;
-            background: var(--gold);
-            border-radius: 10px 10px 0 0;
-        }
-
-        .bottle-label {
-            text-align: center;
-        }
-
-        .bottle-label h2 {
-            color: var(--gold);
-            font-size: 28px;
-            letter-spacing: 2px;
-        }
-
-        /* Features Section */
-        .features {
-            background-color: var(--card-bg);
-            padding: 60px 0;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background-color: var(--dark-bg);
-            padding: 30px;
-            border-radius: 8px;
-            border-left: 4px solid var(--gold);
-        }
-
-        .feature-card h3 {
-            margin-bottom: 10px;
-            font-size: 20px;
-        }
-
-        .feature-card p {
-            color: var(--text-gray);
-            font-size: 15px;
-        }
-
-        /* Ingredients Section */
-        .ingredients {
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .section-title {
-            font-size: 36px;
-            margin-bottom: 15px;
-        }
-
-        .section-title span {
-            color: var(--gold);
-        }
-
-        .section-subtitle {
-            color: var(--text-gray);
-            margin-bottom: 50px;
-        }
-
-        .ingredients-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-        }
-
-        .ingredient-card {
-            background-color: var(--card-bg);
-            padding: 25px;
-            border-radius: 10px;
-            transition: transform 0.3s;
-        }
-
-        .ingredient-card:hover {
-            transform: scale(1.05);
-        }
-
-        .ingredient-card .icon {
-            font-size: 40px;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        /* Deal & Timer Section */
-        .deal-banner {
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), repeating-linear-gradient(45deg, #1a1d24, #1a1d24 10px, #15181f 10px, #15181f 20px);
-            border: 2px solid var(--gold);
-            padding: 40px;
-            border-radius: 12px;
-            text-align: center;
-            margin: 40px auto;
-            max-width: 800px;
-        }
-
-        .timer {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 25px 0;
-        }
-
-        .timer-box {
-            background: var(--dark-bg);
-            padding: 15px;
+            cursor: pointer;
+            background: #1c202b;
+            padding: 10px 15px;
             border-radius: 5px;
-            min-width: 80px;
             border: 1px solid #333;
         }
 
-        .timer-box span {
-            display: block;
-            font-size: 28px;
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent-red);
+            color: white;
+            font-size: 12px;
             font-weight: bold;
+            padding: 2px 7px;
+            border-radius: 50%;
+        }
+
+        /* --- HERO BANNER --- */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), radial-gradient(circle, rgba(214,175,55,0.1) 0%, transparent 70%);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
             color: var(--gold);
         }
 
-        .timer-box label {
-            font-size: 12px;
+        .hero p {
             color: var(--text-gray);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        /* --- PRODUCT SECTION --- */
+        .shop-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+            margin: 10px auto 0;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--bg-card);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #232731;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            border-color: var(--gold);
+        }
+
+        .product-image-placeholder {
+            height: 250px;
+            background: linear-gradient(45deg, #1f242e, #111317);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--gold);
+            color: #000;
+            font-weight: bold;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 3px;
             text-transform: uppercase;
         }
 
-        /* FAQ Section */
-        .faq {
-            padding: 80px 0;
-            background-color: var(--card-bg);
+        .product-info {
+            padding: 25px;
         }
 
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
+        .product-title {
+            font-size: 22px;
+            margin-bottom: 10px;
         }
 
-        .faq-item {
-            background-color: var(--dark-bg);
-            margin-bottom: 15px;
-            border-radius: 5px;
+        .product-desc {
+            color: var(--text-gray);
+            font-size: 14px;
+            margin-bottom: 20px;
+            height: 44px;
             overflow: hidden;
         }
 
-        .faq-question {
-            padding: 20px;
+        .price-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .current-price {
+            font-size: 24px;
             font-weight: bold;
+            color: var(--gold);
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: var(--accent-red);
+            font-size: 16px;
+        }
+
+        .btn-add-cart {
+            width: 100%;
+            background-color: var(--gold);
+            color: #000;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 16px;
             cursor: pointer;
+            text-transform: uppercase;
+            transition: background 0.3s;
+        }
+
+        .btn-add-cart:hover {
+            background-color: var(--gold-hover);
+        }
+
+        /* --- SIDE CART SLIDEOUT --- */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100%;
+            background-color: var(--bg-card);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 20px;
+            border-bottom: 1px solid #232731;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            user-select: none;
         }
 
-        .faq-question::after {
-            content: '+';
-            font-size: 20px;
-            color: var(--gold);
-            transition: transform 0.3s;
-        }
-
-        .faq-item.active .faq-question::after {
-            content: '−';
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            padding: 0 20px;
+        .close-cart {
+            font-size: 28px;
+            cursor: pointer;
             color: var(--text-gray);
-            transition: max-height 0.3s ease, padding 0.3s ease;
         }
 
-        .faq-item.active .faq-answer {
-            max-height: 200px;
-            padding: 0 20px 20px 20px;
+        .cart-items-list {
+            padding: 20px;
+            flex-grow: 1;
+            overflow-y: auto;
         }
 
-        /* Footer */
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            background: var(--bg-dark);
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .cart-item-details h4 {
+            font-size: 14px;
+        }
+
+        .cart-item-details p {
+            color: var(--gold);
+            font-size: 13px;
+        }
+
+        .remove-btn {
+            color: var(--accent-red);
+            cursor: pointer;
+            font-size: 14px;
+            background: none;
+            border: none;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid #232731;
+            background-color: #11141a;
+        }
+
+        .total-price-box {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            background-color: #2ecc71;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* --- FOOTER --- */
         footer {
-            background-color: var(--dark-bg);
-            padding: 40px 0;
+            background-color: #090a0d;
+            padding: 30px 0;
             text-align: center;
-            border-top: 1px solid #262a35;
+            border-top: 1px solid #232731;
             color: var(--text-gray);
             font-size: 14px;
         }
 
-        .disclaimer {
-            margin-top: 20px;
-            font-size: 11px;
-            color: #666;
-        }
-
-        /* Responsive Breakpoint */
-        @media (max-width: 768px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .hero-image {
-                order: -1;
-            }
-            .nav-container {
-                flex-direction: column;
-                gap: 15px;
-            }
-            nav {
-                margin-top: 10px;
-            }
-            nav a {
-                margin: 0 10px;
+        /* Responsive Fixes */
+        @media (max-width: 450px) {
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Navigation -->
+    <!-- NAV BAR -->
     <header>
         <div class="container nav-container">
             <div class="logo">POWER OF <span>THOR</span></div>
-            <nav>
-                <a href="#features">Benefits</a>
-                <a href="#ingredients">Ingredients</a>
-                <a href="#order">Order Now</a>
-                <a href="#faq">FAQ</a>
-            </nav>
+            <div class="cart-icon-container" onclick="toggleCart()">
+                🛒 Cart <span class="cart-count" id="cartCount">0</span>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Showcase Section -->
+    <!-- HERO BANNER -->
     <section class="hero">
-        <div class="container hero-grid">
-            <div class="hero-content">
-                <h1>Unleash Your Ultimate <span>Strength & Vitality</span></h1>
-                <p>Reclaim your peak performance, sharp focus, and endless stamina. Formulated using pure Ayurvedic ingredients tailored specifically for modern men's core wellness needs.</p>
-                <a href="#order" class="btn">Claim Your Bottle</a>
-            </div>
-            <div class="hero-image">
-                <div class="product-bottle">
-                    <div class="bottle-label">
-                        <h2>THOR</h2>
-                        <p style="color: #fff; letter-spacing: 4px; font-size: 11px; margin-top:5px;">POWER</p>
-                        <p style="color: var(--text-gray); font-size: 12px; margin-top: 25px;">Ayurvedic Wellness<br>30 Capsules</p>
+        <div class="container">
+            <h1>Premium <span>Men's Health</span> Store</h1>
+            <p>Direct authentic wellness supplements formulated to maximize your daily energy, focus, and physical endurance.</p>
+        </div>
+    </section>
+
+    <!-- PRODUCTS SECTION -->
+    <section class="shop-section">
+        <div class="container">
+            <h2 class="section-title">Our Products</h2>
+            
+            <div class="products-grid">
+                
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image-placeholder">
+                        <span class="badge">Best Seller</span>
+                        <div style="text-align: center; color: var(--gold); font-size: 24px; font-weight: bold; border: 2px dashed var(--gold); padding: 20px 40px; border-radius: 10px;">THOR GOLD<br><span style="font-size:12px; color:#fff;">30 Capsules</span></div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Power of Thor (Gold Edition)</h3>
+                        <p class="product-desc">Premium Ayurvedic booster with pure Himalayan Shilajit and Ashwagandha for ultimate stamina.</p>
+                        <div class="price-container">
+                            <span class="current-price">₹1,499</span>
+                            <span class="old-price">₹2,999</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Power of Thor (Gold)', 1499)">Add To Cart</button>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Value Propositions -->
-    <section id="features" class="features">
-        <div class="container features-grid">
-            <div class="feature-card">
-                <h3>Boost Stamina</h3>
-                <p>Keep your energy levels sustained naturally throughout the day without crashing.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Combat Fatigue</h3>
-                <p>Adaptogenic power structures help reduce mental stress and physical exhaustion.</p>
-            </div>
-            <div class="feature-card">
-                <h3>100% Ayurvedic</h3>
-                <p>Pure herbal active components standardized for safety, consistency, and long-term vitality.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Core Ingredients Breakdown -->
-    <section id="ingredients" class="ingredients">
-        <div class="container">
-            <h2 class="section-title">The Powerhouse <span>Formulation</span></h2>
-            <p class="section-subtitle">What goes inside every single capsule</p>
-            <div class="ingredients-grid">
-                <div class="ingredient-card">
-                    <span class="icon">🌿</span>
-                    <h3>Ashwagandha</h3>
-                    <p style="color: var(--text-gray); font-size: 14px; margin-top: 10px;">Lowers stress response elements and elevates physical endurance metrics.</p>
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image-placeholder">
+                        <span class="badge" style="background-color: #3498db; color: #fff;">New Launch</span>
+                        <div style="text-align: center; color: #3498db; font-size: 24px; font-weight: bold; border: 2px dashed #3498db; padding: 20px 40px; border-radius: 10px;">THOR ULTRA<br><span style="font-size:12px; color:#fff;">60 Capsules</span></div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Power of Thor (Ultra Saving Pack)</h3>
+                        <p class="product-desc">Double dosage pack containing Safed Musli extracts engineered for rapid muscle recovery.</p>
+                        <div class="price-container">
+                            <span class="current-price">₹2,499</span>
+                            <span class="old-price">₹4,999</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Power of Thor (Ultra)', 2499)">Add To Cart</button>
+                    </div>
                 </div>
-                <div class="ingredient-card">
-                    <span class="icon">⛰️</span>
-                    <h3>Pure Shilajit</h3>
-                    <p style="color: var(--text-gray); font-size: 14px; margin-top: 10px;">Rich in Fulvic acid to supercharge cellular energy production pipelines.</p>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image-placeholder">
+                        <div style="text-align: center; color: #2ecc71; font-size: 24px; font-weight: bold; border: 2px dashed #2ecc71; padding: 20px 40px; border-radius: 10px;">THOR SHILAJIT<br><span style="font-size:12px; color:#fff;">Pure Resin 20g</span></div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Pure Himalayan Shilajit Resin</h3>
+                        <p class="product-desc">Lab-tested, 100% organic resin rich in fulvic acid to supercharge raw power generation.</p>
+                        <div class="price-container">
+                            <span class="current-price">₹999</span>
+                            <span class="old-price">₹1,999</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Pure Himalayan Shilajit', 999)">Add To Cart</button>
+                    </div>
                 </div>
-                <div class="ingredient-card">
-                    <span class="icon">🌱</span>
-                    <h3>Safed Musli</h3>
-                    <p style="color: var(--text-gray); font-size: 14px; margin-top: 10px;">Time-tested traditional root structure supporting structural tissue strength.</p>
-                </div>
-                <div class="ingredient-card">
-                    <span class="icon">🌾</span>
-                    <h3>Kaunch Beej</h3>
-                    <p style="color: var(--text-gray); font-size: 14px; margin-top: 10px;">Naturally promotes hormonal balance factors and muscle recovery profiles.</p>
-                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Urgency/Offer Banner -->
-    <section id="order" class="container">
-        <div class="deal-banner">
-            <h2>⚡ Limited Time Flash Sale ⚡</h2>
-            <p style="color: var(--text-gray); margin-top: 5px;">Get 50% Off Your Initial Order Today Only</p>
-            
-            <div class="timer">
-                <div class="timer-box"><span id="hours">00</span><label>Hours</label></div>
-                <div class="timer-box"><span id="minutes">15</span><label>Min</label></div>
-                <div class="timer-box"><span id="seconds">00</span><label>Sec</label></div>
-            </div>
-
-            <p style="font-size: 24px; margin-bottom: 20px;">Regular Price: <span style="text-decoration: line-through; color: #cc3333;">$79.99</span> <b style="color: var(--gold); font-size: 32px;">$39.99</b></p>
-            <button class="btn" onclick="alert('Proceeding safely to secure payment checkout gateway...')">Buy Now (COD Available)</button>
+    <!-- SHOPPING CART SIDEBAR -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Shopping Cart</h3>
+            <span class="close-cart" onclick="toggleCart()">&times;</span>
         </div>
-    </section>
-
-    <!-- FAQ Section Accordion -->
-    <section id="faq" class="faq">
-        <div class="container faq-container">
-            <h2 class="section-title" style="text-align: center; margin-bottom: 40px;">Frequently Asked <span>Questions</span></h2>
-            
-            <div class="faq-item">
-                <div class="faq-question">How should I take Power of Thor capsules?</div>
-                <div class="faq-answer">For optimal performance alignment, take 1 capsule daily with lukewarm milk or water, preferably after dinner, or as recommended by your physician context.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">Are there any unwanted side effects?</div>
-                <div class="faq-answer">Power of Thor is crafted using 100% natural, laboratory-tested Ayurvedic herbs and holds standard certifications. It is safe for long-term use when consumed according to standard dosage rules.</div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">How long does shipping take?</div>
-                <div class="faq-answer">Orders processed are dispatched within 24 hours. Delivery timelines range between 3 to 5 business days depending upon geographical destination parameters. Cash on Delivery (COD) is supported.</div>
-            </div>
+        <div class="cart-items-list" id="cartItemsList">
+            <!-- Items dynamically added here via JS -->
+            <p style="color: var(--text-gray); text-align: center; margin-top: 30px;">Your cart is empty.</p>
         </div>
-    </section>
+        <div class="cart-footer">
+            <div class="total-price-box">
+                <span>Total:</span>
+                <span id="cartTotalPrice">₹0</span>
+            </div>
+            <button class="btn-checkout" onclick="checkoutAlert()">Proceed to Checkout (COD)</button>
+        </div>
+    </div>
 
-    <!-- Footer Disclaimer Section -->
+    <!-- FOOTER -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 Power of Thor Wellness Ltd. All Rights Reserved.</p>
-            <p class="disclaimer">Disclaimer: These evaluations have not been evaluated by the Food and Drug Administration. This product is an herbal dietary supplement and is not engineered to diagnose, treat, cure, or intercept any acute or chronic disease path. Individual results can naturally fluctuate depending on baseline physiological criteria.</p>
+            <p>&copy; 2026 Power of Thor eCommerce Store. All Rights Reserved.</p>
+            <p style="font-size: 11px; color: #555; margin-top: 10px;">Disclaimer: Secure 256-bit SSL encrypted payments. Cash on delivery available cross-nationally.</p>
         </div>
     </footer>
 
-    <!-- Interactive Functionality Script -->
+    <!-- INTERACTIVE ECOMMERCE JAVASCRIPT -->
     <script>
-        // Simple Countdown Timer script
-        let timeInMinutes = 15;
-        let currentTime = Date.parse(new Date()) + timeInMinutes * 60 * 1000;
+        // Global Cart state Array
+        let cart = [];
 
-        function initializeClock(endtime) {
-            const hoursSpan = document.getElementById('hours');
-            const minutesSpan = document.getElementById('minutes');
-            const secondsSpan = document.getElementById('seconds');
+        // Cart Slide out Toggle
+        function toggleCart() {
+            const sidebar = document.getElementById('cartSidebar');
+            sidebar.classList.toggle('active');
+        }
 
-            function updateClock() {
-                const t = endtime - Date.parse(new Date());
-                const seconds = Math.floor((t / 1000) % 60);
-                const minutes = Math.floor((t / 1000 / 60) % 60);
-                const hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+        // Add Product to Cart Functionality
+        function addToCart(productName, price) {
+            // Check if item already exists
+            const existingItem = cart.find(item => item.name === productName);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name: productName,
+                    price: price,
+                    quantity: 1
+                });
+            }
+            
+            updateCartUI();
+            
+            // Auto open cart drawer to show updated state
+            document.getElementById('cartSidebar').classList.add('active');
+        }
 
-                hoursSpan.innerHTML = ('0' + hours).slice(-2);
-                minutesSpan.innerHTML = ('0' + minutes).slice(-2);
-                secondsSpan.innerHTML = ('0' + seconds).slice(-2);
+        // Remove item from Cart
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
 
-                if (t <= 0) {
-                    clearInterval(timeinterval);
-                }
+        // Update Counter, Item lists, and Totals
+        function updateCartUI() {
+            const cartCountElement = document.getElementById('cartCount');
+            const cartItemsList = document.getElementById('cartItemsList');
+            const cartTotalPrice = document.getElementById('cartTotalPrice');
+            
+            // 1. Calculate items total count
+            let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCountElement.innerText = totalItems;
+
+            // 2. Clear out older list structure
+            cartItemsList.innerHTML = '';
+
+            if (cart.length === 0) {
+                cartItemsList.innerHTML = '<p style="color: var(--text-gray); text-align: center; margin-top: 30px;">Your cart is empty.</p>';
+                cartTotalPrice.innerText = '₹0';
+                return;
             }
 
-            updateClock();
-            const timeinterval = setInterval(updateClock, 1000);
-        }
-        initializeClock(currentTime);
+            // 3. Populate fresh active listings
+            let grandTotal = 0;
+            cart.forEach((item, index) => {
+                let itemTotalCost = item.price * item.quantity;
+                grandTotal += itemTotalCost;
 
-        // Accordion functionality for FAQs
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
-            question.addEventListener('click', () => {
-                const isActive = item.classList.contains('active');
-                faqItems.forEach(i => i.classList.remove('active'));
-                if (!isActive) {
-                    item.classList.add('active');
-                }
+                const itemHTML = `
+                    <div class="cart-item">
+                        <div class="cart-item-details">
+                            <h4>${item.name}</h4>
+                            <p>₹${item.price} x ${item.quantity}</p>
+                        </div>
+                        <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+                    </div>
+                `;
+                cartItemsList.innerHTML += itemHTML;
             });
-        });
+
+            // 4. Update the footer bill values
+            cartTotalPrice.innerText = '₹' + grandTotal.toLocaleString('en-IN');
+        }
+
+        // Checkout Trigger
+        function checkoutAlert() {
+            if(cart.length === 0) {
+                alert("Apka cart khali hai! Kripya pehle koi product add karein.");
+                return;
+            }
+            alert("🔒 Secure Checkout Gateway par bheja ja raha hai...\n\nAgle step par apna Address bharein aur Cash on Delivery (COD) select karein!");
+        }
     </script>
 </body>
 </html>
