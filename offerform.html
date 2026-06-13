@@ -69,14 +69,14 @@
         btn.innerHTML = "Processing...";
         btn.disabled = true;
 
-        // फॉर्म का डेटा इकट्ठा करना
+        // FormData ऑब्जेक्ट बनाकर बैकएंड फाइल पर डेटा भेजना
         const formData = new FormData();
         formData.append('name', document.getElementById('name').value);
         formData.append('phone', document.getElementById('phone').value);
         formData.append('address', document.getElementById('address').value);
 
         try {
-            // डेटा को हमारी खुद की PHP फाइल (order.php) पर भेजना (No CORS issue!)
+            // यह डेटा सीधे उसी फोल्डर में मौजूद order.php पर जाएगा
             await fetch('order.php', {
                 method: 'POST',
                 body: formData
@@ -84,8 +84,8 @@
 
             showSuccess();
         } catch (error) {
-            console.warn("Redirecting to success page.");
-            showSuccess();
+            console.warn("Handled.");
+            showSuccess(); // नेटवर्क इशू होने पर भी यूजर को थैंक यू दिखेगा ताकि ड्रॉप ऑफ न हो
         }
     });
 
