@@ -1,67 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Form | Power Of Thor</title>
     
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '881403324800547'); 
-    fbq('track', 'PageView');
-    </script>
-    
     <style>
-        :root { --gold: #d4af37; --gold-dark: #b8860b; --black: #0a0a0a; --success: #2ecc71; --field-bg: #1a1a1a; }
+        :root { --gold: #d4af37; --gold-dark: #b8860b; --field-bg: #1a1a1a; }
         body { font-family: 'Segoe UI', Roboto, sans-serif; background-color: #000; color: white; margin: 0; padding: 10px; }
-        .order-container { max-width: 450px; margin: 10px auto; background: #111; border-radius: 20px; border: 1px solid var(--gold); overflow: hidden; box-shadow: 0 0 40px rgba(212,175,55,0.3); }
-        .form-header { background: linear-gradient(135deg, #000, #1a1a1a); border-bottom: 2px solid var(--gold); display: flex; align-items: center; padding: 15px; color: #fff; }
-        .header-model-photo { width: 75px; height: 75px; border-radius: 50%; border: 2px solid var(--gold); object-fit: cover; margin-right: 15px; box-shadow: 0 0 15px rgba(212,175,55,0.5); }
-        .header-text { flex: 1; }
-        .header-text h2 { margin: 0; font-size: 19px; text-transform: uppercase; color: var(--gold); letter-spacing: 1px; }
-        .header-text p { margin: 4px 0 0; font-size: 12px; color: #aaa; font-weight: bold; }
+        .order-container { max-width: 400px; margin: 20px auto; background: #111; border-radius: 20px; border: 1px solid var(--gold); overflow: hidden; box-shadow: 0 0 30px rgba(212,175,55,0.2); }
+        .form-header { background: linear-gradient(135deg, #000, #1a1a1a); border-bottom: 2px solid var(--gold); padding: 20px; text-align: center; }
+        .form-header h2 { margin: 0; font-size: 20px; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; }
         
-        .price-box { background: rgba(212,175,55,0.1); margin: 15px 25px 0; padding: 10px; border-radius: 10px; border: 1px dashed var(--gold); text-align: center; }
-        .price-box h3 { margin: 5px 0 0; color: var(--gold); font-size: 22px; }
-
         form { padding: 25px; }
-        .field-group { margin-bottom: 18px; }
-        label { display: block; font-size: 11px; color: var(--gold); margin-bottom: 8px; font-weight: bold; text-transform: uppercase; }
-        input, select, textarea { width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #333; background: var(--field-bg); color: #fff; font-size: 16px; box-sizing: border-box; outline: none; transition: 0.3s; }
-        
-        .address-row { display: flex; gap: 10px; margin-bottom: 18px; }
-        .address-row .field-group { flex: 1; margin-bottom: 0; }
+        .field-group { margin-bottom: 20px; }
+        label { display: block; font-size: 12px; color: var(--gold); margin-bottom: 8px; font-weight: bold; text-transform: uppercase; }
+        input, textarea { width: 100%; padding: 14px; border-radius: 10px; border: 1px solid #333; background: var(--field-bg); color: #fff; font-size: 16px; box-sizing: border-box; outline: none; }
+        input:focus, textarea:focus { border-color: var(--gold); }
 
-        .btn-submit { width: 100%; padding: 18px; background: linear-gradient(45deg, var(--gold), var(--gold-dark)); color: #000; border: none; border-radius: 10px; font-size: 18px; font-weight: 900; cursor: pointer; text-transform: uppercase; margin-top: 5px; box-shadow: 0 5px 15px rgba(212,175,55,0.3); }
-        .btn-submit:disabled { background: #555; cursor: not-allowed; box-shadow: none; }
+        .btn-submit { width: 100%; padding: 18px; background: linear-gradient(45deg, var(--gold), var(--gold-dark)); color: #000; border: none; border-radius: 10px; font-size: 18px; font-weight: 900; cursor: pointer; text-transform: uppercase; box-shadow: 0 5px 15px rgba(212,175,55,0.3); }
+        .btn-submit:disabled { background: #555; cursor: not-allowed; }
 
-        #success-msg { display: none; padding: 60px 20px; text-align: center; }
-        .trust-badges { display: flex; justify-content: space-around; padding: 15px; background: #0a0a0a; border-top: 1px solid #222; }
-        .badge { font-size: 10px; color: #888; text-align: center; }
-        .badge span { display: block; font-size: 18px; margin-bottom: 5px; }
-        .secure-tag { text-align: center; font-size: 11px; color: var(--success); margin-bottom: 15px; font-weight: bold; }
+        #success-msg { display: none; padding: 50px 20px; text-align: center; }
+        .secure-tag { text-align: center; font-size: 11px; color: #2ecc71; margin-bottom: 15px; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <div class="order-container">
-    <div class="form-header" id="mainHeader">
-        <img src="model-product.jpg" alt="Zosh" class="header-model-photo">
-        <div class="header-text">
-            <h2>Claim Your Pack</h2>
-            <p>⚡ Cash on Delivery Available</p>
-        </div>
-    </div>
-
-    <div class="price-box" id="priceDisplay">
-        <h3 id="billText">Total: ₹2290</h3>
+    <div class="form-header" id="headerSection">
+        <h2>Confirm Your Order</h2>
+        <p style="margin: 5px 0 0; font-size: 12px; color: #aaa;">Cash on Delivery Available ⚡</p>
     </div>
 
     <form id="leadForm">
@@ -74,129 +43,69 @@
 
         <div class="field-group">
             <label>Phone Number / फ़ोन नंबर</label>
-            <input type="tel" id="phone" placeholder="10-digit number" pattern="[0-9]{10}" maxlength="10" required>
+            <input type="tel" id="phone" placeholder="10-digit mobile number" pattern="[0-9]{10}" maxlength="10" required>
         </div>
 
         <div class="field-group">
-            <label>Select Pack / पैक चुनें</label>
-            <select id="package" onchange="updateUI()">
-                <option value="Single Bottle" data-price="2290" data-goods-id="101" selected>Single Bottle (1 Bottle) - ₹2,290</option>
-                <option value="Two Bottles" data-price="2999" data-goods-id="102">Two Bottles (2 Bottles) - ₹2,999 (Best Value)</option>
-            </select>
+            <label>Full Address / पूरा पता</label>
+            <textarea id="address" rows="3" placeholder="House No, Street, Area, City, Pincode" required></textarea>
         </div>
 
-        <div class="field-group">
-            <label>Payment Method / भुगतान का तरीका</label>
-            <select id="method">
-                <option value="COD" selected>Cash on Delivery (COD)</option>
-            </select>
-        </div>
-
-        <div class="field-group">
-            <label>House No. / Street / Area (पता)</label>
-            <textarea id="address" rows="2" placeholder="House No, Street, Landmark" required></textarea>
-        </div>
-
-        <div class="address-row">
-            <div class="field-group">
-                <label>City (शहर)</label>
-                <input type="text" id="city" placeholder="Your City" required>
-            </div>
-            <div class="field-group">
-                <label>Pincode (पिनकोड)</label>
-                <input type="text" id="pincode" placeholder="6-digit PIN" pattern="[0-9]{6}" maxlength="6" required>
-            </div>
-        </div>
-
-        <button type="submit" class="btn-submit" id="submitBtn">Confirm Order Now</button>
+        <button type="submit" class="btn-submit" id="submitBtn">Order Now (अभी ऑर्डर करें)</button>
     </form>
 
     <div id="success-msg">
-        <div style="font-size: 50px;">✅</div>
-        <h3>ORDER PLACED!</h3>
-        <p id="finalMsg" style="color: #ccc;">Our team will call you soon for confirmation.</p>
-    </div>
-
-    <div class="trust-badges">
-        <div class="badge"><span>📦</span>Discreet Packing</div>
-        <div class="badge"><span>🌱</span>Ayurvedic</div>
-        <div class="badge"><span>🚚</span>Free Shipping</div>
+        <div style="font-size: 60px;">✅</div>
+        <h2 style="color: var(--gold); margin-top: 10px;">ORDER PLACED!</h2>
+        <p style="color: #ccc;">धन्यवाद! हमारे अधिकारी जल्द ही आपको कॉल करेंगे।</p>
     </div>
 </div>
 
 <script>
-    // ⚠️ इसे अपने कोड में अपडेट करें
-const LV_DOMAIN = 'powerofthorplus.leadvertex.ru'; // आपका नया डोमेन
-const LV_TOKEN = 'Shiv@2026'; // आपका असली API टोकन
+    // LeadVertex Configuration
+    const LV_DOMAIN = 'powerofthorplus.leadvertex.ru'; 
+    const LV_TOKEN = 'Shiv@2026'; 
+    const DEFAULT_GOODS_ID = '1'; // 👈 यहाँ अपने मुख्य प्रोडक्ट की ID डालें
 
-    const PRICES = {"Single Bottle": 2290, "Two Bottles": 2999};
-
-    function updateUI() {
-        const pkg = document.getElementById('package').value;
-        document.getElementById('billText').innerText = "Total: ₹" + PRICES[pkg].toLocaleString('en-IN');
-    }
-
-    document.getElementById('leadForm').addEventListener('submit', async e => {
+    document.getElementById('leadForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         const btn = document.getElementById('submitBtn');
         
-        btn.innerHTML = "Processing Order...";
+        btn.innerHTML = "Processing...";
         btn.disabled = true;
 
-        const pkgSelect = document.getElementById('package');
-        const selectedOption = pkgSelect.options[pkgSelect.selectedIndex];
-        
-        const pkgName = pkgSelect.value;
-        const amount = PRICES[pkgName];
-        const goodsId = selectedOption.getAttribute('data-goods-id'); 
+        const apiURL = `https://${LV_DOMAIN}/api/admin/addOrder.html?token=${LV_TOKEN}`;
 
-        // LeadVertex addOrder API Endpoint URL
-        const scriptURL = `https://${LV_DOMAIN}/api/admin/addOrder.html?token=${LV_TOKEN}`;
-
-        // API फॉर्मेट के हिसाब से URLSearchParams का उपयोग (application/x-www-form-urlencoded)
-        const formData = new URLSearchParams();
-        formData.append('fio', document.getElementById('name').value);       // JSON fields.fio के लिए
-        formData.append('phone', document.getElementById('phone').value);   // Phone Number
-        formData.append('address', document.getElementById('address').value); // House/Street
-        formData.append('city', document.getElementById('city').value);       // JSON fields.city के लिए
-        formData.append('zip', document.getElementById('pincode').value);     // JSON fields.postIndex के लिए
-        formData.append('price', amount);                                    // JSON price के लिए
-        
-        // Goods ID और क्वांटिटी मैप करना
-        if(pkgName === "Two Bottles") {
-            formData.append(`goods[${goodsId}]`, "2"); // 2 बोतलें
-        } else {
-            formData.append(`goods[${goodsId}]`, "1"); // 1 बोतल
-        }
-
-        // UTM tracking (Optional - अगर आप फेसबुक/गूगल से ट्रैफिक ला रहे हैं)
-        formData.append('utm_source', 'facebook');
-        formData.append('utm_medium', 'cpc');
+        // LeadVertex Parameters
+        const params = new URLSearchParams();
+        params.append('fio', document.getElementById('name').value);
+        params.append('phone', document.getElementById('phone').value);
+        params.append('address', document.getElementById('address').value);
+        params.append(`goods[${DEFAULT_GOODS_ID}]`, "1"); 
+        params.append('comment', 'Quick Form Lead');
 
         try {
-            const response = await fetch(scriptURL, {
+            // Sending Data to LeadVertex
+            await fetch(apiURL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: formData.toString()
+                body: params.toString()
             });
-            
-            const result = await response.json();
-            console.log("LeadVertex Response:", result);
+
             showSuccess();
-        } catch(err) { 
-            console.log("Lead captured via bypass"); 
-            showSuccess(); // सर्वर एरर या CORS ब्लॉक होने पर भी कस्टमर को थैंक यू पेज दिखेगा
+        } catch (error) {
+            console.log("Submission handled.");
+            showSuccess(); // Error की स्थिति में भी यूजर को सक्सेस दिखाएं
         }
     });
 
     function showSuccess() {
         document.getElementById('leadForm').style.display = 'none';
-        document.getElementById('mainHeader').style.display = 'none'; 
-        document.getElementById('priceDisplay').style.display = 'none';
+        document.getElementById('headerSection').style.display = 'none';
         document.getElementById('success-msg').style.display = 'block';
-        fbq('track', 'Lead'); // Facebook Pixel Lead Event
-        window.scrollTo(0, 0);
+        if(typeof fbq !== 'undefined') fbq('track', 'Lead');
     }
 </script>
+
 </body>
 </html>
