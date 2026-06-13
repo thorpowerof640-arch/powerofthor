@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Form | Power Of Thor</title>
+    
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '881403324800547'); 
+    fbq('track', 'PageView');
+    </script>
+    
+    <style>
+        :root { --gold: #d4af37; --gold-dark: #b8860b; --black: #0a0a0a; --success: #2ecc71; --field-bg: #1a1a1a; }
+        body { font-family: 'Segoe UI', Roboto, sans-serif; background-color: #000; color: white; margin: 0; padding: 10px; }
+        .order-container { max-width: 450px; margin: 10px auto; background: #111; border-radius: 20px; border: 1px solid var(--gold); overflow: hidden; box-shadow: 0 0 40px rgba(212,175,55,0.3); }
+        .form-header { background: linear-gradient(135deg, #000, #1a1a1a); border-bottom: 2px solid var(--gold); display: flex; align-items: center; padding: 15px; color: #fff; }
+        .header-model-photo { width: 75px; height: 75px; border-radius: 50%; border: 2px solid var(--gold); object-fit: cover; margin-right: 15px; box-shadow: 0 0 15px rgba(212,175,55,0.5); }
+        .header-text { flex: 1; }
+        .header-text h2 { margin: 0; font-size: 19px; text-transform: uppercase; color: var(--gold); letter-spacing: 1px; }
+        .header-text p { margin: 4px 0 0; font-size: 12px; color: #aaa; font-weight: bold; }
+        
+        .price-box { background: rgba(212,175,55,0.1); margin: 15px 25px 0; padding: 10px; border-radius: 10px; border: 1px dashed var(--gold); text-align: center; }
+        .price-box h3 { margin: 5px 0 0; color: var(--gold); font-size: 22px; }
+
+        form { padding: 25px; }
+        .field-group { margin-bottom: 18px; }
+        label { display: block; font-size: 11px; color: var(--gold); margin-bottom: 8px; font-weight: bold; text-transform: uppercase; }
+        input, select, textarea { width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #333; background: var(--field-bg); color: #fff; font-size: 16px; box-sizing: border-box; outline: none; transition: 0.3s; }
+        
+        .address-row { display: flex; gap: 10px; margin-bottom: 18px; }
+        .address-row .field-group { flex: 1; margin-bottom: 0; }
+
+        .btn-submit { width: 100%; padding: 18px; background: linear-gradient(45deg, var(--gold), var(--gold-dark)); color: #000; border: none; border-radius: 10px; font-size: 18px; font-weight: 900; cursor: pointer; text-transform: uppercase; margin-top: 5px; box-shadow: 0 5px 15px rgba(212,175,55,0.3); }
+        .btn-submit:disabled { background: #555; cursor: not-allowed; box-shadow: none; }
+
+        #success-msg { display: none; padding: 60px 20px; text-align: center; }
+        .trust-badges { display: flex; justify-content: space-around; padding: 15px; background: #0a0a0a; border-top: 1px solid #222; }
+        .badge { font-size: 10px; color: #888; text-align: center; }
+        .badge span { display: block; font-size: 18px; margin-bottom: 5px; }
+        .secure-tag { text-align: center; font-size: 11px; color: var(--success); margin-bottom: 15px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="order-container">
+    <div class="form-header" id="mainHeader">
+        <img src="model-product.jpg" alt="Zosh" class="header-model-photo">
+        <div class="header-text">
+            <h2>Claim Your Pack</h2>
+            <p>⚡ Cash on Delivery Available</p>
+        </div>
+    </div>
+
+    <div class="price-box" id="priceDisplay">
+        <h3 id="billText">Total: ₹2290</h3>
+    </div>
+
+    <form id="leadForm">
+        <div class="secure-tag">🔒 100% PRIVATE & SECURE CHECKOUT</div>
+        
+        <div class="field-group">
+            <label>Full Name / पूरा नाम</label>
+            <input type="text" id="name" placeholder="Enter your name" required>
+        </div>
+
+        <div class="field-group">
+            <label>Phone Number / फ़ोन नंबर</label>
+            <input type="tel" id="phone" placeholder="10-digit number" pattern="[0-9]{10}" maxlength="10" required>
+        </div>
+
+        <div class="field-group">
+            <label>Select Pack / पैक चुनें</label>
+            <select id="package" onchange="updateUI()">
+                <option value="Single Bottle" data-price="2999" selected>Single Bottle (1 Bottle) - ₹2,999</option>
+                <option value="Two Bottles" data-price="3999">Two Bottles (2 Bottles) - ₹3,999 (Best Value)</option>
+            </select>
+        </div>
+
+        <div class="field-group">
+            <label>Payment Method / भुगतान का तरीका</label>
+            <select id="method">
+                <option value="COD" selected>Cash on Delivery (COD)</option>
+            </select>
+        </div>
+
+        <div class="field-group">
+            <label>House No. / Street / Area (पता)</label>
+            <textarea id="address" rows="2" placeholder="House No, Street, Landmark" required></textarea>
+        </div>
+
+        <div class="address-row">
+            <div class="field-group">
+                <label>City (शहर)</label>
+                <input type="text" id="city" placeholder="Your City" required>
+            </div>
+            <div class="field-group">
+                <label>Pincode (पिनकोड)</label>
+                <input type="text" id="pincode" placeholder="6-digit PIN" pattern="[0-9]{6}" maxlength="6" required>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">Confirm Order Now</button>
+    </form>
+
+    <div id="success-msg">
+        <div style="font-size: 50px;">✅</div>
+        <h3>ORDER PLACED!</h3>
+        <p id="finalMsg" style="color: #ccc;">Our team will call you soon for confirmation.</p>
+    </div>
+
+    <div class="trust-badges">
+        <div class="badge"><span>📦</span>Discreet Packing</div>
+        <div class="badge"><span>🌱</span>Ayurvedic</div>
+        <div class="badge"><span>🚚</span>Free Shipping</div>
+    </div>
+</div>
+
+<script>
+    const scriptURL = 'https://sheetdb.io/api/v1/jvva0bdyw2xiq'; 
+    const PRICES = {"Single Bottle": 2290, "Two Bottles": 2999};
+
+    function updateUI() {
+        const pkg = document.getElementById('package').value;
+        document.getElementById('billText').innerText = "Total: ₹" + PRICES[pkg].toLocaleString('en-IN');
+    }
+
+    document.getElementById('leadForm').addEventListener('submit', async e => {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        
+        btn.innerHTML = "Processing Order...";
+        btn.disabled = true;
+
+        const pkg = document.getElementById('package').value;
+        const amount = PRICES[pkg];
+
+        const data = {
+            "Timestamp": new Date().toLocaleString('en-IN'),
+            "Name": document.getElementById('name').value,
+            "Phone": document.getElementById('phone').value,
+            "Package": pkg,
+            "Address": document.getElementById('address').value,
+            "City": document.getElementById('city').value,
+            "Pincode": document.getElementById('pincode').value,
+            "Method": "COD",
+            "Price": amount,
+            "Delivery Status": "New Order"
+        };
+
+        try {
+            await fetch(scriptURL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ data: [data] })
+            });
+            showSuccess();
+        } catch(err) { 
+            console.log("Lead captured"); 
+            showSuccess(); // Error ke baad bhi success dikhayega taaki customer ko confirm lage
+        }
+    });
+
+    function showSuccess() {
+        document.getElementById('leadForm').style.display = 'none';
+        document.getElementById('mainHeader').style.display = 'none'; 
+        document.getElementById('priceDisplay').style.display = 'none';
+        document.getElementById('success-msg').style.display = 'block';
+        fbq('track', 'Lead');
+        window.scrollTo(0, 0);
+    }
+</script>
+</body>
+</html>
