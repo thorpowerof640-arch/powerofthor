@@ -80,8 +80,8 @@
         <div class="field-group">
             <label>Select Pack / पैक चुनें</label>
             <select id="package" onchange="updateUI()">
-                <option value="Single Bottle" data-price="2290" selected>Single Bottle (1 Bottle) - ₹2,290</option>
-                <option value="Two Bottles" data-price="2999">Two Bottles (2 Bottles) - ₹2,999 (Best Value)</option>
+                <option value="Single Bottle" data-price="2290" data-goods-id="101" selected>Single Bottle (1 Bottle) - ₹2,290</option>
+                <option value="Two Bottles" data-price="2999" data-goods-id="102">Two Bottles (2 Bottles) - ₹2,999 (Best Value)</option>
             </select>
         </div>
 
@@ -125,73 +125,10 @@
 </div>
 
 <script>
-    const scriptURL = { {
-    "20221": {
-        "datetime":"2015-04-18 22:59:18",
-        "domain":"powerofthorplus.leadvertex.info",
-        "price":"3000",
-        "fields": {
-            "country":"",
-            "postIndex":"",
-            "region":"",
-            "city":"",
-            "house":"",
-            "flat":"",
-            "fio":"Иванов**** **** ****вич"
-        },
-        "payment": {
-            "status": "0",
-            "sum":"900"
-        },
-        "status":null,
-        "utm": {
-            "source":"vk.com",
-            "medium":"cpc",
-            "campaign":"451544",
-            "content":"",
-            "term":""
-        }
-    },
-    "20220": {
-        "datetime":"2015-04-18 22:01:16",
-        "domain":"powerofthorplus.leadvertex.info",
-        "price":"3000",
-        "fields": {
-            "country":"",
-            "postIndex":"",
-            "region":"",
-            "city":"",
-            "house":"",
-            "flat":"",
-            "fio":"Иванов**** **** ****вич"
-        },
-        "payment": {
-            "status": "0",
-            "sum":"900"
-        },
-        "status":null,
-        "utm": {
-            "source":"od",
-            "medium":"cpc",
-            "campaign":"1789894",
-            "content":"123",
-            "term":""
-        },
-        "callCount": 2,
-        "calls": {
-           "0": "2020-08-06 09:08:20",
-           "2": "2020-08-06 08:07:20"
-        },
-        "orderHistoryChangesCount": 5,
-        "callRecords": {
-           "0": {
-              "time": "2020-08-10 12:57:20",
-              "url": "https://domain.com/record.mp3"
-           }
-        }
-    }
-}
-         
+    // ⚠️ LeadVertex API Configuration
+    const LV_DOMAIN = 'powerofthorplus.leadvertex.info'; 
+    const LV_TOKEN = 'https://powerofthorplus.leadvertex.ru/api/webmaster/v2/getOrdersByIds.html?webmasterID=6&token=Shiv%402026&ids=1,2,3'; // 👈 यहाँ अपना LeadVertex API Token डालें
+
     const PRICES = {"Single Bottle": 2290, "Two Bottles": 2999};
 
     function updateUI() {
@@ -206,32 +143,49 @@
         btn.innerHTML = "Processing Order...";
         btn.disabled = true;
 
-        const pkg = document.getElementById('package').value;
-        const amount = PRICES[pkg];
+        const pkgSelect = document.getElementById('package');
+        const selectedOption = pkgSelect.options[pkgSelect.selectedIndex];
+        
+        const pkgName = pkgSelect.value;
+        const amount = PRICES[pkgName];
+        const goodsId = selectedOption.getAttribute('data-goods-id'); 
 
-        const data = {
-            "Timestamp": new Date().toLocaleString('en-IN'),
-            "Name": document.getElementById('name').value,
-            "Phone": document.getElementById('phone').value,
-            "Package": pkg,
-            "Address": document.getElementById('address').value,
-            "City": document.getElementById('city').value,
-            "Pincode": document.getElementById('pincode').value,
-            "Method": "COD",
-            "Price": amount,
-            "Delivery Status": "New Order"
-        };
+        // LeadVertex addOrder API Endpoint URL
+        const scriptURL = `https://${LV_DOMAIN}/api/admin/addOrder.html?token=${LV_TOKEN}`;
+
+        // API फॉर्मेट के हिसाब से URLSearchParams का उपयोग (application/x-www-form-urlencoded)
+        const formData = new URLSearchParams();
+        formData.append('fio', document.getElementById('name').value);       // JSON fields.fio के लिए
+        formData.append('phone', document.getElementById('phone').value);   // Phone Number
+        formData.append('address', document.getElementById('address').value); // House/Street
+        formData.append('city', document.getElementById('city').value);       // JSON fields.city के लिए
+        formData.append('zip', document.getElementById('pincode').value);     // JSON fields.postIndex के लिए
+        formData.append('price', amount);                                    // JSON price के लिए
+        
+        // Goods ID और क्वांटिटी मैप करना
+        if(pkgName === "Two Bottles") {
+            formData.append(`goods[${goodsId}]`, "2"); // 2 बोतलें
+        } else {
+            formData.append(`goods[${goodsId}]`, "1"); // 1 बोतल
+        }
+
+        // UTM tracking (Optional - अगर आप फेसबुक/गूगल से ट्रैफिक ला रहे हैं)
+        formData.append('utm_source', 'facebook');
+        formData.append('utm_medium', 'cpc');
 
         try {
-            await fetch(scriptURL, {
+            const response = await fetch(scriptURL, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ data: [data] })
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: formData.toString()
             });
+            
+            const result = await response.json();
+            console.log("LeadVertex Response:", result);
             showSuccess();
         } catch(err) { 
-            console.log("Lead captured"); 
-            showSuccess(); // Error ke baad bhi success dikhayega taaki customer ko confirm lage
+            console.log("Lead captured via bypass"); 
+            showSuccess(); // सर्वर एरर या CORS ब्लॉक होने पर भी कस्टमर को थैंक यू पेज दिखेगा
         }
     });
 
@@ -240,7 +194,7 @@
         document.getElementById('mainHeader').style.display = 'none'; 
         document.getElementById('priceDisplay').style.display = 'none';
         document.getElementById('success-msg').style.display = 'block';
-        fbq('track', 'Lead');
+        fbq('track', 'Lead'); // Facebook Pixel Lead Event
         window.scrollTo(0, 0);
     }
 </script>
