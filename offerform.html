@@ -8,7 +8,7 @@
     <style>
         :root { --gold: #d4af37; --gold-dark: #b8860b; --black: #0a0a0a; --field-bg: #1a1a1a; }
         body { font-family: 'Segoe UI', Roboto, sans-serif; background-color: #000; color: white; margin: 0; padding: 10px; }
-        .order-container { max-width: 400px; margin: 20px auto; background: #111; border-radius: 20px; border: 2px solid var(--gold); overflow: hidden; box-shadow: 0 0 30px rgba(212,175,55,0.3); }
+        .order-container { max-width: 400px; margin: 20px auto; background: #111; border-radius: 20px; border: 1px solid var(--gold); overflow: hidden; box-shadow: 0 0 30px rgba(212,175,55,0.3); }
         .form-header { background: linear-gradient(135deg, #000, #1a1a1a); border-bottom: 2px solid var(--gold); padding: 20px; text-align: center; }
         .form-header h2 { margin: 0; font-size: 22px; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; }
         
@@ -19,7 +19,7 @@
         input:focus, textarea:focus { border-color: var(--gold); box-shadow: 0 0 10px rgba(212,175,55,0.2); }
 
         .btn-submit { width: 100%; padding: 18px; background: linear-gradient(45deg, var(--gold), var(--gold-dark)); color: #000; border: none; border-radius: 10px; font-size: 20px; font-weight: 900; cursor: pointer; text-transform: uppercase; margin-top: 10px; }
-        .btn-submit:active { transform: scale(0.98); }
+        .btn-submit:disabled { background: #555; cursor: not-allowed; }
 
         #success-msg { display: none; padding: 60px 20px; text-align: center; }
         .secure-tag { text-align: center; font-size: 11px; color: #2ecc71; margin-bottom: 15px; font-weight: bold; letter-spacing: 1px; }
@@ -36,19 +36,16 @@
     <form id="leadForm">
         <div class="secure-tag">🔒 100% PRIVATE & SECURE CHECKOUT</div>
         
-        <!-- API field: fio -->
         <div class="field-group">
             <label>Full Name / पूरा नाम</label>
             <input type="text" id="name" placeholder="Enter your full name" required>
         </div>
 
-        <!-- API field: phone -->
         <div class="field-group">
             <label>Phone Number / फ़ोन नंबर</label>
             <input type="tel" id="phone" placeholder="10-digit mobile number" pattern="[0-9]{10}" maxlength="10" required>
         </div>
 
-        <!-- API field: address -->
         <div class="field-group">
             <label>Full Address / पूरा पता</label>
             <textarea id="address" rows="3" placeholder="House No, Street, City, Pincode" required></textarea>
@@ -65,11 +62,6 @@
 </div>
 
 <script>
-    // LeadVertex Details from your input
-    const LV_DOMAIN = 'powerofthorplus.leadvertex.ru'; 
-    const LV_TOKEN = 'Shiv@2026'; 
-    const GOODS_ID = '1'; // आपके मुख्य प्रोडक्ट की ID
-
     document.getElementById('leadForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         const btn = document.getElementById('submitBtn');
@@ -77,30 +69,23 @@
         btn.innerHTML = "Processing...";
         btn.disabled = true;
 
-        // LeadVertex Admin API for adding orders
-        const apiURL = `https://${LV_DOMAIN}/api/admin/addOrder.html?token=${LV_TOKEN}`;
-
-        // Creating parameters based on the documentation image
-        const params = new URLSearchParams();
-        params.append('fio', document.getElementById('name').value);      // fio is mandatory as per image
-        params.append('phone', document.getElementById('phone').value);    // phone
-        params.append('address', document.getElementById('address').value); // address
-        params.append(`goods[${GOODS_ID}]`, "1");                          // quantity 1
-        params.append('utm_source', 'web_form');                           // tracking source
+        // फॉर्म का डेटा इकट्ठा करना
+        const formData = new FormData();
+        formData.append('name', document.getElementById('name').value);
+        formData.append('phone', document.getElementById('phone').value);
+        formData.append('address', document.getElementById('address').value);
 
         try {
-            // Sending the data
-            const response = await fetch(apiURL, {
+            // डेटा को हमारी खुद की PHP फाइल (order.php) पर भेजना (No CORS issue!)
+            await fetch('order.php', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: params.toString()
+                body: formData
             });
 
-            // Handling response
             showSuccess();
         } catch (error) {
-            console.warn("Request completed.");
-            showSuccess(); // Error catch होने पर भी सफलता संदेश ताकि कस्टमर अनुभव खराब न हो
+            console.warn("Redirecting to success page.");
+            showSuccess();
         }
     });
 
@@ -110,7 +95,6 @@
         document.getElementById('success-msg').style.display = 'block';
         window.scrollTo(0, 0);
         
-        // Facebook Pixel Event
         if(typeof fbq !== 'undefined') fbq('track', 'Lead');
     }
 </script>
