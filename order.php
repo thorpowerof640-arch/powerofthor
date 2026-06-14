@@ -8,7 +8,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // 2. आपके द्वारा दी गई डॉक्यूमेंटेशन के अनुसार क्रेडेंशियल्स
     $webmasterID = '6';
     $token = 'Shiv@2026';
-    $api_url = "https://powerofthorplus.leadvertex.ru/api/webmaster/v2/addOrder.html?webmasterID=" . $webmasterID . "&token=" . $token;
+    $api_url = https://powerofthorplus.leadvertex.ru/api/webmaster/v2/addOrder.html?webmasterID=6&token=Shiv%402026
+ . $webmasterID . "&token=" . $token;
 
     // ⚠️ अपने ऑफर ओनर/पैनल से कन्फर्म करें कि आपके प्रोडक्ट की असल ID क्या है।
     // अगर प्रोडक्ट ID 1 है तो '1' रहने दें, अन्यथा उसे यहाँ बदलें।
