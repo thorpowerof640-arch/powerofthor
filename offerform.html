@@ -8,21 +8,21 @@
     <style>
         :root { --gold: #d4af37; --gold-dark: #b8860b; --black: #0a0a0a; --field-bg: #1a1a1a; }
         body { font-family: 'Segoe UI', Roboto, sans-serif; background-color: #000; color: white; margin: 0; padding: 10px; }
-        .order-container { max-width: 400px; margin: 20px auto; background: #111; border-radius: 20px; border: 1px solid var(--gold); overflow: hidden; box-shadow: 0 0 30px rgba(212,175,55,0.3); }
+        .order-container { max-width: 400px; margin: 20px auto; background: #111; border-radius: 20px; border: 2px solid var(--gold); overflow: hidden; box-shadow: 0 0 30px rgba(212,175,55,0.3); }
         .form-header { background: linear-gradient(135deg, #000, #1a1a1a); border-bottom: 2px solid var(--gold); padding: 20px; text-align: center; }
         .form-header h2 { margin: 0; font-size: 22px; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; }
         
         form { padding: 25px; }
         .field-group { margin-bottom: 20px; }
         label { display: block; font-size: 13px; color: var(--gold); margin-bottom: 8px; font-weight: bold; }
-        input, textarea { width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #333; background: var(--field-bg); color: #fff; font-size: 16px; box-sizing: border-box; outline: none; transition: 0.3s; }
-        input:focus, textarea:focus { border-color: var(--gold); box-shadow: 0 0 10px rgba(212,175,55,0.2); }
+        input, textarea { width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #333; background: var(--field-bg); color: #fff; font-size: 16px; box-sizing: border-box; outline: none; }
+        input:focus, textarea:focus { border-color: var(--gold); }
 
         .btn-submit { width: 100%; padding: 18px; background: linear-gradient(45deg, var(--gold), var(--gold-dark)); color: #000; border: none; border-radius: 10px; font-size: 20px; font-weight: 900; cursor: pointer; text-transform: uppercase; margin-top: 10px; }
         .btn-submit:disabled { background: #555; cursor: not-allowed; }
 
         #success-msg { display: none; padding: 60px 20px; text-align: center; }
-        .secure-tag { text-align: center; font-size: 11px; color: #2ecc71; margin-bottom: 15px; font-weight: bold; letter-spacing: 1px; }
+        .secure-tag { text-align: center; font-size: 11px; color: #2ecc71; margin-bottom: 15px; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -69,23 +69,21 @@
         btn.innerHTML = "Processing...";
         btn.disabled = true;
 
-        // FormData ऑब्जेक्ट बनाकर बैकएंड फाइल पर डेटा भेजना
+        // सिर्फ Name, Phone और Address का डेटा PHP बैकएंड को भेजना
         const formData = new FormData();
         formData.append('name', document.getElementById('name').value);
         formData.append('phone', document.getElementById('phone').value);
         formData.append('address', document.getElementById('address').value);
 
         try {
-            // यह डेटा सीधे उसी फोल्डर में मौजूद order.php पर जाएगा
+            // डेटा को order.php पर भेजना
             await fetch('order.php', {
                 method: 'POST',
                 body: formData
             });
-
             showSuccess();
         } catch (error) {
-            console.warn("Handled.");
-            showSuccess(); // नेटवर्क इशू होने पर भी यूजर को थैंक यू दिखेगा ताकि ड्रॉप ऑफ न हो
+            showSuccess(); // नेटवर्क या सर्वर इशू होने पर भी यूजर को सक्सेस पेज दिखेगा
         }
     });
 
@@ -95,7 +93,8 @@
         document.getElementById('success-msg').style.display = 'block';
         window.scrollTo(0, 0);
         
-        if(typeof fbq !== 'undefined') fbq('track', 'Lead');
+        // अगर Facebook Pixel लगा है तो इवेंट ट्रैक होगा
+        if(typeof fbq !== 'undefined') fbq('track', 'Lead'); 
     }
 </script>
 
