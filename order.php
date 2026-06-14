@@ -1,19 +1,15 @@
 <?php
-// एरर देखने के लिए इसे ऑन कर रहे हैं
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // 1. फॉर्म से आ रहा डेटा रिसीव करना
     $name = isset($_POST['name']) ? $_POST['name'] : '';
     $phone = isset($_POST['phone']) ? $_POST['phone'] : ''; 
     $address = isset($_POST['address']) ? $_POST['address'] : '';
 
-    // 2. LeadVertex क्रेडेंशियल्स 
+    // 2. LeadVertex क्रेडेंशियल्स
     $webmasterID = '6';
     $token = 'Shiv@2026';
     
-    // स्पेलिंग एकदम सही (webmasterID):
+    // स्पेलिंग पूरी तरह सही (webmasterID):
     $api_url = "https://powerofthorplus.leadvertex.ru/api/webmaster/v2/addOrder.html?webmasterID=" . $webmasterID . "&token=" . $token;
 
     // 3. पैरामीटर्स मैप करना
@@ -37,10 +33,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
 
-    // 5. बैकअप सिस्टम और एरर लॉगिंग
-    // अगर लीडवर्टेक्स एरर देगा तो वो इस फाइल में रिकॉर्ड हो जाएगा ताकि आप देख सकें क्या दिक्कत है
-    $log_entry = date('Y-m-d H:i:s') . " | HTTP: $http_code | Response: $response | Data: [Name: $name, Phone: $phone] \n";
-    file_put_contents('leads_debug_log.txt', $log_entry, FILE_APPEND);
+    // 5. बैकअप सिस्टम: अगर API रिजेक्ट करती है, तो डेटा यहाँ टेक्स्ट फाइल में मिल जाएगा
+    if ($http_code != 200) {
+        $log_entry = date('Y-m-d H:i:s') . " | Name: $name | Phone: $phone | Address: $address \n";
+        file_put_contents('leads_backup.txt', $log_entry, FILE_APPEND);
+    }
 
     echo $response;
 }
