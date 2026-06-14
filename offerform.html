@@ -4,23 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Power Of Thor | Order Now</title>
-    
     <style>
         :root { --gold: #d4af37; --gold-dark: #b8860b; --black: #0a0a0a; --field-bg: #1a1a1a; }
         body { font-family: 'Segoe UI', Roboto, sans-serif; background-color: #000; color: white; margin: 0; padding: 10px; }
         .order-container { max-width: 400px; margin: 20px auto; background: #111; border-radius: 20px; border: 2px solid var(--gold); overflow: hidden; box-shadow: 0 0 30px rgba(212,175,55,0.3); }
         .form-header { background: linear-gradient(135deg, #000, #1a1a1a); border-bottom: 2px solid var(--gold); padding: 20px; text-align: center; }
         .form-header h2 { margin: 0; font-size: 22px; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; }
-        
         form { padding: 25px; }
         .field-group { margin-bottom: 20px; }
         label { display: block; font-size: 13px; color: var(--gold); margin-bottom: 8px; font-weight: bold; }
         input, textarea { width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #333; background: var(--field-bg); color: #fff; font-size: 16px; box-sizing: border-box; outline: none; }
         input:focus, textarea:focus { border-color: var(--gold); }
-
         .btn-submit { width: 100%; padding: 18px; background: linear-gradient(45deg, var(--gold), var(--gold-dark)); color: #000; border: none; border-radius: 10px; font-size: 20px; font-weight: 900; cursor: pointer; text-transform: uppercase; margin-top: 10px; }
-        .btn-submit:disabled { background: #555; cursor: not-allowed; }
-
         #success-msg { display: none; padding: 60px 20px; text-align: center; }
         .secure-tag { text-align: center; font-size: 11px; color: #2ecc71; margin-bottom: 15px; font-weight: bold; }
     </style>
@@ -38,17 +33,17 @@
         
         <div class="field-group">
             <label>Full Name / पूरा नाम</label>
-            <input type="text" id="name" placeholder="Enter your full name" required>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
         </div>
 
         <div class="field-group">
             <label>Phone Number / फ़ोन नंबर</label>
-            <input type="tel" id="phone" placeholder="10-digit mobile number" pattern="[0-9]{10}" maxlength="10" required>
+            <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number" pattern="[0-9]{10}" maxlength="10" required>
         </div>
 
         <div class="field-group">
             <label>Full Address / पूरा पता</label>
-            <textarea id="address" rows="3" placeholder="House No, Street, City, Pincode" required></textarea>
+            <textarea id="address" name="address" rows="3" placeholder="House No, Street, City, Pincode" required></textarea>
         </div>
 
         <button type="submit" class="btn-submit" id="submitBtn">Confirm Order Now</button>
@@ -69,21 +64,26 @@
         btn.innerHTML = "Processing...";
         btn.disabled = true;
 
-        // सिर्फ Name, Phone और Address का डेटा PHP बैकएंड को भेजना
+        // फॉर्म से डेटा उठाना
         const formData = new FormData();
         formData.append('name', document.getElementById('name').value);
         formData.append('phone', document.getElementById('phone').value);
         formData.append('address', document.getElementById('address').value);
 
         try {
-            // डेटा को order.php पर भेजना
-            await fetch('order.php', {
+            // order.php को डेटा भेजना और उसका रिस्पॉन्स चेक करना
+            const response = await fetch('order.php', {
                 method: 'POST',
                 body: formData
             });
+            
+            const result = await response.text();
+            console.log("Server Response:", result); // टेस्टिंग के लिए ब्राऊज़र कंसोल में दिखेगा
+
             showSuccess();
         } catch (error) {
-            showSuccess(); // नेटवर्क या सर्वर इशू होने पर भी यूजर को सक्सेस पेज दिखेगा
+            console.error("Error:", error);
+            showSuccess(); 
         }
     });
 
@@ -92,9 +92,6 @@
         document.getElementById('headerSection').style.display = 'none';
         document.getElementById('success-msg').style.display = 'block';
         window.scrollTo(0, 0);
-        
-        // अगर Facebook Pixel लगा है तो इवेंट ट्रैक होगा
-        if(typeof fbq !== 'undefined') fbq('track', 'Lead'); 
     }
 </script>
 
