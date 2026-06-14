@@ -2,14 +2,15 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // 1. फॉर्म से आ रहा डेटा रिसीव करना
     $name = isset($_POST['name']) ? $_POST['name'] : '';
-    $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
+    $phone = isset($_POST['phone']) ? $_POST['phone'] : ''; // यहाँ 'phonc' ठीक कर दिया है
     $address = isset($_POST['address']) ? $_POST['address'] : '';
 
-    // 2. आपके द्वारा दिए गए LeadVertex क्रेडेंशियल्स 
+    // 2. आपके द्वारा दिए गए Leadvertex क्रेडेंशियल्स
     $webmasterID = '6';
     $token = 'Shiv@2026';
+    
+    // यहाँ webmasterTD को ठीक करके webmasterID कर दिया गया है
     $api_url = "https://powerofthorplus.leadvertex.ru/api/webmaster/v2/addOrder.html?webmasterID=" . $webmasterID . "&token=" . $token;
-
     // 3. डॉक्यूमेंटेशन के अनुसार केवल ज़रूरी पैरामीटर्स को मैप करना
     $post_data = [
         'fio' => $name,
