@@ -1,28 +1,25 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // 1. HTML फॉर्म से डेटा प्राप्त करना
+    // 1. फॉर्म से आ रहा डेटा रिसीव करना
     $name = isset($_POST['name']) ? $_POST['name'] : '';
     $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
     $address = isset($_POST['address']) ? $_POST['address'] : '';
 
-    // 2. आपकी LeadVertex API क्रेडेंशियल्स
-    $lv_domain = 'powerofthorplus.leadvertex.ru';
-    $lv_token = 'Shiv@2026';
-    $goods_id = '1'; // 👈 यहाँ अपने LeadVertex CRM प्रोडक्ट की सही Goods ID डालें (जैसे 1, 2, या 3)
+    // 2. आपके द्वारा दिए गए LeadVertex क्रेडेंशियल्स 
+    $webmasterID = '6';
+    $token = 'Shiv@2026';
+    $api_url = "https://powerofthorplus.leadvertex.ru/api/webmaster/v2/addOrder.html?webmasterID=" . $webmasterID . "&token=" . $token;
 
-    // 3. LeadVertex Admin API URL (लीड सबमिशन एंडपॉइंट)
-    $api_url = "https://" . $lv_domain . "/api/admin/addOrder.html?token=" . $lv_token;
-
-    // 4. LeadVertex API की जरूरत के अनुसार एरे मैप करना
+    // 3. डॉक्यूमेंटेशन के अनुसार केवल ज़रूरी पैरामीटर्स को मैप करना
     $post_data = [
         'fio' => $name,
         'phone' => $phone,
         'address' => $address,
-        'goods[' . $goods_id . ']' => '1', // क्वांटिटी 1 सेट की है
-        'utm_source' => 'direct_landing_page'
+        'domain' => 'powerofthorplus.leadvertex.info',
+        'utm_source' => 'web_form'
     ];
 
-    // 5. सर्वर साइड से सीधे LeadVertex को सुरक्षित रूप से डेटा भेजना (CORS एरर बाईपास)
+    // 4. cURL के ज़रिए बैकएंड से सीधे LeadVertex को डेटा पोस्ट करना (CORS ब्लॉकिंग से बचने के लिए)
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $api_url);
     curl_setopt($ch, CURLOPT_POST, 1);
@@ -31,9 +28,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); 
 
     $response = curl_exec($ch);
+    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
 
-    // जरूरत पड़ने पर टेस्टिंग के लिए रिस्पॉन्स प्रिंट करना
+    // 5. 🛠️ सुरक्षित बैकअप: अगर ओनर ने API इम्पोर्ट बंद किया हुआ है, तो लीड इस टेक्स्ट फाइल में सेव हो जाएगी
+    if ($http_code != 200) {
+        $log_entry = date('Y-m-d H:i:s') . " | Name: $name | Phone: $phone | Address: $address \n";
+        file_put_contents('leads_backup.txt', $log_entry, FILE_APPEND);
+    }
+
     echo $response;
 }
 ?>
