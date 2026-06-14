@@ -4,20 +4,129 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Power Of Thor | Order Now</title>
+    
     <style>
-        :root { --gold: #d4af37; --gold-dark: #b8860b; --black: #0a0a0a; --field-bg: #1a1a1a; }
-        body { font-family: 'Segoe UI', Roboto, sans-serif; background-color: #000; color: white; margin: 0; padding: 10px; }
-        .order-container { max-width: 400px; margin: 20px auto; background: #111; border-radius: 20px; border: 2px solid var(--gold); overflow: hidden; box-shadow: 0 0 30px rgba(212,175,55,0.3); }
-        .form-header { background: linear-gradient(135deg, #000, #1a1a1a); border-bottom: 2px solid var(--gold); padding: 20px; text-align: center; }
-        .form-header h2 { margin: 0; font-size: 22px; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; }
-        form { padding: 25px; }
-        .field-group { margin-bottom: 20px; }
-        label { display: block; font-size: 13px; color: var(--gold); margin-bottom: 8px; font-weight: bold; }
-        input, textarea { width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #333; background: var(--field-bg); color: #fff; font-size: 16px; box-sizing: border-box; outline: none; }
-        input:focus, textarea:focus { border-color: var(--gold); }
-        .btn-submit { width: 100%; padding: 18px; background: linear-gradient(45deg, var(--gold), var(--gold-dark)); color: #000; border: none; border-radius: 10px; font-size: 20px; font-weight: 900; cursor: pointer; text-transform: uppercase; margin-top: 10px; }
-        #success-msg { display: none; padding: 60px 20px; text-align: center; }
-        .secure-tag { text-align: center; font-size: 11px; color: #2ecc71; margin-bottom: 15px; font-weight: bold; }
+        :root { 
+            --gold: #b8860b; 
+            --gold-light: #d4af37; 
+            --bg-color: #f4f6f9; 
+            --card-bg: #ffffff; 
+            --text-main: #222222;
+            --text-muted: #555555;
+            --border-color: #e0e0e0;
+        }
+        
+        body { 
+            font-family: 'Segoe UI', Roboto, sans-serif; 
+            background-color: var(--bg-color); 
+            color: var(--text-main); 
+            margin: 0; 
+            padding: 15px; 
+        }
+        
+        .order-container { 
+            max-width: 400px; 
+            margin: 20px auto; 
+            background: var(--card-bg); 
+            border-radius: 16px; 
+            border: 1px solid var(--border-color); 
+            overflow: hidden; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); 
+        }
+        
+        .form-header { 
+            background: linear-gradient(135deg, #ffffff, #fcfaf2); 
+            border-bottom: 2px solid var(--gold-light); 
+            padding: 22px; 
+            text-align: center; 
+        }
+        
+        .form-header h2 { 
+            margin: 0; 
+            font-size: 22px; 
+            color: var(--gold); 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            font-weight: 800;
+        }
+        
+        form { 
+            padding: 25px; 
+        }
+        
+        .field-group { 
+            margin-bottom: 20px; 
+        }
+        
+        label { 
+            display: block; 
+            font-size: 13px; 
+            color: var(--text-main); 
+            margin-bottom: 8px; 
+            font-weight: 600; 
+        }
+        
+        input, textarea { 
+            width: 100%; 
+            padding: 14px; 
+            border-radius: 8px; 
+            border: 1px solid var(--border-color); 
+            background: #fdfdfd; 
+            color: #000000; 
+            font-size: 16px; 
+            box-sizing: border-box; 
+            outline: none; 
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, textarea:focus { 
+            border-color: var(--gold); 
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+        }
+
+        .btn-submit { 
+            width: 100%; 
+            padding: 16px; 
+            background: linear-gradient(45deg, var(--gold-light), var(--gold)); 
+            color: #ffffff; 
+            border: none; 
+            border-radius: 8px; 
+            font-size: 18px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            text-transform: uppercase; 
+            margin-top: 10px; 
+            box-shadow: 0 4px 15px rgba(184, 134, 11, 0.25);
+            transition: transform 0.2s;
+        }
+        
+        .btn-submit:active {
+            transform: scale(0.98);
+        }
+        
+        .btn-submit:disabled { 
+            background: #cccccc; 
+            color: #ffffff;
+            cursor: not-allowed; 
+            box-shadow: none;
+        }
+
+        #success-msg { 
+            display: none; 
+            padding: 60px 20px; 
+            text-align: center; 
+            background: #ffffff;
+        }
+        
+        .secure-tag { 
+            text-align: center; 
+            font-size: 11px; 
+            color: #27ae60; 
+            margin-bottom: 18px; 
+            font-weight: bold; 
+            letter-spacing: 0.5px;
+        }
     </style>
 </head>
 <body>
@@ -25,7 +134,7 @@
 <div class="order-container">
     <div class="form-header" id="headerSection">
         <h2>Place Your Order</h2>
-        <p style="margin: 5px 0 0; font-size: 12px; color: #aaa;">Cash on Delivery Available ⚡</p>
+        <p style="margin: 5px 0 0; font-size: 13px; color: var(--text-muted);">Cash on Delivery Available ⚡</p>
     </div>
 
     <form id="leadForm">
@@ -33,26 +142,26 @@
         
         <div class="field-group">
             <label>Full Name / पूरा नाम</label>
-            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            <input type="text" id="name" placeholder="Enter your full name" required>
         </div>
 
         <div class="field-group">
             <label>Phone Number / फ़ोन नंबर</label>
-            <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number" pattern="[0-9]{10}" maxlength="10" required>
+            <input type="tel" id="phone" placeholder="10-digit mobile number" pattern="[0-9]{10}" maxlength="10" required>
         </div>
 
-        <div class="field-group">
+        <div class="field-group font-hindi">
             <label>Full Address / पूरा पता</label>
-            <textarea id="address" name="address" rows="3" placeholder="House No, Street, City, Pincode" required></textarea>
+            <textarea id="address" rows="3" placeholder="House No, Street, City, Pincode" required></textarea>
         </div>
 
         <button type="submit" class="btn-submit" id="submitBtn">Confirm Order Now</button>
     </form>
 
     <div id="success-msg">
-        <div style="font-size: 60px;">✅</div>
-        <h2 style="color: var(--gold); margin-top: 10px;">ORDER SUCCESS!</h2>
-        <p style="color: #ccc;">Our team will call you shortly for confirmation.</p>
+        <div style="font-size: 60px; color: #27ae60;">✅</div>
+        <h2 style="color: var(--gold); margin-top: 15px; font-weight: 800;">ORDER SUCCESS!</h2>
+        <p style="color: var(--text-muted); font-size: 15px;">Our team will call you shortly for confirmation.</p>
     </div>
 </div>
 
@@ -64,25 +173,18 @@
         btn.innerHTML = "Processing...";
         btn.disabled = true;
 
-        // फॉर्म से डेटा उठाना
         const formData = new FormData();
         formData.append('name', document.getElementById('name').value);
         formData.append('phone', document.getElementById('phone').value);
         formData.append('address', document.getElementById('address').value);
 
         try {
-            // order.php को डेटा भेजना और उसका रिस्पॉन्स चेक करना
-            const response = await fetch('order.php', {
+            await fetch('order.php', {
                 method: 'POST',
                 body: formData
             });
-            
-            const result = await response.text();
-            console.log("Server Response:", result); // टेस्टिंग के लिए ब्राऊज़र कंसोल में दिखेगा
-
             showSuccess();
         } catch (error) {
-            console.error("Error:", error);
             showSuccess(); 
         }
     });
@@ -92,6 +194,7 @@
         document.getElementById('headerSection').style.display = 'none';
         document.getElementById('success-msg').style.display = 'block';
         window.scrollTo(0, 0);
+        if(typeof fbq !== 'undefined') fbq('track', 'Lead'); 
     }
 </script>
 
