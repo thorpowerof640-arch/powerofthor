@@ -6,9 +6,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $address = isset($_POST['address']) ? $_POST['address'] : '';
 
     // 2. आपका डायरेक्ट API URL (टोकन और आईडी के साथ)
-    $api_url = "https://powerofthorplus.leadvertex.ru/api/webmaster/v2/addOrder.html?webmasterID=6&token=Shiv%402026";
+    $api_url = https://https://powerofthorplus.leadvertex.ru/api/webmaster/v2/getOrdersByIds.html?webmasterID=6&token=Shiv%402026&ids=1,2,3
 
-    // 3. मैनेजर की इमेज (image_473f61.jpg) के अनुसार प्रोडक्ट लिस्ट तैयार करना
+
+ा
     $productList = array(
         0 => array(
             'goodID' => 15,    // मैनेजर के स्क्रीनशॉट के मुताबिक ID 15 है
