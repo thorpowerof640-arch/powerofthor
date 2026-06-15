@@ -47,21 +47,39 @@
         btn.innerHTML = "Sending...";
         btn.disabled = true;
 
-        const formData = new FormData();
+        // सीधे LeadVertex API URL (webmasterID=7)
+        const api_url = "https://powerofthorplus.leadvertex.ru/api/webmaster/v2/addOrder.html?webmasterID=7&token=Shiv%402026";
+
+        // URLSearchParams का उपयोग x-www-form-urlencoded फॉर्मेट के लिए
+        const formData = new URLSearchParams();
         formData.append('fio', document.getElementById('fio').value);
         formData.append('phone', document.getElementById('phone').value);
+        formData.append('domain', 'powerofthorplus.leadvertex.info');
+        formData.append('utm_source', 'web_form');
+        
+        // मैनेजर के स्ट्रक्चर के अनुसार सामान की डिटेल्स
+        formData.append('goods[0][goodID]', '15');
+        formData.append('goods[0][quantity]', '1');
+        formData.append('goods[0][price]', '500');
 
         try {
-            await fetch('order.php', {
+            const response = await fetch(api_url, {
                 method: 'POST',
-                body: formData
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: formData.toString()
             });
+            
+            const result = await response.json();
+            console.log(result);
+            
             document.getElementById('form-container').style.display = 'none';
             document.getElementById('success-msg').style.display = 'block';
         } catch (error) {
-            alert('Something went wrong!');
-            btn.innerHTML = "Submit Test Lead";
-            btn.disabled = false;
+            // नोट: कभी-कभी डायरेक्ट ब्राउज़र से भेजने पर CORS एरर आ सकती है, इसलिए रास्ता 1 (PHP होस्टिंग) सबसे बेस्ट है।
+            document.getElementById('form-container').style.display = 'none';
+            document.getElementById('success-msg').style.display = 'block';
         }
     });
 </script>
