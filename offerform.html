@@ -3,67 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo Order Form</title>
+    <title>Demo Lead Form</title>
     <style>
-        :root { 
-            --gold: #b8860b; 
-            --gold-light: #d4af37; 
-            --bg-color: #f4f6f9; 
-            --card-bg: #ffffff; 
-            --text-main: #222222;
-            --border-color: #e0e0e0;
-        }
-        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg-color); color: var(--text-main); margin: 0; padding: 15px; }
-        .order-container { max-width: 400px; margin: 40px auto; background: var(--card-bg); border-radius: 16px; border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); }
-        .form-header { background: linear-gradient(135deg, #ffffff, #fcfaf2); border-bottom: 2px solid var(--gold-light); padding: 22px; text-align: center; }
-        .form-header h2 { margin: 0; font-size: 22px; color: var(--gold); text-transform: uppercase; font-weight: 800; }
-        form { padding: 25px; }
-        .field-group { margin-bottom: 20px; }
-        label { display: block; font-size: 13px; color: var(--text-main); margin-bottom: 8px; font-weight: 600; }
-        input { width: 100%; padding: 14px; border-radius: 8px; border: 1px solid var(--border-color); background: #fdfdfd; color: #000; font-size: 16px; box-sizing: border-box; outline: none; }
-        input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15); }
-        .btn-submit { width: 100%; padding: 16px; background: linear-gradient(45deg, var(--gold-light), var(--gold)); color: #ffffff; border: none; border-radius: 8px; font-size: 18px; font-weight: 700; cursor: pointer; text-transform: uppercase; margin-top: 10px; }
-        #success-msg { display: none; padding: 60px 20px; text-align: center; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f4f6f9; color: #222; margin: 0; padding: 20px; }
+        .form-box { max-width: 400px; margin: 50px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); border-top: 4px solid #b8860b; }
+        h2 { text-align: center; color: #b8860b; margin-top: 0; }
+        .input-group { margin-bottom: 20px; }
+        label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+        input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px; outline: none; }
+        input:focus { border-color: #b8860b; }
+        .btn { width: 100%; padding: 14px; background: #b8860b; color: #fff; border: none; border-radius: 6px; font-size: 18px; font-weight: bold; cursor: pointer; }
+        .btn:disabled { background: #ccc; }
+        #success-msg { display: none; text-align: center; padding: 20px; color: green; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div class="order-container">
-    <div class="form-header" id="headerSection">
+<div class="form-box">
+    <div id="form-container">
         <h2>Place Demo Order</h2>
-        <p style="margin: 5px 0 0; font-size: 13px; color: #555;">Testing API Connection ⚡</p>
+        <form id="demoForm">
+            <div class="input-group">
+                <label>Full Name (पूरा नाम):</label>
+                <input type="text" id="fio" placeholder="Enter full name" required>
+            </div>
+            <div class="input-group">
+                <label>Phone Number (फ़ोन नंबर):</label>
+                <input type="tel" id="phone" placeholder="Enter 10 digit number" pattern="[0-9]{10}" maxlength="10" required>
+            </div>
+            <button type="submit" class="btn" id="submitBtn">Submit Test Lead</button>
+        </form>
     </div>
-
-    <form id="leadForm">
-        <div class="field-group">
-            <label>Full Name / पूरा नाम</label>
-            <input type="text" id="name" placeholder="Enter test name" required>
-        </div>
-
-        <div class="field-group">
-            <label>Phone Number / फ़ोन नंबर</label>
-            <input type="tel" id="phone" placeholder="10-digit mobile number" pattern="[0-9]{10}" maxlength="10" required>
-        </div>
-
-        <button type="submit" class="btn-submit" id="submitBtn">Submit Test Lead</button>
-    </form>
-
     <div id="success-msg">
-        <div style="font-size: 60px; color: #27ae60;">✅</div>
-        <h2 style="color: var(--gold); margin-top: 15px; font-weight: 800;">SUBMITTED!</h2>
-        <p style="color: #555; font-size: 15px;">Check LeadVertex dashboard or backup log.</p>
+        <h3>✅ लीड भेज दी गई है!</h3>
+        <p>कृपया अपना CRM डैशबोर्ड या सर्वर लॉग चेक करें।</p>
     </div>
 </div>
 
 <script>
-    document.getElementById('leadForm').addEventListener('submit', async function(e) {
+    document.getElementById('demoForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         const btn = document.getElementById('submitBtn');
         btn.innerHTML = "Sending...";
         btn.disabled = true;
 
         const formData = new FormData();
-        formData.append('name', document.getElementById('name').value);
+        formData.append('fio', document.getElementById('fio').value);
         formData.append('phone', document.getElementById('phone').value);
 
         try {
@@ -71,17 +56,14 @@
                 method: 'POST',
                 body: formData
             });
-            showSuccess();
+            document.getElementById('form-container').style.display = 'none';
+            document.getElementById('success-msg').style.display = 'block';
         } catch (error) {
-            showSuccess(); 
+            alert('Something went wrong!');
+            btn.innerHTML = "Submit Test Lead";
+            btn.disabled = false;
         }
     });
-
-    function showSuccess() {
-        document.getElementById('leadForm').style.display = 'none';
-        document.getElementById('headerSection').style.display = 'none';
-        document.getElementById('success-msg').style.display = 'block';
-    }
 </script>
 
 </body>
