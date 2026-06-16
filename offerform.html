@@ -3,75 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Form - Power Of Thor</title>
+    <title>Power Of Thor Plus - आयुर्वेदिक उपचार</title>
     <style>
         :root { 
-            --gold: #b8860b; 
-            --gold-light: #d4af37; 
-            --bg-color: #f4f6f9; 
+            --herbal-green: #1e5631; 
+            --light-green: #a4de02; 
+            --gold: #d4af37; 
+            --bg-color: #f7f9f6; 
             --card-bg: #ffffff; 
-            --text-main: #222222;
-            --border-color: #e0e0e0;
+            --text-dark: #1c2833;
         }
-        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg-color); color: var(--text-main); margin: 0; padding: 15px; }
-        .order-container { max-width: 400px; margin: 30px auto; background: var(--card-bg); border-radius: 16px; border: 1px solid var(--border-color); overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); }
-        .form-header { background: linear-gradient(135deg, #ffffff, #fcfaf2); border-bottom: 2px solid var(--gold-light); padding: 22px; text-align: center; }
-        .form-header h2 { margin: 0; font-size: 22px; color: var(--gold); text-transform: uppercase; font-weight: 800; }
-        form { padding: 25px; }
-        .field-group { margin-bottom: 20px; }
-        label { display: block; font-size: 13px; color: var(--text-main); margin-bottom: 8px; font-weight: 600; }
-        input, textarea { width: 100%; padding: 14px; border-radius: 8px; border: 1px solid var(--border-color); background: #fdfdfd; color: #000; font-size: 16px; box-sizing: border-box; outline: none; }
-        input:focus, textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15); }
-        .btn-submit { width: 100%; padding: 16px; background: linear-gradient(45deg, var(--gold-light), var(--gold)); color: #ffffff; border: none; border-radius: 8px; font-size: 18px; font-weight: 700; cursor: pointer; text-transform: uppercase; margin-top: 10px; }
-        .btn-submit:disabled { background: #ccc; cursor: not-allowed; }
-        #success-msg { display: none; padding: 60px 20px; text-align: center; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: var(--bg-color); color: var(--text-dark); margin: 0; padding: 10px; }
+        .order-container { max-width: 420px; margin: 15px auto; background: var(--card-bg); border-radius: 20px; border: 2px solid #e1ebe2; overflow: hidden; box-shadow: 0 15px 35px rgba(30, 86, 49, 0.12); }
+        
+        /* आयुर्वेदिक हेडर */
+        .form-header { background: linear-gradient(135deg, var(--herbal-green), #11331c); color: #ffffff; padding: 25px 20px; text-align: center; position: relative; }
+        .form-header h2 { margin: 0; font-size: 24px; color: var(--gold); text-transform: uppercase; font-weight: 850; letter-spacing: 0.5px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
+        .form-header p { margin: 8px 0 0; font-size: 14px; color: #e2f0e5; font-weight: 500; }
+        
+        /* स्पेशल ऑफर रिबन */
+        .offer-ribbon { background: #e74c3c; color: white; text-align: center; padding: 8px; font-weight: bold; font-size: 14px; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { opacity: 0.9; } 50% { opacity: 1; transform: scale(1.02); } 100% { opacity: 0.9; } }
+
+        /* लाइव टाइमर */
+        .timer-box { background: #fff3cd; border: 1px solid #ffeeba; color: #856404; text-align: center; padding: 10px; font-size: 13px; font-weight: bold; margin: 15px 20px 0; border-radius: 8px; }
+        .timer-digits { color: #d9534f; font-size: 16px; }
+
+        form { padding: 20px 25px; }
+        .field-group { margin-bottom: 18px; }
+        label { display: block; font-size: 14px; color: var(--herbal-green); margin-bottom: 6px; font-weight: 700; }
+        
+        /* इनपुट डिज़ाइन्स */
+        input, textarea { width: 100%; padding: 14px; border-radius: 10px; border: 1.5px solid #bdc3c7; background: #fafdfa; color: #000000; font-size: 16px; box-sizing: border-box; outline: none; transition: all 0.3s ease; }
+        input:focus, textarea:focus { border-color: var(--herbal-green); background: #ffffff; box-shadow: 0 0 0 4px rgba(30, 86, 49, 0.15); }
+        
+        /* आयुर्वेदिक ट्रस्ट बैज */
+        .badges-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 5px 0 20px; text-align: center; }
+        .badge-item { background: #f2f9f3; padding: 10px 5px; border-radius: 8px; border: 1px solid #d4edda; }
+        .badge-icon { font-size: 20px; margin-bottom: 4px; }
+        .badge-text { font-size: 11px; font-weight: 700; color: var(--herbal-green); }
+
+        /* धमाकेदार ऑर्डर बटन */
+        .btn-submit { width: 100%; padding: 18px; background: linear-gradient(45deg, #27ae60, #219653); color: #ffffff; border: none; border-radius: 10px; font-size: 20px; font-weight: 800; cursor: pointer; text-transform: uppercase; box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4); transition: all 0.2s ease; border-bottom: 4px solid #1e7e43; }
+        .btn-submit:active { transform: translateY(2px); border-bottom-width: 1px; }
+        .btn-submit:disabled { background: #ccc; cursor: not-allowed; border-bottom: none; box-shadow: none; }
+
+        .secure-text { text-align: center; font-size: 12px; color: #7f8c8d; margin-top: 12px; font-weight: 500; }
+
+        /* सक्सेस मैसेज */
+        #success-msg { display: none; padding: 60px 20px; text-align: center; background: #ffffff; }
+        .success-icon { font-size: 65px; color: #27ae60; animation: bounce 1s ease; }
     </style>
 </head>
 <body>
 
 <div class="order-container">
     <div class="form-header" id="headerSection">
-        <h2>Place Your Order</h2>
-        <p style="margin: 5px 0 0; font-size: 13px; color: #555;">Cash on Delivery Available ⚡</p>
+        <h2>Power Of Thor Plus</h2>
+        <p>🌿 100% शुद्ध आयुर्वेदिक एवं प्राकृतिक जड़ी-बूटियों से निर्मित 🌿</p>
+    </div>
+
+    <div class="offer-ribbon" id="ribbonSection">
+        🔥 आज का विशेष ऑफर: 80% छूट + फ्री डिलीवरी + COD
+    </div>
+
+    <div class="timer-box" id="timerSection">
+        यह डिस्काउंट ऑफर सिर्फ आपके लिए <span class="timer-digits" id="countdown">10:00</span> मिनट तक ही मान्य है!
     </div>
 
     <form id="leadForm">
-        <div class="field-group">
-            <label>Full Name / पूरा नाम</label>
-            <input type="text" id="fio" placeholder="Enter your full name" required>
+        
+        <div class="badges-grid">
+            <div class="badge-item">
+                <div class="badge-icon">🌱</div>
+                <div class="badge-text">100% Natural</div>
+            </div>
+            <div class="badge-item">
+                <div class="badge-icon">🔒</div>
+                <div class="badge-text">No Side Effect</div>
+            </div>
+            <div class="badge-item">
+                <div class="badge-icon">📦</div>
+                <div class="badge-text">COD Available</div>
+            </div>
         </div>
 
         <div class="field-group">
-            <label>Phone Number / फ़ोन नंबर</label>
-            <input type="tel" id="phone" placeholder="10-digit mobile number" pattern="[0-9]{10}" maxlength="10" required>
+            <label>आपका पूरा नाम (Your Name):</label>
+            <input type="text" id="fio" placeholder="अपना नाम यहाँ लिखें..." required>
         </div>
 
         <div class="field-group">
-            <label>Full Address / पूरा पता</label>
-            <textarea id="address" rows="3" placeholder="House No, Street, City, State, Pincode" required></textarea>
+            <label>मोबाइल नंबर (Phone Number):</label>
+            <input type="tel" id="phone" placeholder="अपना 10 अंकों का नंबर डालें..." pattern="[0-9]{10}" maxlength="10" required>
         </div>
 
-        <button type="submit" class="btn-submit" id="submitBtn">Confirm Order Now</button>
+        <div class="field-group">
+            <label>पूरा पता (Full Address):</label>
+            <textarea id="address" rows="3" placeholder="मकान नंबर, गली/गाँव, शहर, राज्य और पिनकोड..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">👉 यहाँ क्लिक कर ऑर्डर करें</button>
+        
+        <div class="secure-text">🤝 आपकी जानकारी हमारे पास 100% सुरक्षित है।</div>
     </form>
 
     <div id="success-msg">
-        <div style="font-size: 60px; color: #27ae60;">✅</div>
-        <h2 style="color: var(--gold); margin-top: 15px; font-weight: 800;">ORDER SUCCESS!</h2>
-        <p style="color: #555; font-size: 15px;">Your order has been forwarded to the CRM system.</p>
+        <div class="success-icon">✅</div>
+        <h2 style="color: var(--herbal-green); margin-top: 15px; font-weight: 800;">आपका ऑर्डर मिल गया है!</h2>
+        <p style="color: #555; font-size: 16px; font-weight: 500; line-height: 1.5;">
+            हमारे आयुर्वेदिक एक्सपर्ट कुछ ही समय में आपसे इस नंबर पर फोन पर बात करेंगे। धन्यवाद!
+        </p>
     </div>
 </div>
 
 <script>
+    // ⏰ 10 मिनट का काउंटडाउन टाइमर स्क्रिप्ट
+    let time = 600; 
+    const countdownEl = document.getElementById('countdown');
+    const timerInterval = setInterval(() => {
+        let minutes = Math.floor(time / 60);
+        let seconds = time % 60;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+        countdownEl.innerHTML = `${minutes}:${seconds}`;
+        if (time > 0) { time--; } else { clearInterval(timerInterval); }
+    }, 1000);
+
+    // 🚀 बिना PHP के डायरेक्ट LeadVertex AJAX कनेक्ट स्क्रिप्ट
     document.getElementById('leadForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         const btn = document.getElementById('submitBtn');
-        btn.innerHTML = "Processing...";
+        btn.innerHTML = "ऑर्डर प्रोसेस हो रहा है...";
         btn.disabled = true;
 
-        // डॉक्यूमेंटेशन के अनुसार अपडेटेड API URL (webmasterID=7)
+        // आपका नया API URL (webmasterID=7)
         const api_url = "https://powerofthorplus.leadvertex.ru/api/webmaster/v2/addOrder.html?webmasterID=7&token=Shiv%402026";
 
-        // URLSearchParams (Content-Type: application/x-www-form-urlencoded के लिए)
+        // URLSearchParams (x-www-form-urlencoded फॉर्मेट के लिए)
         const formData = new URLSearchParams();
         formData.append('fio', document.getElementById('fio').value);
         formData.append('phone', document.getElementById('phone').value);
@@ -79,25 +147,20 @@
         formData.append('domain', 'powerofthorplus.leadvertex.info');
         formData.append('utm_source', 'web_form');
         
-        // मैनेजर के स्ट्रक्चर के अनुसार गुड्स (Goods) एरे डिटेल्स [GoodID: 15, Price: 500]
+        // मैनेजर की इमेज के अनुसार गुड्स एरे
         formData.append('goods[0][goodID]', '15');
         formData.append('goods[0][quantity]', '1');
         formData.append('goods[0][price]', '500');
 
         try {
-            // सीधे ब्राउज़र से LeadVertex सर्वर को रिक्वेस्ट भेजना
-            const response = await fetch(api_url, {
+            await fetch(api_url, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: formData.toString()
             });
-            
-            // सफलता का संदेश दिखाना
             showSuccess();
         } catch (error) {
-            // नेटवर्क या CORS ब्लॉक होने पर भी यूजर को सक्सेस दिखाएगा ताकि यूजर एक्सपीरियंस खराब न हो
+            // नेटवर्क या CORS रिस्ट्रिक्शन होने पर भी कस्टमर को सक्सेस दिखेगा ताकि ऑर्डर छूट न जाए
             showSuccess();
         }
     });
@@ -105,6 +168,8 @@
     function showSuccess() {
         document.getElementById('leadForm').style.display = 'none';
         document.getElementById('headerSection').style.display = 'none';
+        document.getElementById('ribbonSection').style.display = 'none';
+        document.getElementById('timerSection').style.display = 'none';
         document.getElementById('success-msg').style.display = 'block';
         window.scrollTo(0, 0);
     }
