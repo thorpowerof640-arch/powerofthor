@@ -43,7 +43,7 @@
         .badge-icon { font-size: 20px; margin-bottom: 4px; }
         .badge-text { font-size: 11px; font-weight: 700; color: var(--herbal-green); }
 
-        /* High-Converting Action Button */
+        /* Action Button */
         .btn-submit { width: 100%; padding: 18px; background: linear-gradient(45deg, #27ae60, #219653); color: #ffffff; border: none; border-radius: 10px; font-size: 20px; font-weight: 800; cursor: pointer; text-transform: uppercase; box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4); transition: all 0.2s ease; border-bottom: 4px solid #1e7e43; }
         .btn-submit:active { transform: translateY(2px); border-bottom-width: 1px; }
         .btn-submit:disabled { background: #ccc; cursor: not-allowed; border-bottom: none; box-shadow: none; }
@@ -99,8 +99,8 @@
         </div>
 
         <div class="field-group">
-            <label>Full Shipping Address:</label>
-            <textarea id="address" rows="3" placeholder="House No., Street, City, State, and Pincode..." required></textarea>
+            <label>Full Shipping Address <span style="color:#7f8c8d; font-weight:normal;">(Optional)</span>:</label>
+            <textarea id="address" rows="3" placeholder="House No., Street, City, State, and Pincode (You can also provide this on call)..."></textarea>
         </div>
 
         <button type="submit" class="btn-submit" id="submitBtn">👉 CLICK HERE TO ORDER NOW</button>
@@ -136,21 +136,24 @@
         btn.innerHTML = "Processing Order...";
         btn.disabled = true;
 
-        // Your Manager's verified API Endpoint (Webmaster ID: 7)
         const api_url = "https://powerofthorplus.leadvertex.ru/api/webmaster/v2/addOrder.html?webmasterID=7&token=Shiv%402026";
 
-        // URLSearchParams translates structure automatically into x-www-form-urlencoded
+        // एड्रेस वैल्यू चेक करना (अगर खाली है तो डिफ़ॉल्ट टेक्स्ट डालना)
+        let addressValue = document.getElementById('address').value.trim();
+        if (addressValue === "") {
+            addressValue = "Not Provided (Will ask on call)";
+        }
+
         const formData = new URLSearchParams();
         formData.append('fio', document.getElementById('fio').value);
         formData.append('phone', document.getElementById('phone').value);
-        formData.append('address', document.getElementById('address').value);
+        formData.append('address', addressValue); // स्मार्ट वैल्यू यहाँ जाएगी
         formData.append('domain', 'powerofthorplus.leadvertex.info');
         formData.append('utm_source', 'web_form');
         
-        // Exact Goods Object configuration provided by Andrey
-        formData.append('goods[0][goodID]', '15');
-        formData.append('goods[0][quantity]', '1');
-        formData.append('goods[0][price]', '500');
+        formData.append('goods[0][goodID]', '15'); 
+        formData.append('goods[0][quantity]', '1'); 
+        formData.append('goods[0][price]', '500'); 
 
         try {
             await fetch(api_url, {
@@ -160,7 +163,6 @@
             });
             showSuccess();
         } catch (error) {
-            // Fallback safety layer to always show success window to customer even on network delays
             showSuccess();
         }
     });
