@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Form | Thunder of Zosh</title>
+    <title>Thunder of Zosh | Premium Performance Capsules</title>
+    
+    <link rel="preload" as="image" href="doctor-capsule.png">
+    
+    <link rel="icon" type="image/x-icon" href="favicon.png"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
     <script>
     !function(f,b,e,v,n,t,s)
@@ -14,289 +19,487 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '881403324800547'); 
+    fbq('init', '881403324800547');
     fbq('track', 'PageView');
     </script>
-    
+
     <style>
         :root { 
-            --gold: #e2c275; 
-            --gold-dark: #b8860b; 
-            --black: #050505; 
-            --success: #00fa9a; 
-            --field-bg: #111111; 
-            --border-color: #222222;
-        }
+    --gold: #e2c275; /* Soft Champagne Gold */
+    --gold-dark: #b8860b; 
+    --white: #f8f8f8; 
+    --dark: #050505; /* Deep Black */
+    --red: #ff4d4d; 
+    --green: #00fa9a; 
+}
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 12px 5%; background: rgba(0,0,0,0.95); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #222; }
+        .logo { color: var(--gold); font-weight: 700; font-size: 20px; text-transform: uppercase; letter-spacing: 2px; }
 
-        body { 
-            font-family: 'Segoe UI', Roboto, sans-serif; 
-            background-color: #000; 
-            color: #f8f8f8; 
-            margin: 0; 
-            padding: 15px; 
-            overflow-x: hidden;
-        }
-
-        .order-container { 
-            max-width: 450px; 
-            margin: 10px auto; 
-            background: var(--black); 
-            border-radius: 24px; 
-            border: 1px solid rgba(226, 194, 117, 0.2); 
-            overflow: hidden; 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 20px rgba(226, 194, 117, 0.1); 
-        }
-
-        /* Header Polish */
-        .form-header { 
-            background: linear-gradient(180deg, #111, #000); 
-            border-bottom: 1px solid var(--border-color); 
-            display: flex; 
-            align-items: center; 
-            padding: 20px; 
-        }
-        .header-model-photo { 
-            width: 70px; 
-            height: 70px; 
-            border-radius: 12px; 
-            border: 1px solid var(--gold); 
-            object-fit: cover; 
-            margin-right: 15px; 
-        }
-        .header-text h2 { 
-            margin: 0; 
-            font-size: 18px; 
-            text-transform: uppercase; 
-            color: var(--gold); 
-            letter-spacing: 1.5px; 
-        }
-        .header-text p { 
-            margin: 5px 0 0; 
-            font-size: 12px; 
-            color: var(--success); 
-            font-weight: bold; 
-            display: flex; 
-            align-items: center; 
-            gap: 5px;
-        }
-
-        /* Price Box Polish */
-        .price-box { 
-            background: rgba(226, 194, 117, 0.05); 
-            margin: 20px 20px 0; 
-            padding: 15px; 
-            border-radius: 15px; 
-            border: 1px solid rgba(226, 194, 117, 0.2); 
-            text-align: center; 
-        }
-        .price-box p { margin: 0; font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
-        .price-box h3 { margin: 5px 0 0; color: #fff; font-size: 26px; font-weight: bold; }
-
-        /* Form Styling */
-        form { padding: 20px 25px 25px; }
-        .secure-tag { 
-            text-align: center; 
-            font-size: 10px; 
-            color: #888; 
-            margin-bottom: 20px; 
-            background: #111;
-            padding: 5px;
-            border-radius: 4px;
-            letter-spacing: 1px;
-        }
-
-        .field-group { margin-bottom: 18px; }
-        label { 
-            display: block; 
-            font-size: 11px; 
-            color: #777; 
-            margin-bottom: 8px; 
-            font-weight: bold; 
-            text-transform: uppercase; 
-            padding-left: 5px;
-        }
-        input, select, textarea { 
-            width: 100%; 
-            padding: 14px; 
-            border-radius: 12px; 
-            border: 1px solid var(--border-color); 
-            background: var(--field-bg); 
-            color: #fff; 
-            font-size: 15px; 
-            box-sizing: border-box; 
-            outline: none; 
-            transition: 0.3s; 
-        }
-        input:focus, select:focus, textarea:focus { border-color: var(--gold); background: #000; }
+        .hero { min-height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('hero-capsule.jpg') center/cover no-repeat; padding: 20px; position: relative; border-bottom: 3px solid var(--gold); }
         
-        .address-row { display: flex; gap: 12px; margin-bottom: 18px; }
-        .address-row .field-group { flex: 1; margin-bottom: 0; }
+        .discount-badge { background: var(--red); color: white; padding: 18px; border-radius: 50%; font-weight: 800; font-size: 20px; position: absolute; top: 10%; right: 10%; transform: rotate(10deg); box-shadow: 0 0 20px rgba(231, 76, 60, 0.6); animation: pulse 2s infinite; z-index: 10; }
+        @keyframes pulse { 0%, 100% { transform: scale(1) rotate(10deg); } 50% { transform: scale(1.05) rotate(10deg); } }
 
-        /* Order Button Polish */
-        .btn-submit { 
-            width: 100%; 
-            padding: 18px; 
-            background: linear-gradient(45deg, var(--gold), var(--gold-dark)); 
-            color: #000; 
-            border: none; 
-            border-radius: 12px; 
-            font-size: 17px; 
-            font-weight: 800; 
-            cursor: pointer; 
-            text-transform: uppercase; 
-            margin-top: 10px; 
-            transition: 0.3s;
-            letter-spacing: 1px;
-        }
-        .btn-submit:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(226, 194, 117, 0.2); }
-        .btn-submit:active { transform: scale(0.98); }
+        .cta-btn { padding: 14px 30px; background: linear-gradient(45deg, var(--gold), var(--gold-dark)); color: #000; text-decoration: none; font-weight: 700; border-radius: 6px; text-transform: uppercase; display: inline-block; transition: 0.3s; cursor: pointer; border: none; font-size: 16px; }
+        .cta-btn:hover { transform: scale(1.05); box-shadow: 0 0 15px var(--gold); }
 
-        /* Trust Badges */
-        .trust-badges { 
-            display: flex; 
-            justify-content: space-between; 
-            padding: 20px; 
-            background: #080808; 
-            border-top: 1px solid var(--border-color); 
-        }
-        .badge { font-size: 9px; color: #666; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; }
-        .badge span { display: block; font-size: 20px; margin-bottom: 6px; filter: grayscale(100%); }
+        .full-page-section { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px; background-size: cover; background-position: center; background-attachment: fixed; }
+        .lifestyle-1 { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('touch_image.jpeg'); }
+        .lifestyle-2 { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('smile_image.jpeg'); }
 
-        /* Success Message Polish */
-        #success-msg { display: none; padding: 60px 20px; text-align: center; }
-        #success-msg h3 { color: var(--gold); margin-top: 20px; letter-spacing: 2px; }
+        .content-box h2 { color: var(--gold); font-size: clamp(30px, 5vw, 45px); margin-bottom: 20px; text-transform: uppercase; }
+        .content-box p { font-size: 18px; max-width: 700px; margin: 0 auto 30px; }
+
+        .ingredients { padding: 80px 5%; background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('herbs-bg.jpg') center/cover no-repeat; text-align: center; border-top: 2px solid var(--gold); }
+        .ingredients-container { background: rgba(0, 0, 0, 0.8); padding: 30px; border-radius: 15px; border: 1px solid var(--gold); max-width: 1000px; margin: 0 auto; backdrop-filter: blur(5px); }
+        .ing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; text-align: left; }
+        .ing-name { color: #fff; font-size: 15px; padding: 10px; border-bottom: 1px solid rgba(212,175,55,0.2); display: flex; align-items: center; }
+        .ing-name::before { content: "💊"; color: var(--gold); margin-right: 10px; }
+
+        .doctor-section { background: #000; padding: 60px 5%; border-top: 1px solid #222; }
+        .doctor-flex { display: flex; align-items: center; flex-wrap: wrap; gap: 40px; max-width: 1100px; margin: 0 auto; }
+        .doctor-img-box { flex: 1; min-width: 280px; text-align: center; }
+        .doctor-img-box img { width: 100%; max-width: 350px; border-radius: 15px; border: 2px solid var(--gold); }
+        .doctor-content { flex: 1.2; min-width: 300px; }
+
+        .product-highlight { padding: 80px 5%; text-align: center; background: radial-gradient(circle at center, #111 0%, #000 100%); border-top: 1px solid #222; }
+        .product-flex { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 50px; max-width: 1100px; margin: 0 auto; }
+        .product-image-container img { max-width: 450px; width: 100%; border-radius: 15px; border: 2px solid var(--gold); box-shadow: 0 0 25px rgba(212,175,55,0.2); }
+        .product-details-container { text-align: left; max-width: 450px; }
+        .product-details-container h2 { color: var(--gold); font-size: 35px; margin: 0 0 15px; }
+        .price-box { margin-bottom: 25px; }
+        .old-price { color: #888; text-decoration: line-through; font-size: 1.2rem; }
+        .new-price { color: #fff; font-size: 3rem; font-weight: 700; display: block; }
+        
+        .detail-list { list-style: none; padding: 0; margin-bottom: 30px; }
+        .detail-list li { margin-bottom: 12px; font-size: 1.1rem; display: flex; align-items: center; }
+        .detail-list li::before { content: "✔"; color: var(--green); margin-right: 12px; font-weight: bold; }
+
+        /* Review Styling Updated */
+        .reviews { padding: 80px 5%; background: #050505; text-align: center; }
+        .reviews-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 40px; }
+        .review-card { background: #111; padding: 25px; border-radius: 15px; width: 340px; max-width: 100%; border: 1px solid #222; text-align: left; transition: 0.3s; }
+        .review-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+        .reviewer-info { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .reviewer-photo { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); }
+        .stars { color: #f1c40f; font-size: 18px; margin-bottom: 10px; letter-spacing: 2px; }
+        .verified-badge { color: var(--green); font-size: 11px; display: flex; align-items: center; gap: 5px; font-weight: 600; text-transform: uppercase; margin-top: 5px; }
+
+        .safety-strip { background: #0a0a0a; padding: 30px; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; border-top: 1px solid #333; }
+        .safety-item { font-size: 13px; color: var(--green); font-weight: bold; text-transform: uppercase; }
+
+        footer { padding: 40px; text-align: center; background: #000; font-size: 12px; color: #666; }
+/* Product Gallery Slider Style */
+.product-gallery {
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    border: 1px solid rgba(226, 194, 117, 0.2);
+    background: #000;
+    margin: 0 auto;
+}
+.gallery-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.gallery-slide {
+    min-width: 100%;
+}
+.gallery-slide img {
+    width: 100%;
+    display: block;
+    object-fit: contain;
+}
+.gallery-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+}
+.gallery-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #333;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.gallery-dot.active {
+    background: var(--gold);
+    width: 20px;
+    border-radius: 4px;
+}
+      @media (max-width: 768px) {
+    /* Sabse pehle ye overflow fix add karein */
+    html, body {
+        width: 100%;
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+    }
+
+    .hero { height: auto; min-height: 80vh; padding: 40px 20px; }
+    .hero h1 { font-size: 32px !important; line-height: 1.2; }
+    .hero p { font-size: 16px !important; }
+
+    .discount-badge { width: 70px; height: 70px; font-size: 14px; padding: 12px; top: 5%; right: 5%; }
+
+    .full-page-section { min-height: 60vh; padding: 30px 20px; background-attachment: scroll; }
+    .content-box h2 { font-size: 26px !important; }
+
+    .doctor-flex, .product-flex { 
+        flex-direction: column; 
+        text-align: center; 
+        gap: 30px; 
+        width: 100%; 
+        box-sizing: border-box; 
+    }
+    
+    .product-details-container { 
+        text-align: center; 
+        width: 100%; 
+        padding: 0 10px; 
+    }
+
+    /* Button ko screen ke andar fit karne ke liye */
+    .cta-btn {
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+
+    .review-card { width: 100%; max-width: 100%; box-sizing: border-box; }
+
+    .ing-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .ing-name { font-size: 13px; }
+}
     </style>
 </head>
 <body>
 
-<div class="order-container">
-    <div class="form-header" id="mainHeader">
-        <img src="capsule-pack.jpg" alt="Zosh Capsules" class="header-model-photo">
-        <div class="header-text">
-            <h2>Complete Order</h2>
-            <p>● Free Delivery & COD Available</p>
+<nav>
+    <div class="logo">Thunder of Zosh</div>
+    <a href="#order" class="cta-btn" style="padding: 8px 18px; font-size: 11px;">Order Now</a>
+</nav>
+
+<section class="hero">
+    <div class="discount-badge">BUY 1<br>GET 1 FREE</div>
+    
+    <div style="background: rgba(212,175,55,0.2); color: var(--gold); padding: 4px 15px; border-radius: 50px; margin-bottom: 10px; font-weight: 600; border: 1px solid var(--gold); font-size: 14px; display: inline-block;">⭐ 50,000+ Happy Customers</div>
+    <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 10px;">
+    <span style="font-size: 11px; color: var(--green); border: 1px solid rgba(0,250,154,0.3); padding: 2px 8px; border-radius: 4px; background: rgba(0,250,154,0.05);">✓ FSSAI APPROVED</span>
+    <span style="font-size: 11px; color: var(--green); border: 1px solid rgba(0,250,154,0.3); padding: 2px 8px; border-radius: 4px; background: rgba(0,250,154,0.05);">✓ AYUSH REGISTERED</span>
+</div>
+    <h1 style="font-size: clamp(30px, 8vw, 60px); margin: 10px 0; color: var(--gold); text-shadow: 0px 0px 10px rgba(212,175,55,0.3);">THUNDER OF ZOSH CAPSULES</h1>
+    
+    <p style="font-size: 20px; margin-bottom: 5px; color: #ffffff;">Premium Ayurvedic Performance Formula</p>
+    
+    <div style="margin-bottom: 25px;">
+        <p style="color: #ffd700; font-weight: bold; font-size: 28px; margin-bottom: 5px;">BOGO OFFER: 30 + 30 FREE</p>
+        <p style="color: #fff; font-size: 22px; opacity: 0.9;">Get 60 Capsules Total @ ₹2,999 Only</p>
+    </div>
+
+    <a href="#order" class="cta-btn">Claim My Free Bottle</a>
+</section>
+
+<section class="full-page-section lifestyle-1">
+    <div class="content-box">
+        <h2>Unleash Your Power</h2>
+        <p style="color: #ffffff;">Expertly designed capsules to ignite your confidence and strength.</p>
+        <a href="#order" class="cta-btn">Unlock Now</a>
+    </div>
+</section>
+
+<section class="ingredients">
+    <h2 style="color: var(--gold); font-size: 36px; text-transform: uppercase; margin-bottom: 40px;">POWERFUL COMPOSITION</h2>
+    <div class="ingredients-container">
+        <div class="ing-grid">
+    <div class="ing-name">Shilajit <small style="display:block; font-size:10px; color:var(--gold); opacity:0.8;">(Stamina & Strength)</small></div>
+    <div class="ing-name">Ashwagandha <small style="display:block; font-size:10px; color:var(--gold); opacity:0.8;">(Stress Relief)</small></div>
+    <div class="ing-name">Safed Musli <small style="display:block; font-size:10px; color:var(--gold); opacity:0.8;">(Vitality Boost)</small></div>
+    <div class="ing-name">Saffron (Kesar) <small style="display:block; font-size:10px; color:var(--gold); opacity:0.8;">(Mood Enhancer)</small></div>
+</div>
+    </div>
+</section>
+
+<section class="doctor-section">
+    <div class="doctor-flex">
+        <div class="doctor-img-box">
+            <img src="doctor-capsule.png" alt="Dr. Anjali Sharma" fetchpriority="high">
+            <div style="margin-top: 15px;">
+                <h3 style="color: var(--gold); margin: 0; font-size: 22px;">Dr. Anjali Sharma</h3>
+                <p style="color: #ccc; font-style: italic; font-size: 15px;">"I strongly recommend this capsule formula as it is 100% natural and specifically designed for optimal male wellness."</p>
+            </div>
+        </div>
+        <div class="doctor-content">
+            <h2 style="color: var(--gold); font-size: 30px; text-transform: uppercase;">How It Works?</h2>
+            <div style="margin-bottom: 20px;">
+                <h4 style="color: var(--gold); margin: 0 0 5px;">🔬 Bio-Available Formula</h4>
+                <p style="color: #eee; font-size: 15px; margin: 0;">Our unique capsule complex enhances nitric oxide levels, significantly improving blood flow and vitality.</p>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <h4 style="color: var(--gold); margin: 0 0 5px;">⚖️ Natural Balance</h4>
+                <p style="color: #eee; font-size: 15px; margin: 0;">It helps optimize hormonal drive naturally, effectively reducing stress and performance fatigue.</p>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <h4 style="color: var(--gold); margin: 0 0 5px;">✅ Proven Results</h4>
+                <p style="color: #eee; font-size: 15px; margin: 0;">Users experience a massive boost in stamina and confidence within 14 days of consistent usage.</p>
+            </div>
+            <a href="#order" class="cta-btn" style="padding: 12px 30px; font-size: 13px;">Order Expert Choice</a>
         </div>
     </div>
+</section>
 
-    <div class="price-box" id="priceDisplay">
-        <p>You will pay on delivery</p>
-        <h3 id="billText">Total: ₹2,999</h3>
+<section class="full-page-section lifestyle-2">
+    <div class="content-box">
+        <h2>Stronger Bonds</h2>
+        <p style="color: #ffffff;">Enhance your personal life with lasting confidence.</p>
+        <a href="#order" class="cta-btn">Order COD Now @ ₹2,999</a>
     </div>
+</section>
 
-    <form id="leadForm">
-        <div class="secure-tag">🛡️ 100% PRIVATE & ENCRYPTED CHECKOUT</div>
+<section class="product-highlight" id="order">
+    <div class="product-flex">
+        <div class="product-image-container">
+    <div class="product-gallery" id="productGallery">
+        <div class="gallery-wrapper" id="galleryWrapper">
+            <div class="gallery-slide">
+                <img src="product-capsule.jpg" alt="Thunder of Zosh Main">
+            </div>
+            <div class="gallery-slide">
+                <img src="product-capsule-2.jpg" alt="Label Details">
+            </div>
+            <div class="gallery-slide">
+                <img src="product-capsule-3.jpg" alt="Manufacturing View">
+            </div>
+        </div>
         
-        <div class="field-group">
-            <label>Full Name (पूरा नाम)</label>
-            <input type="text" id="name" placeholder="Name as per Aadhaar" required>
+        <div class="gallery-dots">
+            <span class="gallery-dot active" onclick="currentSlide(0)"></span>
+            <span class="gallery-dot" onclick="currentSlide(1)"></span>
+            <span class="gallery-dot" onclick="currentSlide(2)"></span>
         </div>
-
-        <div class="field-group">
-            <label>Phone Number (फ़ोन नंबर)</label>
-            <input type="tel" id="phone" placeholder="Active mobile number" pattern="[0-9]{10}" maxlength="10" required>
-        </div>
-
-        <div class="field-group">
-            <label>Select Your Pack (पैक चुनें)</label>
-            <select id="package" onchange="updateUI()">
-                <option value="Capsule One Bottle" data-price="2999" selected>Single Pack (1 Bottle) - ₹2,999</option>
-                <option value="Capsule Two Bottles" data-price="3999">Best Value (2 Bottles) - ₹3,999 (BOGO)</option>
-            </select>
-        </div>
-
-        <div class="field-group" style="display:none;">
-            <label>Payment Method</label>
-            <select id="method"><option value="COD" selected>COD</option></select>
-        </div>
-
-        <div class="field-group">
-            <label>Full Address (घर का पता)</label>
-            <textarea id="address" rows="2" placeholder="House No, Village/Sector, Landmark" required></textarea>
-        </div>
-
-        <div class="address-row">
-            <div class="field-group">
-                <label>City (शहर)</label>
-                <input type="text" id="city" placeholder="e.g. Delhi" required>
+    </div>
+    <p style="color: var(--gold); margin-top: 15px; font-weight: bold; font-size: 14px;">📦 100% PRIVATE & DISCREET PACKAGING</p>
+</div>
+        <div class="product-details-container">
+            <h2 style="font-size: 35px;">Permanent Strength & Confidence</h2>
+            <div class="price-box">
+                <span class="old-price">MRP ₹5,998</span>
+                <span class="new-price">Special BOGO Price: ₹2,999</span>
+                <p style="color: var(--green); font-weight: bold; margin-top: 5px;">[Buy 1 Get 1 Free Offer Applied]</p>
             </div>
-            <div class="field-group">
-                <label>Pincode (पिनकोड)</label>
-                <input type="text" id="pincode" placeholder="6-digit" pattern="[0-9]{6}" maxlength="6" required>
-            </div>
+            <ul class="detail-list">
+               <li style="color: #ffffff;">Clinically Proven Ayurvedic Results</li>
+<li style="color: #ffffff;">100% Pure Herbs - Zero Side Effects</li>
+<li style="color: #ffffff;">Permanent Solution (Not Temporary)</li>
+<li style="color: #ffffff;">Trusted by 50,000+ Happy Customers</li>
+                <li style="color: var(--gold);"><strong>FREE Shipping + Cash On Delivery</strong></li>
+            </ul>
+            <a href="https://thunderofzosh.in/capsule.html" class="cta-btn" style="width: 100%; text-align: center; font-size: 18px;">ACTIVATE MY FREE BOTTLE</a>
         </div>
+    </div>
+</section>
 
-        <button type="submit" class="btn-submit" id="submitBtn">Confirm Cash On Delivery</button>
-    </form>
-
-    <div id="success-msg">
-        <div style="font-size: 60px;">🥇</div>
-        <h3>ORDER PLACED!</h3>
-        <p id="finalMsg" style="color: #888; line-height: 1.5; font-size: 14px;">Thank you for choosing Thunder of Zosh.<br>Verification call expected within 30 minutes.</p>
+<section class="reviews">
+    <div style="margin-bottom: 40px;">
+        <h2 style="color: var(--gold); font-size: 32px; text-transform: uppercase; margin-bottom: 10px;">Customer Stories</h2>
+        <div style="color: #f1c40f; font-size: 20px;">
+            ★★★★★ <span style="color: #fff; font-size: 16px; margin-left: 10px;">4.9/5 (12,480+ Reviews)</span>
+        </div>
     </div>
 
-    <div class="trust-badges">
-        <div class="badge"><span>🌿</span>100% Herbal</div>
-        <div class="badge"><span>🛡️</span>ISO Certified</div>
-        <div class="badge"><span>📦</span>Private Box</div>
+    <div class="reviews-grid">
+        <div class="review-card">
+            <div class="reviewer-info">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" class="reviewer-photo">
+                <div style="flex: 1;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <strong style="color:var(--gold); font-size: 16px;">Rahul Sharma</strong>
+                        <span style="font-size: 10px; color: #666;">2 days ago</span>
+                    </div>
+                    <div class="verified-badge"><span>✔</span> Verified Purchase • New Delhi</div>
+                </div>
+            </div>
+            <div class="stars">★★★★★</div>
+            <p style="font-size: 14px; color: #eee; line-height: 1.6; margin-bottom: 15px;">"Actually works! I was skeptical at first, but after 10 days of consistent use, my energy levels are significantly better. No side effects at all."</p>
+            <div style="display: flex; gap: 15px; border-top: 1px solid #222; padding-top: 10px;">
+                <span style="font-size: 11px; color: #888; cursor: pointer;">👍 Helpful (24)</span>
+                <span style="font-size: 11px; color: #888; cursor: pointer;">💬 Comment</span>
+            </div>
+        </div>
+        
+        <div class="review-card">
+            <div class="reviewer-info">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="reviewer-photo">
+                <div style="flex: 1;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <strong style="color:var(--gold); font-size: 16px;">Amit Kumar</strong>
+                        <span style="font-size: 10px; color: #666;">1 week ago</span>
+                    </div>
+                    <div class="verified-badge"><span>✔</span> Verified Purchase • Mumbai</div>
+                </div>
+            </div>
+            <div class="stars">★★★★★</div>
+            <p style="font-size: 14px; color: #eee; line-height: 1.6; margin-bottom: 15px;">"Pure herbal power. The packaging was very discreet, nobody could guess what's inside. Results are steady and permanent as promised."</p>
+            <div style="display: flex; gap: 15px; border-top: 1px solid #222; padding-top: 10px;">
+                <span style="font-size: 11px; color: #888; cursor: pointer;">👍 Helpful (18)</span>
+                <span style="font-size: 11px; color: #888; cursor: pointer;">💬 Comment</span>
+            </div>
+        </div>
+
+        <div class="review-card">
+            <div class="reviewer-info">
+                <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=100&q=80" class="reviewer-photo">
+                <div style="flex: 1;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <strong style="color:var(--gold); font-size: 16px;">Vikram Singh</strong>
+                        <span style="font-size: 10px; color: #666;">3 days ago</span>
+                    </div>
+                    <div class="verified-badge"><span>✔</span> Verified Purchase • Punjab</div>
+                </div>
+            </div>
+            <div class="stars">★★★★★</div>
+            <p style="font-size: 14px; color: #eee; line-height: 1.6; margin-bottom: 15px;">"Premium quality. Thunder of zosh has done a great job with this formulation. Fast delivery and original product received."</p>
+            <div style="display: flex; gap: 15px; border-top: 1px solid #222; padding-top: 10px;">
+                <span style="font-size: 11px; color: #888; cursor: pointer;">👍 Helpful (31)</span>
+                <span style="font-size: 11px; color: #888; cursor: pointer;">💬 Comment</span>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 40px;">
+        <a href="#order" class="cta-btn" style="padding: 10px 25px; font-size: 14px;">View All Reviews</a>
+    </div>
+</section>
+
+<div style="background: #050505; padding: 25px 10px; border-top: 1px solid #222; border-bottom: 1px solid #222; margin-top: 20px;">
+    <div style="max-width: 1100px; margin: 0 auto; display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap;">
+        
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid #333; padding: 5px 12px; border-radius: 50px; display: flex; align-items: center; gap: 6px;">
+            <span style="font-size: 12px;">🛡️</span>
+            <span style="font-size: 10px; color: #00fa9a; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">100% Safe Delivery</span>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid #333; padding: 5px 12px; border-radius: 50px; display: flex; align-items: center; gap: 6px;">
+            <span style="font-size: 12px;">🔒</span>
+            <span style="font-size: 10px; color: #00fa9a; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Data Privacy</span>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid #333; padding: 5px 12px; border-radius: 50px; display: flex; align-items: center; gap: 6px;">
+            <span style="font-size: 12px;">🌿</span>
+            <span style="font-size: 10px; color: #00fa9a; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">GMP Certified</span>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid #333; padding: 5px 12px; border-radius: 50px; display: flex; align-items: center; gap: 6px;">
+            <span style="font-size: 12px;">✅</span>
+            <span style="font-size: 10px; color: #00fa9a; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Lab Tested</span>
+        </div>
+
     </div>
 </div>
 
-<script>
-    const scriptURL = 'https://sheetdb.io/api/v1/jvva0bdyw2xiq'; 
-    const PRICES = {
-        "Capsule One Bottle": 2999, 
-        "Capsule Two Bottles": 3999
-    };
+<style>
+   </style> 
 
-    function updateUI() {
-        const pkg = document.getElementById('package').value;
-        document.getElementById('billText').innerText = "Total: ₹" + PRICES[pkg].toLocaleString('en-IN');
+<script>
+    let galleryIdx = 0;
+    const galleryWrapper = document.getElementById('galleryWrapper');
+    const galleryDots = document.querySelectorAll('.gallery-dot');
+
+    function updateGallery() {
+        if (!galleryWrapper) return;
+        galleryWrapper.style.transform = `translateX(-${galleryIdx * 100}%)`;
+        galleryDots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === galleryIdx);
+        });
     }
 
-    document.getElementById('leadForm').addEventListener('submit', async e => {
-        e.preventDefault();
-        const btn = document.getElementById('submitBtn');
-        
-        btn.innerHTML = "Securely Ordering...";
-        btn.disabled = true;
+    function currentSlide(n) {
+        galleryIdx = n;
+        updateGallery();
+    }
 
-        const pkg = document.getElementById('package').value;
-        const amount = PRICES[pkg];
+    // Touch Swipe Support for Mobile
+    let startTouchX = 0;
+    const galleryContainer = document.getElementById('productGallery');
 
-        const data = {
-            "Timestamp": new Date().toLocaleString('en-IN'),
-            "Name": document.getElementById('name').value,
-            "Phone": document.getElementById('phone').value,
-            "Package": pkg,
-            "Address": document.getElementById('address').value,
-            "City": document.getElementById('city').value,
-            "Pincode": document.getElementById('pincode').value,
-            "Method": "COD",
-            "Price": amount,
-            "Delivery Status": "New Order"
-        };
+    if (galleryContainer) {
+        galleryContainer.addEventListener('touchstart', (e) => {
+            startTouchX = e.touches[0].clientX;
+        }, {passive: true});
 
-        try {
-            await fetch(scriptURL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ data: [data] })
-            });
-            showSuccess();
-        } catch(err) { 
-            console.log("Lead captured"); 
-            showSuccess(); 
-        }
-    });
-
-    function showSuccess() {
-        document.getElementById('leadForm').style.display = 'none';
-        document.getElementById('mainHeader').style.display = 'none'; 
-        document.getElementById('priceDisplay').style.display = 'none';
-        document.getElementById('success-msg').style.display = 'block';
-        fbq('track', 'Lead');
-        window.scrollTo(0, 0);
+        galleryContainer.addEventListener('touchend', (e) => {
+            let endTouchX = e.changedTouches[0].clientX;
+            if (startTouchX - endTouchX > 50) { 
+                galleryIdx = (galleryIdx + 1) % galleryDots.length;
+            } else if (endTouchX - startTouchX > 50) { 
+                galleryIdx = (galleryIdx - 1 + galleryDots.length) % galleryDots.length;
+            }
+            updateGallery();
+        }, {passive: true});
     }
 </script>
+    .<style>
+  .footer-section { background: #000; padding: 60px 5% 30px; border-top: 1px solid #222; margin-top: 50px; }
+  .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; text-align: left; }
+  .footer-col h4 { color: var(--gold); text-transform: uppercase; margin-bottom: 20px; font-size: 16px; letter-spacing: 1px; }
+  .footer-col p, .footer-col a { color: #888; font-size: 14px; text-decoration: none; display: block; margin-bottom: 10px; transition: 0.3s; }
+  .footer-col a:hover { color: var(--gold); padding-left: 5px; }
+  .footer-bottom { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #111; color: #444; font-size: 12px; }
+  @media (max-width: 768px) { .footer-grid { text-align: center; } }
+</style>
+
+<footer class="footer-section">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h4>Quality Assurance</h4>
+            <p>• FSSAI Lic No: <b>12123999000382</b></p>
+            <p>• Ayush Lic No: <b>686 /AY-PB</b></p>
+            <p>• GMP Certified Facility</p>
+            <p>• 100% Ayurvedic Formula</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Policies</h4>
+            <a href="capsule-policies.html#about">About Us</a>
+            <a href="capsule-policies.html#privacy">Privacy Policy</a>
+            <a href="capsule-policies.html#terms">Terms & Conditions</a>
+            <a href="capsule-policies.html#refund">Refund Policy</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Contact Support</h4>
+            <p>Mon - Sat: 10 AM to 7 PM</p>
+            <p><strong>Marketed By/Retailer By:</strong> TZ Nature Ayurveda Pvt. Ltd.</p>
+            <p><strong>Email:</strong> <a href="mailto:TZsupportayurveda@gmail.com" style="display:inline; color:var(--gold);">TZsupportayurveda@gmail.com</a></p>
+        </div>
+    </div>
+
+    <div style="text-align: center; padding: 20px; border-top: 1px solid #111; margin-top: 30px;">
+        <div style="display: flex; justify-content: center; align-items: center; gap: 25px; flex-wrap: wrap; opacity: 0.8;">
+            <div style="text-align: center;">
+                <p style="font-size: 10px; color: var(--gold); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">FSSAI Central License</p>
+                <span style="font-size: 12px; color: #fff; border: 1px solid rgba(226, 194, 117, 0.3); padding: 4px 12px; border-radius: 4px; background: rgba(255,255,255,0.05);">
+                    12123999000382
+                </span>
+            </div>
+            <div style="text-align: center;">
+                <p style="font-size: 10px; color: var(--gold); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">Ayush Mfg License</p>
+                <span style="font-size: 12px; color: #fff; border: 1px solid rgba(226, 194, 117, 0.3); padding: 4px 12px; border-radius: 4px; background: rgba(255,255,255,0.05);">
+                    686 /AY-PB
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p style="color: var(--gold); font-weight: bold; margin-bottom: 5px;">THUNDER OF ZOSH CAPSULES</p>
+        <p>&copy; 2026 Thunder of Zosh | TZ Nature Ayurveda. All Rights Reserved.</p>
+    </div>
+</footer>
+
 </body>
 </html>
