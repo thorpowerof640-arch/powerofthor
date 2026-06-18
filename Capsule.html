@@ -25,180 +25,134 @@
 
     <style>
         :root { 
-    --gold: #e2c275; /* Soft Champagne Gold */
-    --gold-dark: #b8860b; 
-    --white: #f8f8f8; 
-    --dark: #050505; /* Deep Black */
-    --red: #ff4d4d; 
-    --green: #00fa9a; 
-}
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 12px 5%; background: rgba(0,0,0,0.95); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #222; }
+            --gold: #b8860b; /* Deep Premium Gold */
+            --gold-light: #e2c275; 
+            --white: #ffffff; 
+            --bg-light: #f8f9fa; /* Soft Light Gray */
+            --dark: #222222; /* Readable Text Dark */
+            --red: #ff4d4d; 
+            --green: #27ae60; /* Natural Herbal Green */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--white);
+            color: var(--dark);
+            margin: 0;
+            padding: 0;
+        }
+
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: var(--white); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #eee; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .logo { color: var(--gold); font-weight: 700; font-size: 20px; text-transform: uppercase; letter-spacing: 2px; }
 
-        .hero { min-height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('hero-capsule.jpg') center/cover no-repeat; padding: 20px; position: relative; border-bottom: 3px solid var(--gold); }
+        /* Premium Light Hero Section */
+        .hero { min-height: 85vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('hero-capsule.jpg') center/cover no-repeat; padding: 40px 20px; position: relative; border-bottom: 3px solid var(--gold); }
         
-        .discount-badge { background: var(--red); color: white; padding: 18px; border-radius: 50%; font-weight: 800; font-size: 20px; position: absolute; top: 10%; right: 10%; transform: rotate(10deg); box-shadow: 0 0 20px rgba(231, 76, 60, 0.6); animation: pulse 2s infinite; z-index: 10; }
+        .discount-badge { background: var(--red); color: white; padding: 18px; border-radius: 50%; font-weight: 800; font-size: 18px; position: absolute; top: 8%; right: 10%; transform: rotate(10deg); box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4); animation: pulse 2s infinite; z-index: 10; line-height: 1.2; }
         @keyframes pulse { 0%, 100% { transform: scale(1) rotate(10deg); } 50% { transform: scale(1.05) rotate(10deg); } }
 
-        .cta-btn { padding: 14px 30px; background: linear-gradient(45deg, var(--gold), var(--gold-dark)); color: #000; text-decoration: none; font-weight: 700; border-radius: 6px; text-transform: uppercase; display: inline-block; transition: 0.3s; cursor: pointer; border: none; font-size: 16px; }
-        .cta-btn:hover { transform: scale(1.05); box-shadow: 0 0 15px var(--gold); }
+        .cta-btn { padding: 14px 35px; background: linear-gradient(45deg, var(--gold), #966f03); color: #fff; text-decoration: none; font-weight: 700; border-radius: 8px; text-transform: uppercase; display: inline-block; transition: 0.3s; cursor: pointer; border: none; font-size: 16px; box-shadow: 0 5px 15px rgba(184, 134, 11, 0.3); }
+        .cta-btn:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(184, 134, 11, 0.5); }
 
-        .full-page-section { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px; background-size: cover; background-position: center; background-attachment: fixed; }
-        .lifestyle-1 { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('touch_image.jpeg'); }
-        .lifestyle-2 { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('smile_image.jpeg'); }
+        .full-page-section { min-height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px; background-size: cover; background-position: center; background-attachment: fixed; }
+        .lifestyle-1 { background-image: linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.75)), url('touch_image.jpeg'); }
+        .lifestyle-2 { background-image: linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.75)), url('smile_image.jpeg'); }
 
-        .content-box h2 { color: var(--gold); font-size: clamp(30px, 5vw, 45px); margin-bottom: 20px; text-transform: uppercase; }
-        .content-box p { font-size: 18px; max-width: 700px; margin: 0 auto 30px; }
+        .content-box h2 { color: var(--gold); font-size: clamp(30px, 5vw, 45px); margin-bottom: 20px; text-transform: uppercase; font-weight: 700; }
+        .content-box p { font-size: 18px; max-width: 700px; margin: 0 auto 30px; color: #444; font-weight: 500; }
 
-        .ingredients { padding: 80px 5%; background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('herbs-bg.jpg') center/cover no-repeat; text-align: center; border-top: 2px solid var(--gold); }
-        .ingredients-container { background: rgba(0, 0, 0, 0.8); padding: 30px; border-radius: 15px; border: 1px solid var(--gold); max-width: 1000px; margin: 0 auto; backdrop-filter: blur(5px); }
-        .ing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; text-align: left; }
-        .ing-name { color: #fff; font-size: 15px; padding: 10px; border-bottom: 1px solid rgba(212,175,55,0.2); display: flex; align-items: center; }
-        .ing-name::before { content: "💊"; color: var(--gold); margin-right: 10px; }
+        /* Ingredients Light Style */
+        .ingredients { padding: 80px 5%; background: var(--bg-light); text-align: center; border-top: 1px solid #eee; }
+        .ingredients-container { background: var(--white); padding: 35px; border-radius: 15px; border: 1px solid #e0e0e0; max-width: 1000px; margin: 0 auto; box-shadow: 0 5px 20px rgba(0,0,0,0.03); }
+        .ing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+        .ing-card { background: var(--bg-light); padding: 15px; border-radius: 10px; border-left: 4px solid var(--gold); text-align: left; display: flex; flex-direction: column; justify-content: center; }
+        .ing-title { font-weight: 700; color: var(--dark); font-size: 16px; margin: 0; }
+        .ing-desc { font-size: 12px; color: #666; margin-top: 4px; }
 
-        .doctor-section { background: #000; padding: 60px 5%; border-top: 1px solid #222; }
-        .doctor-flex { display: flex; align-items: center; flex-wrap: wrap; gap: 40px; max-width: 1100px; margin: 0 auto; }
+        /* Doctor Section Light */
+        .doctor-section { background: var(--white); padding: 80px 5%; border-top: 1px solid #eee; }
+        .doctor-flex { display: flex; align-items: center; flex-wrap: wrap; gap: 50px; max-width: 1100px; margin: 0 auto; }
         .doctor-img-box { flex: 1; min-width: 280px; text-align: center; }
-        .doctor-img-box img { width: 100%; max-width: 350px; border-radius: 15px; border: 2px solid var(--gold); }
+        .doctor-img-box img { width: 100%; max-width: 330px; border-radius: 15px; border: 1px solid #e0e0e0; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
         .doctor-content { flex: 1.2; min-width: 300px; }
 
-        .product-highlight { padding: 80px 5%; text-align: center; background: radial-gradient(circle at center, #111 0%, #000 100%); border-top: 1px solid #222; }
+        /* Product Highlight Light */
+        .product-highlight { padding: 80px 5%; text-align: center; background: var(--bg-light); border-top: 1px solid #eee; }
         .product-flex { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 50px; max-width: 1100px; margin: 0 auto; }
-        .product-image-container img { max-width: 450px; width: 100%; border-radius: 15px; border: 2px solid var(--gold); box-shadow: 0 0 25px rgba(212,175,55,0.2); }
+        .product-image-container img { max-width: 450px; width: 100%; border-radius: 15px; border: 1px solid #e0e0e0; box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
         .product-details-container { text-align: left; max-width: 450px; }
-        .product-details-container h2 { color: var(--gold); font-size: 35px; margin: 0 0 15px; }
+        .product-details-container h2 { color: var(--dark); font-size: 35px; margin: 0 0 15px; font-weight: 700; }
         .price-box { margin-bottom: 25px; }
-        .old-price { color: #888; text-decoration: line-through; font-size: 1.2rem; }
-        .new-price { color: #fff; font-size: 3rem; font-weight: 700; display: block; }
+        .old-price { color: #999; text-decoration: line-through; font-size: 1.2rem; }
+        .new-price { color: var(--gold); font-size: 3rem; font-weight: 700; display: block; margin-top: 5px; }
         
         .detail-list { list-style: none; padding: 0; margin-bottom: 30px; }
-        .detail-list li { margin-bottom: 12px; font-size: 1.1rem; display: flex; align-items: center; }
-        .detail-list li::before { content: "✔"; color: var(--green); margin-right: 12px; font-weight: bold; }
+        .detail-list li { margin-bottom: 12px; font-size: 1.1rem; display: flex; align-items: center; color: #444; }
+        .detail-list li::before { content: "✔"; color: var(--green); margin-right: 12px; font-weight: bold; font-size: 1.2rem; }
 
-        /* Review Styling Updated */
-        .reviews { padding: 80px 5%; background: #050505; text-align: center; }
+        /* Reviews Light Style */
+        .reviews { padding: 80px 5%; background: var(--white); text-align: center; border-top: 1px solid #eee; }
         .reviews-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 40px; }
-        .review-card { background: #111; padding: 25px; border-radius: 15px; width: 340px; max-width: 100%; border: 1px solid #222; text-align: left; transition: 0.3s; }
-        .review-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+        .review-card { background: var(--bg-light); padding: 25px; border-radius: 15px; width: 340px; max-width: 100%; border: 1px solid #eaeaea; text-align: left; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+        .review-card:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.05); }
         .reviewer-info { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
-        .reviewer-photo { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); }
+        .reviewer-photo { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold-light); }
         .stars { color: #f1c40f; font-size: 18px; margin-bottom: 10px; letter-spacing: 2px; }
         .verified-badge { color: var(--green); font-size: 11px; display: flex; align-items: center; gap: 5px; font-weight: 600; text-transform: uppercase; margin-top: 5px; }
 
-        .safety-strip { background: #0a0a0a; padding: 30px; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; border-top: 1px solid #333; }
-        .safety-item { font-size: 13px; color: var(--green); font-weight: bold; text-transform: uppercase; }
+        /* Gallery Style Light */
+        .product-gallery { width: 100%; max-width: 450px; position: relative; overflow: hidden; border-radius: 15px; border: 1px solid #e0e0e0; background: var(--white); margin: 0 auto; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        .gallery-wrapper { display: flex; transition: transform 0.5s ease-in-out; }
+        .gallery-slide { min-width: 100%; }
+        .gallery-slide img { width: 100%; display: block; object-fit: contain; }
+        .gallery-dots { display: flex; justify-content: center; gap: 10px; margin-top: 12px; }
+        .gallery-dot { width: 8px; height: 8px; border-radius: 50%; background: #ddd; cursor: pointer; transition: 0.3s; }
+        .gallery-dot.active { background: var(--gold); width: 20px; border-radius: 4px; }
 
-        footer { padding: 40px; text-align: center; background: #000; font-size: 12px; color: #666; }
-/* Product Gallery Slider Style */
-.product-gallery {
-    width: 100%;
-    max-width: 450px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 15px;
-    border: 1px solid rgba(226, 194, 117, 0.2);
-    background: #000;
-    margin: 0 auto;
-}
-.gallery-wrapper {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-.gallery-slide {
-    min-width: 100%;
-}
-.gallery-slide img {
-    width: 100%;
-    display: block;
-    object-fit: contain;
-}
-.gallery-dots {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 12px;
-}
-.gallery-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #333;
-    cursor: pointer;
-    transition: 0.3s;
-}
-.gallery-dot.active {
-    background: var(--gold);
-    width: 20px;
-    border-radius: 4px;
-}
-      @media (max-width: 768px) {
-    /* Sabse pehle ye overflow fix add karein */
-    html, body {
-        width: 100%;
-        overflow-x: hidden;
-        margin: 0;
-        padding: 0;
-    }
+        /* Footer Light */
+        .footer-section { background: #111111; padding: 60px 5% 30px; border-top: 1px solid #222; margin-top: 50px; color: #eee; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; text-align: left; }
+        .footer-col h4 { color: var(--gold-light); text-transform: uppercase; margin-bottom: 20px; font-size: 16px; letter-spacing: 1px; }
+        .footer-col p, .footer-col a { color: #bbb; font-size: 14px; text-decoration: none; display: block; margin-bottom: 10px; transition: 0.3s; }
+        .footer-col a:hover { color: var(--gold-light); padding-left: 5px; }
+        .footer-bottom { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #222; color: #777; font-size: 12px; }
 
-    .hero { height: auto; min-height: 80vh; padding: 40px 20px; }
-    .hero h1 { font-size: 32px !important; line-height: 1.2; }
-    .hero p { font-size: 16px !important; }
-
-    .discount-badge { width: 70px; height: 70px; font-size: 14px; padding: 12px; top: 5%; right: 5%; }
-
-    .full-page-section { min-height: 60vh; padding: 30px 20px; background-attachment: scroll; }
-    .content-box h2 { font-size: 26px !important; }
-
-    .doctor-flex, .product-flex { 
-        flex-direction: column; 
-        text-align: center; 
-        gap: 30px; 
-        width: 100%; 
-        box-sizing: border-box; 
-    }
-    
-    .product-details-container { 
-        text-align: center; 
-        width: 100%; 
-        padding: 0 10px; 
-    }
-
-    /* Button ko screen ke andar fit karne ke liye */
-    .cta-btn {
-        width: 100%;
-        box-sizing: border-box;
-        font-size: 16px;
-    }
-
-    .review-card { width: 100%; max-width: 100%; box-sizing: border-box; }
-
-    .ing-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-    .ing-name { font-size: 13px; }
-}
+        @media (max-width: 768px) {
+            html, body { width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
+            .hero { padding: 60px 20px; }
+            .discount-badge { width: 65px; height: 65px; font-size: 13px; padding: 10px; top: 4%; right: 4%; }
+            .full-page-section { min-height: 50vh; padding: 30px 20px; background-attachment: scroll; }
+            .doctor-flex, .product-flex { flex-direction: column; text-align: center; gap: 30px; width: 100%; }
+            .product-details-container { text-align: center; width: 100%; padding: 0; }
+            .cta-btn { width: 100%; box-sizing: border-box; }
+            .ing-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .footer-grid { text-align: center; }
+        }
     </style>
 </head>
 <body>
 
 <nav>
-    <div class="logo">POWER OF THOR </div>
-    <a href="#order" class="cta-btn" style="padding: 8px 18px; font-size: 11px;">Order Now</a>
+    <div class="logo">POWER OF THOR</div>
+    <a href="#order" class="cta-btn" style="padding: 10px 20px; font-size: 12px; box-shadow: none;">Order Now</a>
 </nav>
 
 <section class="hero">
     <div class="discount-badge">BUY 1<br>GET 1 FREE</div>
     
-    <div style="background: rgba(212,175,55,0.2); color: var(--gold); padding: 4px 15px; border-radius: 50px; margin-bottom: 10px; font-weight: 600; border: 1px solid var(--gold); font-size: 14px; display: inline-block;">⭐ 50,000+ Happy Customers</div>
-    <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 10px;">
-    <span style="font-size: 11px; color: var(--green); border: 1px solid rgba(0,250,154,0.3); padding: 2px 8px; border-radius: 4px; background: rgba(0,250,154,0.05);">✓ FSSAI APPROVED</span>
-    <span style="font-size: 11px; color: var(--green); border: 1px solid rgba(0,250,154,0.3); padding: 2px 8px; border-radius: 4px; background: rgba(0,250,154,0.05);">✓ AYUSH REGISTERED</span>
-</div>
-    <h1 style="font-size: clamp(30px, 8vw, 60px); margin: 10px 0; color: var(--gold); text-shadow: 0px 0px 10px rgba(212,175,55,0.3);">POWER OF THOR CAPSULES</h1>
+    <div style="background: rgba(184, 134, 11, 0.08); color: var(--gold); padding: 6px 18px; border-radius: 50px; margin-bottom: 15px; font-weight: 600; border: 1px solid rgba(184, 134, 11, 0.3); font-size: 14px; display: inline-block;">⭐ 50,000+ Happy Customers</div>
     
-    <p style="font-size: 20px; margin-bottom: 5px; color: #ffffff;">Premium Ayurvedic Performance Formula</p>
+    <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 15px;">
+        <span style="font-size: 11px; color: var(--green); border: 1px solid rgba(39, 174, 96, 0.2); padding: 3px 10px; border-radius: 4px; background: rgba(39, 174, 96, 0.05); font-weight: 600;">✓ FSSAI APPROVED</span>
+        <span style="font-size: 11px; color: var(--green); border: 1px solid rgba(39, 174, 96, 0.2); padding: 3px 10px; border-radius: 4px; background: rgba(39, 174, 96, 0.05); font-weight: 600;">✓ AYUSH REGISTERED</span>
+    </div>
     
-    <div style="margin-bottom: 25px;">
-        <p style="color: #ffd700; font-weight: bold; font-size: 28px; margin-bottom: 5px;">BOGO OFFER: 30 + 30 FREE</p>
-        <p style="color: #fff; font-size: 22px; opacity: 0.9;">Get 60 Capsules Total @ ₹2290 Only</p>
+    <h1 style="font-size: clamp(34px, 7vw, 55px); margin: 10px 0; color: #111; font-weight: 800; line-height: 1.2;">POWER OF THOR CAPSULES</h1>
+    <p style="font-size: 20px; margin-bottom: 15px; color: #555; font-weight: 500;">Premium Ayurvedic Performance Formula</p>
+    
+    <div style="margin-bottom: 30px; background: #fff; padding: 15px 25px; border-radius: 12px; border: 1px solid #eee; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
+        <p style="color: var(--gold); font-weight: 700; font-size: 26px; margin: 0 0 5px 0;">BOGO OFFER: 30 + 30 FREE</p>
+        <p style="color: #333; font-size: 20px; margin: 0; font-weight: 600;">Get 60 Capsules Total @ ₹2290 Only</p>
     </div>
 
     <a href="#order" class="cta-btn">Claim My Free Bottle</a>
@@ -207,20 +161,32 @@
 <section class="full-page-section lifestyle-1">
     <div class="content-box">
         <h2>Unleash Your Power</h2>
-        <p style="color: #ffffff;">Expertly designed capsules to ignite your confidence and strength.</p>
+        <p>Expertly designed capsules to ignite your confidence and strength.</p>
         <a href="#order" class="cta-btn">Unlock Now</a>
     </div>
 </section>
 
 <section class="ingredients">
-    <h2 style="color: var(--gold); font-size: 36px; text-transform: uppercase; margin-bottom: 40px;">POWERFUL COMPOSITION</h2>
+    <h2 style="color: var(--dark); font-size: 34px; text-transform: uppercase; margin-bottom: 40px; font-weight: 700;">POWERFUL COMPOSITION</h2>
     <div class="ingredients-container">
         <div class="ing-grid">
-    <div class="ing-name">Shilajit <small style="display:block; font-size:10px; color:var(--gold); opacity:0.8;">(Stamina & Strength)</small></div>
-    <div class="ing-name">Ashwagandha <small style="display:block; font-size:10px; color:var(--gold); opacity:0.8;">(Stress Relief)</small></div>
-    <div class="ing-name">Safed Musli <small style="display:block; font-size:10px; color:var(--gold); opacity:0.8;">(Vitality Boost)</small></div>
-    <div class="ing-name">Saffron (Kesar) <small style="display:block; font-size:10px; color:var(--gold); opacity:0.8;">(Mood Enhancer)</small></div>
-</div>
+            <div class="ing-card">
+                <p class="ing-title">Shilajit</p>
+                <span class="ing-desc">Stamina & Strength</span>
+            </div>
+            <div class="ing-card">
+                <p class="ing-title">Ashwagandha</p>
+                <span class="ing-desc">Stress Relief</span>
+            </div>
+            <div class="ing-card">
+                <p class="ing-title">Safed Musli</p>
+                <span class="ing-desc">Vitality Boost</span>
+            </div>
+            <div class="ing-card">
+                <p class="ing-title">Saffron (Kesar)</p>
+                <span class="ing-desc">Mood Enhancer</span>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -229,25 +195,25 @@
         <div class="doctor-img-box">
             <img src="doctor-capsule.png" alt="Dr. Anjali Sharma" fetchpriority="high">
             <div style="margin-top: 15px;">
-                <h3 style="color: var(--gold); margin: 0; font-size: 22px;">Dr. Anjali Sharma</h3>
-                <p style="color: #ccc; font-style: italic; font-size: 15px;">"I strongly recommend this capsule formula as it is 100% natural and specifically designed for optimal male wellness."</p>
+                <h3 style="color: var(--dark); margin: 0; font-size: 22px; font-weight: 700;">Dr. Anjali Sharma</h3>
+                <p style="color: #666; font-style: italic; font-size: 15px; margin-top: 5px;">"I strongly recommend this capsule formula as it is 100% natural and specifically designed for optimal male wellness."</p>
             </div>
         </div>
         <div class="doctor-content">
-            <h2 style="color: var(--gold); font-size: 30px; text-transform: uppercase;">How It Works?</h2>
+            <h2 style="color: var(--dark); font-size: 32px; text-transform: uppercase; font-weight: 700; margin-bottom: 25px;">How It Works?</h2>
             <div style="margin-bottom: 20px;">
-                <h4 style="color: var(--gold); margin: 0 0 5px;">🔬 Bio-Available Formula</h4>
-                <p style="color: #eee; font-size: 15px; margin: 0;">Our unique capsule complex enhances nitric oxide levels, significantly improving blood flow and vitality.</p>
+                <h4 style="color: var(--gold); margin: 0 0 5px; font-size: 18px;">🔬 Bio-Available Formula</h4>
+                <p style="color: #555; font-size: 15px; margin: 0; line-height: 1.5;">Our unique capsule complex enhances nitric oxide levels, significantly improving blood flow and vitality.</p>
             </div>
             <div style="margin-bottom: 20px;">
-                <h4 style="color: var(--gold); margin: 0 0 5px;">⚖️ Natural Balance</h4>
-                <p style="color: #eee; font-size: 15px; margin: 0;">It helps optimize hormonal drive naturally, effectively reducing stress and performance fatigue.</p>
+                <h4 style="color: var(--gold); margin: 0 0 5px; font-size: 18px;">⚖️ Natural Balance</h4>
+                <p style="color: #555; font-size: 15px; margin: 0; line-height: 1.5;">It helps optimize hormonal drive naturally, effectively reducing stress and performance fatigue.</p>
             </div>
             <div style="margin-bottom: 20px;">
-                <h4 style="color: var(--gold); margin: 0 0 5px;">✅ Proven Results</h4>
-                <p style="color: #eee; font-size: 15px; margin: 0;">Users experience a massive boost in stamina and confidence within 14 days of consistent usage.</p>
+                <h4 style="color: var(--gold); margin: 0 0 5px; font-size: 18px;">✅ Proven Results</h4>
+                <p style="color: #555; font-size: 15px; margin: 0; line-height: 1.5;">Users experience a massive boost in stamina and confidence within 14 days of consistent usage.</p>
             </div>
-            <a href="#order" class="cta-btn" style="padding: 12px 30px; font-size: 13px;">Order Expert Choice</a>
+            <a href="#order" class="cta-btn" style="padding: 12px 30px; font-size: 14px; margin-top: 10px;">Order Expert Choice</a>
         </div>
     </div>
 </section>
@@ -255,7 +221,7 @@
 <section class="full-page-section lifestyle-2">
     <div class="content-box">
         <h2>Stronger Bonds</h2>
-        <p style="color: #ffffff;">Enhance your personal life with lasting confidence.</p>
+        <p>Enhance your personal life with lasting confidence.</p>
         <a href="#order" class="cta-btn">Order COD Now @ ₹2290</a>
     </div>
 </section>
@@ -263,51 +229,51 @@
 <section class="product-highlight" id="order">
     <div class="product-flex">
         <div class="product-image-container">
-    <div class="product-gallery" id="productGallery">
-        <div class="gallery-wrapper" id="galleryWrapper">
-            <div class="gallery-slide">
-                <img src="product-capsule.jpg" alt="Thunder of Zosh Main">
+            <div class="product-gallery" id="productGallery">
+                <div class="gallery-wrapper" id="galleryWrapper">
+                    <div class="gallery-slide">
+                        <img src="product-capsule.jpg" alt="Main View">
+                    </div>
+                    <div class="gallery-slide">
+                        <img src="product-capsule-2.jpg" alt="Label Details">
+                    </div>
+                    <div class="gallery-slide">
+                        <img src="product-capsule-3.jpg" alt="Manufacturing View">
+                    </div>
+                </div>
+                
+                <div class="gallery-dots">
+                    <span class="gallery-dot active" onclick="currentSlide(0)"></span>
+                    <span class="gallery-dot" onclick="currentSlide(1)"></span>
+                    <span class="gallery-dot" onclick="currentSlide(2)"></span>
+                </div>
             </div>
-            <div class="gallery-slide">
-                <img src="product-capsule-2.jpg" alt="Label Details">
-            </div>
-            <div class="gallery-slide">
-                <img src="product-capsule-3.jpg" alt="Manufacturing View">
-            </div>
+            <p style="color: var(--gold); margin-top: 18px; font-weight: bold; font-size: 14px; letter-spacing: 0.5px;">📦 100% PRIVATE & DISCREET PACKAGING</p>
         </div>
-        
-        <div class="gallery-dots">
-            <span class="gallery-dot active" onclick="currentSlide(0)"></span>
-            <span class="gallery-dot" onclick="currentSlide(1)"></span>
-            <span class="gallery-dot" onclick="currentSlide(2)"></span>
-        </div>
-    </div>
-    <p style="color: var(--gold); margin-top: 15px; font-weight: bold; font-size: 14px;">📦 100% PRIVATE & DISCREET PACKAGING</p>
-</div>
         <div class="product-details-container">
-            <h2 style="font-size: 35px;">Permanent Strength & Confidence</h2>
+            <h2>Permanent Strength & Confidence</h2>
             <div class="price-box">
                 <span class="old-price">MRP ₹5,998</span>
                 <span class="new-price">Special BOGO Price: ₹2290</span>
-                <p style="color: var(--green); font-weight: bold; margin-top: 5px;">[Buy 1 Get 1 Free Offer Applied]</p>
+                <p style="color: var(--green); font-weight: bold; margin-top: 5px; font-size: 14px;">[Buy 1 Get 1 Free Offer Applied]</p>
             </div>
             <ul class="detail-list">
-               <li style="color: #ffffff;">Clinically Proven Ayurvedic Results</li>
-<li style="color: #ffffff;">100% Pure Herbs - Zero Side Effects</li>
-<li style="color: #ffffff;">Permanent Solution (Not Temporary)</li>
-<li style="color: #ffffff;">Trusted by 50,000+ Happy Customers</li>
-                <li style="color: var(--gold);"><strong>FREE Shipping + Cash On Delivery</strong></li>
+                <li>Clinically Proven Ayurvedic Results</li>
+                <li>100% Pure Herbs - Zero Side Effects</li>
+                <li>Permanent Solution (Not Temporary)</li>
+                <li>Trusted by 50,000+ Happy Customers</li>
+                <li style="color: var(--gold); font-weight: 700;">FREE Shipping + Cash On Delivery</li>
             </ul>
-            <a href="https://thunderofzosh.in/capsule.html" class="cta-btn" style="width: 100%; text-align: center; font-size: 18px;">ACTIVATE MY FREE BOTTLE</a>
+            <a href="https://thunderofzosh.in/capsule.html" class="cta-btn" style="width: 100%; text-align: center; font-size: 18px; box-sizing: border-box;">ACTIVATE MY FREE BOTTLE</a>
         </div>
     </div>
 </section>
 
 <section class="reviews">
     <div style="margin-bottom: 40px;">
-        <h2 style="color: var(--gold); font-size: 32px; text-transform: uppercase; margin-bottom: 10px;">Customer Stories</h2>
+        <h2 style="color: var(--dark); font-size: 32px; text-transform: uppercase; margin-bottom: 10px; font-weight: 700;">Customer Stories</h2>
         <div style="color: #f1c40f; font-size: 20px;">
-            ★★★★★ <span style="color: #fff; font-size: 16px; margin-left: 10px;">4.9/5 (12,480+ Reviews)</span>
+            ★★★★★ <span style="color: #444; font-size: 16px; margin-left: 10px; font-weight: 500;">4.9/5 (12,480+ Reviews)</span>
         </div>
     </div>
 
@@ -317,17 +283,17 @@
                 <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" class="reviewer-photo">
                 <div style="flex: 1;">
                     <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                        <strong style="color:var(--gold); font-size: 16px;">Rahul Sharma</strong>
-                        <span style="font-size: 10px; color: #666;">2 days ago</span>
+                        <strong style="color: var(--dark); font-size: 16px; font-weight: 700;">Rahul Sharma</strong>
+                        <span style="font-size: 11px; color: #999;">2 days ago</span>
                     </div>
                     <div class="verified-badge"><span>✔</span> Verified Purchase • New Delhi</div>
                 </div>
             </div>
             <div class="stars">★★★★★</div>
-            <p style="font-size: 14px; color: #eee; line-height: 1.6; margin-bottom: 15px;">"Actually works! I was skeptical at first, but after 10 days of consistent use, my energy levels are significantly better. No side effects at all."</p>
-            <div style="display: flex; gap: 15px; border-top: 1px solid #222; padding-top: 10px;">
-                <span style="font-size: 11px; color: #888; cursor: pointer;">👍 Helpful (24)</span>
-                <span style="font-size: 11px; color: #888; cursor: pointer;">💬 Comment</span>
+            <p style="font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 15px;">"Actually works! I was skeptical at first, but after 10 days of consistent use, my energy levels are significantly better. No side effects at all."</p>
+            <div style="display: flex; gap: 15px; border-top: 1px solid #eee; padding-top: 12px;">
+                <span style="font-size: 12px; color: #888; cursor: pointer;">👍 Helpful (24)</span>
+                <span style="font-size: 12px; color: #888; cursor: pointer;">💬 Comment</span>
             </div>
         </div>
         
@@ -336,17 +302,17 @@
                 <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" class="reviewer-photo">
                 <div style="flex: 1;">
                     <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                        <strong style="color:var(--gold); font-size: 16px;">Amit Kumar</strong>
-                        <span style="font-size: 10px; color: #666;">1 week ago</span>
+                        <strong style="color: var(--dark); font-size: 16px; font-weight: 700;">Amit Kumar</strong>
+                        <span style="font-size: 11px; color: #999;">1 week ago</span>
                     </div>
                     <div class="verified-badge"><span>✔</span> Verified Purchase • Mumbai</div>
                 </div>
             </div>
             <div class="stars">★★★★★</div>
-            <p style="font-size: 14px; color: #eee; line-height: 1.6; margin-bottom: 15px;">"Pure herbal power. The packaging was very discreet, nobody could guess what's inside. Results are steady and permanent as promised."</p>
-            <div style="display: flex; gap: 15px; border-top: 1px solid #222; padding-top: 10px;">
-                <span style="font-size: 11px; color: #888; cursor: pointer;">👍 Helpful (18)</span>
-                <span style="font-size: 11px; color: #888; cursor: pointer;">💬 Comment</span>
+            <p style="font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 15px;">"Pure herbal power. The packaging was very discreet, nobody could guess what's inside. Results are steady and permanent as promised."</p>
+            <div style="display: flex; gap: 15px; border-top: 1px solid #eee; padding-top: 12px;">
+                <span style="font-size: 12px; color: #888; cursor: pointer;">👍 Helpful (18)</span>
+                <span style="font-size: 12px; color: #888; cursor: pointer;">💬 Comment</span>
             </div>
         </div>
 
@@ -355,54 +321,50 @@
                 <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=100&q=80" class="reviewer-photo">
                 <div style="flex: 1;">
                     <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                        <strong style="color:var(--gold); font-size: 16px;">Vikram Singh</strong>
-                        <span style="font-size: 10px; color: #666;">3 days ago</span>
+                        <strong style="color: var(--dark); font-size: 16px; font-weight: 700;">Vikram Singh</strong>
+                        <span style="font-size: 11px; color: #999;">3 days ago</span>
                     </div>
                     <div class="verified-badge"><span>✔</span> Verified Purchase • Punjab</div>
                 </div>
             </div>
             <div class="stars">★★★★★</div>
-            <p style="font-size: 14px; color: #eee; line-height: 1.6; margin-bottom: 15px;">"Premium quality. POWER OF THOR  has done a great job with this formulation. Fast delivery and original product received."</p>
-            <div style="display: flex; gap: 15px; border-top: 1px solid #222; padding-top: 10px;">
-                <span style="font-size: 11px; color: #888; cursor: pointer;">👍 Helpful (31)</span>
-                <span style="font-size: 11px; color: #888; cursor: pointer;">💬 Comment</span>
+            <p style="font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 15px;">"Premium quality. POWER OF THOR has done a great job with this formulation. Fast delivery and original product received."</p>
+            <div style="display: flex; gap: 15px; border-top: 1px solid #eee; padding-top: 12px;">
+                <span style="font-size: 12px; color: #888; cursor: pointer;">👍 Helpful (31)</span>
+                <span style="font-size: 12px; color: #888; cursor: pointer;">💬 Comment</span>
             </div>
         </div>
     </div>
 
     <div style="margin-top: 40px;">
-        <a href="#order" class="cta-btn" style="padding: 10px 25px; font-size: 14px;">View All Reviews</a>
+        <a href="#order" class="cta-btn" style="padding: 12px 30px; font-size: 14px;">View All Reviews</a>
     </div>
 </section>
 
-<div style="background: #050505; padding: 25px 10px; border-top: 1px solid #222; border-bottom: 1px solid #222; margin-top: 20px;">
-    <div style="max-width: 1100px; margin: 0 auto; display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap;">
+<div style="background: var(--bg-light); padding: 30px 10px; border-top: 1px solid #eee; border-bottom: 1px solid #eee;">
+    <div style="max-width: 1100px; margin: 0 auto; display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap;">
         
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid #333; padding: 5px 12px; border-radius: 50px; display: flex; align-items: center; gap: 6px;">
-            <span style="font-size: 12px;">🛡️</span>
-            <span style="font-size: 10px; color: #00fa9a; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">100% Safe Delivery</span>
+        <div style="background: var(--white); border: 1px solid #e0e0e0; padding: 8px 16px; border-radius: 50px; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.01);">
+            <span style="font-size: 14px;">🛡️</span>
+            <span style="font-size: 11px; color: var(--green); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">100% Safe Delivery</span>
         </div>
 
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid #333; padding: 5px 12px; border-radius: 50px; display: flex; align-items: center; gap: 6px;">
-            <span style="font-size: 12px;">🔒</span>
-            <span style="font-size: 10px; color: #00fa9a; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Data Privacy</span>
+        <div style="background: var(--white); border: 1px solid #e0e0e0; padding: 8px 16px; border-radius: 50px; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.01);">
+            <span style="font-size: 14px;">🔒</span>
+            <span style="font-size: 11px; color: var(--green); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Data Privacy</span>
         </div>
 
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid #333; padding: 5px 12px; border-radius: 50px; display: flex; align-items: center; gap: 6px;">
-            <span style="font-size: 12px;">🌿</span>
-            <span style="font-size: 10px; color: #00fa9a; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">GMP Certified</span>
+        <div style="background: var(--white); border: 1px solid #e0e0e0; padding: 8px 16px; border-radius: 50px; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.01);">
+            <span style="font-size: 14px;">🌿</span>
+            <span style="font-size: 11px; color: var(--green); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">GMP Certified</span>
         </div>
 
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid #333; padding: 5px 12px; border-radius: 50px; display: flex; align-items: center; gap: 6px;">
-            <span style="font-size: 12px;">✅</span>
-            <span style="font-size: 10px; color: #00fa9a; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Lab Tested</span>
+        <div style="background: var(--white); border: 1px solid #e0e0e0; padding: 8px 16px; border-radius: 50px; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.01);">
+            <span style="font-size: 14px;">✅</span>
+            <span style="font-size: 11px; color: var(--green); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Lab Tested</span>
         </div>
-
     </div>
 </div>
-
-<style>
-   </style> 
 
 <script>
     let galleryIdx = 0;
@@ -442,15 +404,6 @@
         }, {passive: true});
     }
 </script>
-    .<style>
-  .footer-section { background: #000; padding: 60px 5% 30px; border-top: 1px solid #222; margin-top: 50px; }
-  .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; text-align: left; }
-  .footer-col h4 { color: var(--gold); text-transform: uppercase; margin-bottom: 20px; font-size: 16px; letter-spacing: 1px; }
-  .footer-col p, .footer-col a { color: #888; font-size: 14px; text-decoration: none; display: block; margin-bottom: 10px; transition: 0.3s; }
-  .footer-col a:hover { color: var(--gold); padding-left: 5px; }
-  .footer-bottom { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #111; color: #444; font-size: 12px; }
-  @media (max-width: 768px) { .footer-grid { text-align: center; } }
-</style>
 
 <footer class="footer-section">
     <div class="footer-grid">
@@ -474,20 +427,20 @@
             <h4>Contact Support</h4>
             <p>Mon - Sat: 10 AM to 7 PM</p>
             <p><strong>Marketed By/Retailer By:</strong> K.R Ayurveda Pvt. Ltd.</p>
-            <p><strong>Email:</strong> <a href="mailto:TZsupportayurveda@gmail.com" style="display:inline; color:var(--gold);">thorpowerof640@gmail.com</a></p>
+            <p><strong>Email:</strong> <span style="color:var(--gold-light);">thorpowerof640@gmail.com</span></p>
         </div>
     </div>
 
-    <div style="text-align: center; padding: 20px; border-top: 1px solid #111; margin-top: 30px;">
+    <div style="text-align: center; padding: 20px; border-top: 1px solid #222; margin-top: 30px;">
         <div style="display: flex; justify-content: center; align-items: center; gap: 25px; flex-wrap: wrap; opacity: 0.8;">
             <div style="text-align: center;">
-                <p style="font-size: 10px; color: var(--gold); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">FSSAI Central License</p>
+                <p style="font-size: 10px; color: var(--gold-light); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">FSSAI Central License</p>
                 <span style="font-size: 12px; color: #fff; border: 1px solid rgba(226, 194, 117, 0.3); padding: 4px 12px; border-radius: 4px; background: rgba(255,255,255,0.05);">
                     12225027000964
                 </span>
             </div>
             <div style="text-align: center;">
-                <p style="font-size: 10px; color: var(--gold); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">Ayush Mfg License</p>
+                <p style="font-size: 10px; color: var(--gold-light); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">Ayush Mfg License</p>
                 <span style="font-size: 12px; color: #fff; border: 1px solid rgba(226, 194, 117, 0.3); padding: 4px 12px; border-radius: 4px; background: rgba(255,255,255,0.05);">
                     686 /AY-PB
                 </span>
@@ -496,7 +449,7 @@
     </div>
 
     <div class="footer-bottom">
-        <p style="color: var(--gold); font-weight: bold; margin-bottom: 5px;">POWER OF THOR CAPSULE</p>
+        <p style="color: var(--gold-light); font-weight: bold; margin-bottom: 5px;">POWER OF THOR CAPSULE</p>
         <p>&copy; 2026 POWER OF THOR | K.R AYURVEDA.PVT. All Rights Reserved.</p>
     </div>
 </footer>
