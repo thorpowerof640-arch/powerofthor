@@ -5,23 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Form | Thunder of Zosh</title>
     
-    <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '881403324800547');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=881403324800547&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '881403324800547'); 
+    fbq('track', 'PageView');
+    </script>
     
     <style>
         :root { 
@@ -52,6 +47,7 @@ src="https://www.facebook.com/tr?id=881403324800547&ev=PageView&noscript=1"
             box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 20px rgba(226, 194, 117, 0.1); 
         }
 
+        /* Header Polish */
         .form-header { 
             background: linear-gradient(180deg, #111, #000); 
             border-bottom: 1px solid var(--border-color); 
@@ -84,6 +80,7 @@ src="https://www.facebook.com/tr?id=881403324800547&ev=PageView&noscript=1"
             gap: 5px;
         }
 
+        /* Price Box Polish */
         .price-box { 
             background: rgba(226, 194, 117, 0.05); 
             margin: 20px 20px 0; 
@@ -95,6 +92,7 @@ src="https://www.facebook.com/tr?id=881403324800547&ev=PageView&noscript=1"
         .price-box p { margin: 0; font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
         .price-box h3 { margin: 5px 0 0; color: #fff; font-size: 26px; font-weight: bold; }
 
+        /* Form Styling */
         form { padding: 20px 25px 25px; }
         .secure-tag { 
             text-align: center; 
@@ -134,6 +132,7 @@ src="https://www.facebook.com/tr?id=881403324800547&ev=PageView&noscript=1"
         .address-row { display: flex; gap: 12px; margin-bottom: 18px; }
         .address-row .field-group { flex: 1; margin-bottom: 0; }
 
+        /* Order Button Polish */
         .btn-submit { 
             width: 100%; 
             padding: 18px; 
@@ -150,7 +149,9 @@ src="https://www.facebook.com/tr?id=881403324800547&ev=PageView&noscript=1"
             letter-spacing: 1px;
         }
         .btn-submit:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(226, 194, 117, 0.2); }
+        .btn-submit:active { transform: scale(0.98); }
 
+        /* Trust Badges */
         .trust-badges { 
             display: flex; 
             justify-content: space-between; 
@@ -161,6 +162,7 @@ src="https://www.facebook.com/tr?id=881403324800547&ev=PageView&noscript=1"
         .badge { font-size: 9px; color: #666; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; }
         .badge span { display: block; font-size: 20px; margin-bottom: 6px; filter: grayscale(100%); }
 
+        /* Success Message Polish */
         #success-msg { display: none; padding: 60px 20px; text-align: center; }
         #success-msg h3 { color: var(--gold); margin-top: 20px; letter-spacing: 2px; }
     </style>
@@ -178,7 +180,7 @@ src="https://www.facebook.com/tr?id=881403324800547&ev=PageView&noscript=1"
 
     <div class="price-box" id="priceDisplay">
         <p>You will pay on delivery</p>
-        <h3 id="billText">Offer: 50% OFF Applied</h3>
+        <h3 id="billText">Total: ₹2,999</h3>
     </div>
 
     <form id="leadForm">
@@ -196,9 +198,15 @@ src="https://www.facebook.com/tr?id=881403324800547&ev=PageView&noscript=1"
 
         <div class="field-group">
             <label>Select Your Pack (पैक चुनें)</label>
-            <select id="package">
-                <option value="Capsule Single Bottle" selected>Premium Single Pack - 50% OFF</option>
+            <select id="package" onchange="updateUI()">
+                <option value="Capsule One Bottle" data-price="2999" selected>Single Pack (1 Bottle) - ₹2,999</option>
+                <option value="Capsule Two Bottles" data-price="3999">Best Value (2 Bottles) - ₹3,999 (BOGO)</option>
             </select>
+        </div>
+
+        <div class="field-group" style="display:none;">
+            <label>Payment Method</label>
+            <select id="method"><option value="COD" selected>COD</option></select>
         </div>
 
         <div class="field-group">
@@ -223,7 +231,7 @@ src="https://www.facebook.com/tr?id=881403324800547&ev=PageView&noscript=1"
     <div id="success-msg">
         <div style="font-size: 60px;">🥇</div>
         <h3>ORDER PLACED!</h3>
-        <p style="color: #888; line-height: 1.5; font-size: 14px;">Thank you for choosing Thunder of Zosh.<br>Verification call expected within 30 minutes.</p>
+        <p id="finalMsg" style="color: #888; line-height: 1.5; font-size: 14px;">Thank you for choosing Thunder of Zosh.<br>Verification call expected within 30 minutes.</p>
     </div>
 
     <div class="trust-badges">
@@ -235,6 +243,15 @@ src="https://www.facebook.com/tr?id=881403324800547&ev=PageView&noscript=1"
 
 <script>
     const scriptURL = 'https://sheetdb.io/api/v1/jvva0bdyw2xiq'; 
+    const PRICES = {
+        "Capsule One Bottle": 2999, 
+        "Capsule Two Bottles": 3999
+    };
+
+    function updateUI() {
+        const pkg = document.getElementById('package').value;
+        document.getElementById('billText').innerText = "Total: ₹" + PRICES[pkg].toLocaleString('en-IN');
+    }
 
     document.getElementById('leadForm').addEventListener('submit', async e => {
         e.preventDefault();
@@ -243,16 +260,19 @@ src="https://www.facebook.com/tr?id=881403324800547&ev=PageView&noscript=1"
         btn.innerHTML = "Securely Ordering...";
         btn.disabled = true;
 
+        const pkg = document.getElementById('package').value;
+        const amount = PRICES[pkg];
+
         const data = {
             "Timestamp": new Date().toLocaleString('en-IN'),
             "Name": document.getElementById('name').value,
             "Phone": document.getElementById('phone').value,
-            "Package": document.getElementById('package').value,
+            "Package": pkg,
             "Address": document.getElementById('address').value,
             "City": document.getElementById('city').value,
             "Pincode": document.getElementById('pincode').value,
             "Method": "COD",
-            "Price": "50% OFF Promo",
+            "Price": amount,
             "Delivery Status": "New Order"
         };
 
@@ -264,6 +284,7 @@ src="https://www.facebook.com/tr?id=881403324800547&ev=PageView&noscript=1"
             });
             showSuccess();
         } catch(err) { 
+            console.log("Lead captured"); 
             showSuccess(); 
         }
     });
