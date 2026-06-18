@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Form | Thunder of Zosh</title>
+    
+    <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '881403324800547');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=881403324800547&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+    
+    <style>
+        :root { 
+            --gold: #e2c275; 
+            --gold-dark: #b8860b; 
+            --black: #050505; 
+            --success: #00fa9a; 
+            --field-bg: #111111; 
+            --border-color: #222222;
+        }
+
+        body { 
+            font-family: 'Segoe UI', Roboto, sans-serif; 
+            background-color: #000; 
+            color: #f8f8f8; 
+            margin: 0; 
+            padding: 15px; 
+            overflow-x: hidden;
+        }
+
+        .order-container { 
+            max-width: 450px; 
+            margin: 10px auto; 
+            background: var(--black); 
+            border-radius: 24px; 
+            border: 1px solid rgba(226, 194, 117, 0.2); 
+            overflow: hidden; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 20px rgba(226, 194, 117, 0.1); 
+        }
+
+        .form-header { 
+            background: linear-gradient(180deg, #111, #000); 
+            border-bottom: 1px solid var(--border-color); 
+            display: flex; 
+            align-items: center; 
+            padding: 20px; 
+        }
+        .header-model-photo { 
+            width: 70px; 
+            height: 70px; 
+            border-radius: 12px; 
+            border: 1px solid var(--gold); 
+            object-fit: cover; 
+            margin-right: 15px; 
+        }
+        .header-text h2 { 
+            margin: 0; 
+            font-size: 18px; 
+            text-transform: uppercase; 
+            color: var(--gold); 
+            letter-spacing: 1.5px; 
+        }
+        .header-text p { 
+            margin: 5px 0 0; 
+            font-size: 12px; 
+            color: var(--success); 
+            font-weight: bold; 
+            display: flex; 
+            align-items: center; 
+            gap: 5px;
+        }
+
+        .price-box { 
+            background: rgba(226, 194, 117, 0.05); 
+            margin: 20px 20px 0; 
+            padding: 15px; 
+            border-radius: 15px; 
+            border: 1px solid rgba(226, 194, 117, 0.2); 
+            text-align: center; 
+        }
+        .price-box p { margin: 0; font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+        .price-box h3 { margin: 5px 0 0; color: #fff; font-size: 26px; font-weight: bold; }
+
+        form { padding: 20px 25px 25px; }
+        .secure-tag { 
+            text-align: center; 
+            font-size: 10px; 
+            color: #888; 
+            margin-bottom: 20px; 
+            background: #111;
+            padding: 5px;
+            border-radius: 4px;
+            letter-spacing: 1px;
+        }
+
+        .field-group { margin-bottom: 18px; }
+        label { 
+            display: block; 
+            font-size: 11px; 
+            color: #777; 
+            margin-bottom: 8px; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            padding-left: 5px;
+        }
+        input, select, textarea { 
+            width: 100%; 
+            padding: 14px; 
+            border-radius: 12px; 
+            border: 1px solid var(--border-color); 
+            background: var(--field-bg); 
+            color: #fff; 
+            font-size: 15px; 
+            box-sizing: border-box; 
+            outline: none; 
+            transition: 0.3s; 
+        }
+        input:focus, select:focus, textarea:focus { border-color: var(--gold); background: #000; }
+        
+        .address-row { display: flex; gap: 12px; margin-bottom: 18px; }
+        .address-row .field-group { flex: 1; margin-bottom: 0; }
+
+        .btn-submit { 
+            width: 100%; 
+            padding: 18px; 
+            background: linear-gradient(45deg, var(--gold), var(--gold-dark)); 
+            color: #000; 
+            border: none; 
+            border-radius: 12px; 
+            font-size: 17px; 
+            font-weight: 800; 
+            cursor: pointer; 
+            text-transform: uppercase; 
+            margin-top: 10px; 
+            transition: 0.3s;
+            letter-spacing: 1px;
+        }
+        .btn-submit:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(226, 194, 117, 0.2); }
+
+        .trust-badges { 
+            display: flex; 
+            justify-content: space-between; 
+            padding: 20px; 
+            background: #080808; 
+            border-top: 1px solid var(--border-color); 
+        }
+        .badge { font-size: 9px; color: #666; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; }
+        .badge span { display: block; font-size: 20px; margin-bottom: 6px; filter: grayscale(100%); }
+
+        #success-msg { display: none; padding: 60px 20px; text-align: center; }
+        #success-msg h3 { color: var(--gold); margin-top: 20px; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+
+<div class="order-container">
+    <div class="form-header" id="mainHeader">
+        <img src="capsule-pack.jpg" alt="Zosh Capsules" class="header-model-photo">
+        <div class="header-text">
+            <h2>Complete Order</h2>
+            <p>● Free Delivery & COD Available</p>
+        </div>
+    </div>
+
+    <div class="price-box" id="priceDisplay">
+        <p>You will pay on delivery</p>
+        <h3 id="billText">Offer: 50% OFF Applied</h3>
+    </div>
+
+    <form id="leadForm">
+        <div class="secure-tag">🛡️ 100% PRIVATE & ENCRYPTED CHECKOUT</div>
+        
+        <div class="field-group">
+            <label>Full Name (पूरा नाम)</label>
+            <input type="text" id="name" placeholder="Name as per Aadhaar" required>
+        </div>
+
+        <div class="field-group">
+            <label>Phone Number (फ़ोन नंबर)</label>
+            <input type="tel" id="phone" placeholder="Active mobile number" pattern="[0-9]{10}" maxlength="10" required>
+        </div>
+
+        <div class="field-group">
+            <label>Select Your Pack (पैक चुनें)</label>
+            <select id="package">
+                <option value="Capsule Single Bottle" selected>Premium Single Pack - 50% OFF</option>
+            </select>
+        </div>
+
+        <div class="field-group">
+            <label>Full Address (घर का पता)</label>
+            <textarea id="address" rows="2" placeholder="House No, Village/Sector, Landmark" required></textarea>
+        </div>
+
+        <div class="address-row">
+            <div class="field-group">
+                <label>City (शहर)</label>
+                <input type="text" id="city" placeholder="e.g. Delhi" required>
+            </div>
+            <div class="field-group">
+                <label>Pincode (पिनकोड)</label>
+                <input type="text" id="pincode" placeholder="6-digit" pattern="[0-9]{6}" maxlength="6" required>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">Confirm Cash On Delivery</button>
+    </form>
+
+    <div id="success-msg">
+        <div style="font-size: 60px;">🥇</div>
+        <h3>ORDER PLACED!</h3>
+        <p style="color: #888; line-height: 1.5; font-size: 14px;">Thank you for choosing Thunder of Zosh.<br>Verification call expected within 30 minutes.</p>
+    </div>
+
+    <div class="trust-badges">
+        <div class="badge"><span>🌿</span>100% Herbal</div>
+        <div class="badge"><span>🛡️</span>ISO Certified</div>
+        <div class="badge"><span>📦</span>Private Box</div>
+    </div>
+</div>
+
+<script>
+    const scriptURL = 'https://sheetdb.io/api/v1/jvva0bdyw2xiq'; 
+
+    document.getElementById('leadForm').addEventListener('submit', async e => {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        
+        btn.innerHTML = "Securely Ordering...";
+        btn.disabled = true;
+
+        const data = {
+            "Timestamp": new Date().toLocaleString('en-IN'),
+            "Name": document.getElementById('name').value,
+            "Phone": document.getElementById('phone').value,
+            "Package": document.getElementById('package').value,
+            "Address": document.getElementById('address').value,
+            "City": document.getElementById('city').value,
+            "Pincode": document.getElementById('pincode').value,
+            "Method": "COD",
+            "Price": "50% OFF Promo",
+            "Delivery Status": "New Order"
+        };
+
+        try {
+            await fetch(scriptURL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ data: [data] })
+            });
+            showSuccess();
+        } catch(err) { 
+            showSuccess(); 
+        }
+    });
+
+    function showSuccess() {
+        document.getElementById('leadForm').style.display = 'none';
+        document.getElementById('mainHeader').style.display = 'none'; 
+        document.getElementById('priceDisplay').style.display = 'none';
+        document.getElementById('success-msg').style.display = 'block';
+        fbq('track', 'Lead');
+        window.scrollTo(0, 0);
+    }
+</script>
+</body>
+</html>
