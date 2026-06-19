@@ -592,6 +592,26 @@
 <div style="margin-top: 40px;">
     <button onclick="toggleReviews()" id="reviewBtn" class="cta-btn" style="padding: 12px 30px; font-size: 14px; border: none; cursor: pointer;">View All Reviews</button>
 </div>
+
+<!-- ⚡ यहाँ से कोड डालना शुरू करें -->
+<script>
+function toggleReviews() {
+    var x = document.getElementById("moreReviews");
+    var btn = document.getElementById("reviewBtn");
+    
+    if (!x) return; // अगर moreReviews आईडी नहीं मिलेगी तो कोड रुकेगा नहीं
+    
+    if (x.style.display === "none" || x.style.display === "") {
+        x.style.display = "flex";
+        btn.innerHTML = "Show Less";
+    } else {
+        x.style.display = "none";
+        btn.innerHTML = "View All Reviews";
+    }
+}
+</script>
+<!-- ⚡ यहाँ तक कोड डालना है -->
+
 </section>
 
 <div style="background: var(--bg-light); padding: 30px 10px; border-top: 1px solid #eee; border-bottom: 1px solid #eee;">
