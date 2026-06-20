@@ -3,56 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power Of Thor Plus - Ayurvedic Treatment</title>
+    <title>Power Of Thor Plus - Complete Your Order</title>
+    
+    <!-- Premium Fonts matching landing page -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         :root { 
-            --herbal-green: #1e5631; 
-            --light-green: #a4de02; 
-            --gold: #d4af37; 
-            --bg-color: #f7f9f6; 
-            --card-bg: #ffffff; 
-            --text-dark: #1c2833;
+            --gold: #b8860b; /* Deep Premium Gold */
+            --gold-light: #e2c275; 
+            --white: #ffffff; 
+            --bg-light: #f8f9fa; /* Soft Light Gray */
+            --dark: #222222; /* Readable Text Dark */
+            --red: #ff4d4d; 
+            --green: #27ae60; /* Natural Herbal Green */
         }
-        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: var(--bg-color); color: var(--text-dark); margin: 0; padding: 10px; }
-        .order-container { max-width: 420px; margin: 15px auto; background: var(--card-bg); border-radius: 20px; border: 2px solid #e1ebe2; overflow: hidden; box-shadow: 0 15px 35px rgba(30, 86, 49, 0.12); }
         
-        /* Premium Herbal Header */
-        .form-header { background: linear-gradient(135deg, var(--herbal-green), #11331c); color: #ffffff; padding: 25px 20px; text-align: center; position: relative; }
-        .form-header h2 { margin: 0; font-size: 24px; color: var(--gold); text-transform: uppercase; font-weight: 800; letter-spacing: 0.5px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
-        .form-header p { margin: 8px 0 0; font-size: 14px; color: #e2f0e5; font-weight: 500; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: var(--bg-light); 
+            color: var(--dark); 
+            margin: 0; 
+            padding: 15px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 95vh;
+        }
         
-        /* Urgent Offer Ribbon */
-        .offer-ribbon { background: #e74c3c; color: white; text-align: center; padding: 8px; font-weight: bold; font-size: 14px; animation: pulse 1.5s infinite; }
-        @keyframes pulse { 0% { opacity: 0.9; } 50% { opacity: 1; transform: scale(1.02); } 100% { opacity: 0.9; } }
-
-        /* Dynamic Countdown Timer */
-        .timer-box { background: #fff3cd; border: 1px solid #ffeeba; color: #856404; text-align: center; padding: 10px; font-size: 13px; font-weight: bold; margin: 15px 20px 0; border-radius: 8px; }
-        .timer-digits { color: #d9534f; font-size: 16px; }
-
-        form { padding: 20px 25px; }
-        .field-group { margin-bottom: 18px; }
-        label { display: block; font-size: 14px; color: var(--herbal-green); margin-bottom: 6px; font-weight: 700; }
+        .order-container { 
+            width: 100%;
+            max-width: 440px; 
+            background: var(--white); 
+            border-radius: 20px; 
+            border: 1px solid #e0e0e0; 
+            overflow: hidden; 
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05); 
+        }
         
-        /* Input Styling */
-        input, textarea { width: 100%; padding: 14px; border-radius: 10px; border: 1.5px solid #bdc3c7; background: #fafdfa; color: #000000; font-size: 16px; box-sizing: border-box; outline: none; transition: all 0.3s ease; }
-        input:focus, textarea:focus { border-color: var(--herbal-green); background: #ffffff; box-shadow: 0 0 0 4px rgba(30, 86, 49, 0.15); }
+        /* Matching Landing Page Navbar / Header */
+        .form-header { 
+            background: var(--white); 
+            padding: 25px 20px; 
+            text-align: center; 
+            border-bottom: 3px solid var(--gold);
+        }
+        .form-header h2 { 
+            margin: 0; 
+            font-size: 24px; 
+            color: var(--red); 
+            text-transform: uppercase; 
+            font-weight: 800; 
+            letter-spacing: 1px;
+        }
+        .form-header p { 
+            margin: 8px 0 0; 
+            font-size: 13px; 
+            color: #555; 
+            font-weight: 600; 
+        }
         
-        /* Trust Badges Grid */
-        .badges-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 5px 0 20px; text-align: center; }
-        .badge-item { background: #f2f9f3; padding: 10px 5px; border-radius: 8px; border: 1px solid #d4edda; }
-        .badge-icon { font-size: 20px; margin-bottom: 4px; }
-        .badge-text { font-size: 11px; font-weight: 700; color: var(--herbal-green); }
+        /* High-Converting Red Ribbon */
+        .offer-ribbon { 
+            background: var(--red); 
+            color: white; 
+            text-align: center; 
+            padding: 10px; 
+            font-weight: 700; 
+            font-size: 13px; 
+            letter-spacing: 0.5px;
+            animation: pulse 2s infinite; 
+        }
+        @keyframes pulse { 0%, 100% { opacity: 0.95; } 50% { opacity: 1; transform: scale(1.01); } }
 
-        /* Action Button */
-        .btn-submit { width: 100%; padding: 18px; background: linear-gradient(45deg, #27ae60, #219653); color: #ffffff; border: none; border-radius: 10px; font-size: 20px; font-weight: 800; cursor: pointer; text-transform: uppercase; box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4); transition: all 0.2s ease; border-bottom: 4px solid #1e7e43; }
-        .btn-submit:active { transform: translateY(2px); border-bottom-width: 1px; }
-        .btn-submit:disabled { background: #ccc; cursor: not-allowed; border-bottom: none; box-shadow: none; }
+        /* Premium Urgency Box */
+        .timer-box { 
+            background: rgba(184, 134, 11, 0.06); 
+            border: 1px solid rgba(184, 134, 11, 0.2); 
+            color: var(--dark); 
+            text-align: center; 
+            padding: 12px; 
+            font-size: 13px; 
+            font-weight: 600; 
+            margin: 20px 20px 0; 
+            border-radius: 10px; 
+        }
+        .timer-digits { 
+            color: var(--red); 
+            font-size: 16px; 
+            font-weight: 800;
+        }
 
-        .secure-text { text-align: center; font-size: 12px; color: #7f8c8d; margin-top: 12px; font-weight: 500; }
+        form { padding: 20px 20px; }
+        .field-group { margin-bottom: 20px; }
+        
+        label { 
+            display: block; 
+            font-size: 13px; 
+            color: var(--dark); 
+            margin-bottom: 8px; 
+            font-weight: 700; 
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Clean Input Box Styles */
+        input, textarea { 
+            width: 100%; 
+            padding: 14px; 
+            border-radius: 8px; 
+            border: 1.5px solid #dcdcdc; 
+            background: var(--bg-light); 
+            color: var(--dark); 
+            font-size: 15px; 
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box; 
+            outline: none; 
+            transition: all 0.3s ease; 
+        }
+        input:focus, textarea:focus { 
+            border-color: var(--gold); 
+            background: var(--white); 
+            box-shadow: 0 0 0 4px rgba(184, 134, 11, 0.1); 
+        }
+        
+        /* Trust Badges matching landing page style */
+        .badges-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 10px; 
+            margin: 5px 0 25px; 
+            text-align: center; 
+        }
+        .badge-item { 
+            background: var(--white); 
+            padding: 10px 5px; 
+            border-radius: 8px; 
+            border: 1px solid #eaeaea; 
+        }
+        .badge-icon { font-size: 18px; margin-bottom: 4px; }
+        .badge-text { font-size: 11px; font-weight: 700; color: #444; }
+
+        /* Premium Gold Dynamic Submit Button */
+        .btn-submit { 
+            width: 100%; 
+            padding: 16px; 
+            background: linear-gradient(45deg, var(--gold), #966f03); 
+            color: #ffffff; 
+            border: none; 
+            border-radius: 8px; 
+            font-size: 16px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(184, 134, 11, 0.3); 
+            transition: all 0.3s ease; 
+        }
+        .btn-submit:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(184, 134, 11, 0.4);
+        }
+        .btn-submit:active { transform: translateY(2px); }
+        .btn-submit:disabled { background: #ccc; cursor: not-allowed; box-shadow: none; }
+
+        .secure-text { text-align: center; font-size: 11px; color: #777; margin-top: 15px; font-weight: 500; }
 
         /* Success Screen State */
         #success-msg { display: none; padding: 60px 20px; text-align: center; background: #ffffff; }
-        .success-icon { font-size: 65px; color: #27ae60; }
+        .success-icon { font-size: 65px; color: var(--green); }
     </style>
 </head>
 <body>
@@ -60,59 +179,59 @@
 <div class="order-container">
     <div class="form-header" id="headerSection">
         <h2>Power Of Thor Plus</h2>
-        <p>🌿 100% Pure Ayurvedic & Natural Herbal Formula 🌿</p>
+        <p>⭐ 50,000+ Happy Customers Choice Formula</p>
     </div>
 
     <div class="offer-ribbon" id="ribbonSection">
-        🔥 TODAY'S SPECIAL: 80% OFF + FREE DELIVERY + COD
+        🔥 COMBO OFFER: BUY 1 GET 1 FREE @ ₹2290 ONLY
     </div>
 
     <div class="timer-box" id="timerSection">
-        This exclusive discount is only valid for: <span class="timer-digits" id="countdown">10:00</span> minutes!
+        This exclusive deal is reserved for: <span class="timer-digits" id="countdown">10:00</span> minutes!
     </div>
 
     <form id="leadForm">
         
         <div class="badges-grid">
             <div class="badge-item">
-                <div class="badge-icon">🌱</div>
-                <div class="badge-text">100% Natural</div>
+                <div class="badge-icon">🌿</div>
+                <div class="badge-text">AYUSH Reg.</div>
             </div>
             <div class="badge-item">
-                <div class="badge-icon">🔒</div>
-                <div class="badge-text">No Side Effects</div>
+                <div class="badge-icon">🛡️</div>
+                <div class="badge-text">100% Safe</div>
             </div>
             <div class="badge-item">
                 <div class="badge-icon">📦</div>
-                <div class="badge-text">Cash On Delivery</div>
+                <div class="badge-text">Free COD</div>
             </div>
         </div>
 
         <div class="field-group">
-            <label>Full Name:</label>
-            <input type="text" id="fio" placeholder="Enter your first and last name..." required>
+            <label>Full Name</label>
+            <input type="text" id="fio" placeholder="Enter your full name..." required>
         </div>
 
         <div class="field-group">
-            <label>Mobile Number:</label>
-            <input type="tel" id="phone" placeholder="Enter 10-digit mobile number..." pattern="[0-9]{10}" maxlength="10" required>
+            <label>Mobile Number</label>
+            <input type="tel" id="phone" placeholder="Enter 10-digit phone number..." pattern="[0-9]{10}" maxlength="10" required>
         </div>
 
         <div class="field-group">
-            <label>Full Shipping Address <span style="color:#7f8c8d; font-weight:normal;">(Optional)</span>:</label>
-            <textarea id="address" rows="3" placeholder="House No., Street, City, State, and Pincode (You can also provide this on call)..."></textarea>
+            <label>Shipping Address <span style="color:#888; font-weight:normal; text-transform: none;">(Optional)</span></label>
+            <textarea id="address" rows="3" placeholder="House No., City, Pincode etc. (Or you can confirm it over the call)..."></textarea>
         </div>
 
-        <button type="submit" class="btn-submit" id="submitBtn">👉 CLICK HERE TO ORDER NOW</button>
+        <button type="submit" class="btn-submit" id="submitBtn">👉 Click Here To Order Now</button>
         
-        <div class="secure-text">🤝 Your personal data is 100% secure and encrypted.</div>
+        <div class="secure-text">🔒 100% Private & Discreet Packaging Promised.</div>
     </form>
 
     <div id="success-msg">
         <div class="success-icon">✅</div>
-        <h2 style="color: var(--herbal-green); margin-top: 15px; font-weight: 800;">ORDER RECEIVED!</h2>
-        <p style="color: #555; font-size: 16px; font-weight: 500; line-height: 1.5;">
-            Thank you! Our Ayurvedic medical expert will call you shortly on your provided number to confirm your shipping details.
+        <h2 style="color: var(--green); margin-top: 15px; font-weight: 800;">ORDER RECEIVED!</h2>
+        <p style="color: #444; font-size: 15px; font-weight: 500; line-height: 1.6;">
+            Thank you! Your order details have been submitted. Our health expert will call you shortly on your number to confirm the delivery address.
         </p>
     </div>
 </div>
@@ -129,7 +248,7 @@
         if (time > 0) { time--; } else { clearInterval(timerInterval); }
     }, 1000);
 
-    // 🚀 Direct AJAX Connection to LeadVertex API 
+    // 🚀 LeadVertex API Integration
     document.getElementById('leadForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         const btn = document.getElementById('submitBtn');
@@ -138,7 +257,6 @@
 
         const api_url = "https://powerofthorplus.leadvertex.ru/api/webmaster/v2/addOrder.html?webmasterID=7&token=Shiv%402026";
 
-        // एड्रेस वैल्यू चेक करना (अगर खाली है तो डिफ़ॉल्ट टेक्स्ट डालना)
         let addressValue = document.getElementById('address').value.trim();
         if (addressValue === "") {
             addressValue = "Not Provided (Will ask on call)";
@@ -147,13 +265,13 @@
         const formData = new URLSearchParams();
         formData.append('fio', document.getElementById('fio').value);
         formData.append('phone', document.getElementById('phone').value);
-        formData.append('address', addressValue); // स्मार्ट वैल्यू यहाँ जाएगी
+        formData.append('address', addressValue);
         formData.append('domain', 'powerofthorplus.leadvertex.info');
         formData.append('utm_source', 'web_form');
         
         formData.append('goods[0][goodID]', '15'); 
         formData.append('goods[0][quantity]', '1'); 
-        formData.append('goods[0][price]', '500'); 
+        formData.append('goods[0][price]', '2290'); // Updated to reflect correct price in API data
 
         try {
             await fetch(api_url, {
