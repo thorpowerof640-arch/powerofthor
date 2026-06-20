@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Policies & About Us</title>
+    <style>
+        :root {
+            --primary: #b38600; /* आपके ब्रांड का गोल्डन/ब्राउन कलर */
+            --dark: #222;
+            --light: #f9f9f9;
+            --gray: #666;
+            --border: #ddd;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--dark);
+            margin-bottom: 30px;
+        }
+
+        /* टैब बटन्स का स्टाइल */
+        .tab-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .tab-btn:hover {
+            color: var(--primary);
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            margin-bottom: -13px;
+        }
+
+        /* कंटेंट एरिया */
+        .tab-content {
+            display: none;
+            background: var(--light);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        p, ul {
+            color: #444;
+            font-size: 15px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .tab-btn {
+                flex: 1 1 40%;
+                padding: 10px;
+                font-size: 14px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Our Company Policies</h1>
+
+    <!-- टैब मेनू -->
+    <div class="tab-menu">
+        <button class="tab-btn active" onclick="openPolicy(event, 'aboutUs')">About Us</button>
+        <button class="tab-btn" onclick="openPolicy(event, 'privacy')">Privacy Policy</button>
+        <button class="tab-btn" onclick="openPolicy(event, 'terms')">Terms & Conditions</button>
+        <button class="tab-btn" onclick="openPolicy(event, 'refund')">Refund Policy</button>
+    </div>
+
+    <!-- 1. About Us कंटेंट -->
+    <div id="aboutUs" class="tab-content active">
+        <h2>About Us</h2>
+        <p>Welcome to <strong>Power Of Thor Plus</strong>. We are dedicated to providing premium quality Ayurvedic and health supplements crafted with pure, natural, and authentic ingredients.</p>
+        <p>Our mission is to support your wellness journey and help you achieve your peak health and stamina without any harmful side effects. Every product undergoes strict quality checks to ensure safety and efficacy.</p>
+        <p>Thank you for choosing us as your trusted wellness partner!</p>
+    </div>
+
+    <!-- 2. Privacy Policy कंटेंट -->
+    <div id="privacy" class="tab-content">
+        <h2>Privacy Policy</h2>
+        <p>Your privacy is highly important to us. This Privacy Policy explains how we collect, use, and protect your personal information when you visit or make a purchase from our website.</p>
+        <ul>
+            <li><strong>Information We Collect:</strong> When you place an order, we collect your name, shipping address, phone number, and email.</li>
+            <li><strong>How We Use It:</strong> We only use your information to process payments, ship your orders, and provide delivery updates.</li>
+            <li><strong>Data Security:</strong> Your data is 100% secure. We never sell, rent, or leak your personal details to third-party companies.</li>
+        </ul>
+    </div>
+
+    <!-- 3. Terms & Conditions कंटेंट -->
+    <div id="terms" class="tab-content">
+        <h2>Terms & Conditions</h2>
+        <p>By accessing and using this website, you agree to comply with the following terms and conditions:</p>
+        <ul>
+            <li><strong>Product Use:</strong> All products are intended for adults. Please consult a healthcare professional before starting any supplement if you have prior medical conditions.</li>
+            <li><strong>Pricing & Orders:</strong> We reserve the right to change prices or cancel orders in case of technical errors or stock unavailability.</li>
+            <li><strong>Copyright:</strong> All content, images, and logos on this website belong to Power Of Thor Plus and cannot be used without permission.</li>
+        </ul>
+    </div>
+
+    <!-- 4. Refund Policy कंटेंट -->
+    <div id="refund" class="tab-content">
+        <h2>Refund & Return Policy</h2>
+        <p>We want you to be completely satisfied with your purchase. Please read our refund rules carefully:</p>
+        <ul>
+            <li><strong>Eligibility:</strong> Returns are accepted within 7 days of delivery only if the product is unopened, undamaged, and in its original packaging.</li>
+            <li><strong>Damaged Items:</strong> If you receive a damaged or broken product, please contact us immediately with an unboxing video or photos for a quick replacement.</li>
+            <li><strong>Refund Process:</strong> Once we receive and verify the returned item, your refund will be processed back to your original payment method within 5-7 working days.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- जावास्क्रिप्ट कोड टैब बदलने के लिए -->
+<script>
+function openPolicy(evt, policyName) {
+    // सारे कंटेंट को छुपाएं
+    var tabContent = document.getElementsByClassName("tab-content");
+    for (var i = 0; i < tabContent.length; i++) {
+        tabContent[i].style.display = "none";
+        tabContent[i].classList.remove("active");
+    }
+
+    // सारे बटन्स से 'active' क्लास हटाएं
+    var tabBtns = document.getElementsByClassName("tab-btn");
+    for (var i = 0; i < tabBtns.length; i++) {
+        tabBtns[i].classList.remove("active");
+    }
+
+    // सिर्फ क्लिक किए गए टैब को दिखाएं और बटन को एक्टिव मार्क करें
+    document.getElementById(policyName).style.display = "block";
+    document.getElementById(policyName).classList.add("active");
+    evt.currentTarget.classList.add("active");
+}
+</script>
+
+</body>
+</html>
