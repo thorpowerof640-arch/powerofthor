@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Power Of Thor Plus - Complete Your Order</title>
     
-    <!-- Premium Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -24,17 +22,15 @@
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1129534972981709&ev=PageView&noscript=1"
     /></noscript>
-    <!-- End Meta Pixel Code -->
-    
     <style>
         :root { 
-            --gold: #b8860b; 
+            --gold: #b8860b; /* Deep Premium Gold */
             --gold-light: #e2c275; 
             --white: #ffffff; 
-            --bg-light: #f8f9fa; 
-            --dark: #222222; 
+            --bg-light: #f8f9fa; /* Soft Light Gray */
+            --dark: #222222; /* Readable Text Dark */
             --red: #ff4d4d; 
-            --green: #27ae60; 
+            --green: #27ae60; /* Natural Herbal Green */
         }
         
         body { 
@@ -57,9 +53,9 @@
             border: 1px solid #e0e0e0; 
             overflow: hidden; 
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05); 
-            position: relative;
         }
         
+        /* Matching Landing Page Navbar / Header */
         .form-header { 
             background: var(--white); 
             padding: 25px 20px; 
@@ -81,6 +77,7 @@
             font-weight: 600; 
         }
         
+        /* High-Converting Red Ribbon */
         .offer-ribbon { 
             background: var(--red); 
             color: white; 
@@ -93,6 +90,7 @@
         }
         @keyframes pulse { 0%, 100% { opacity: 0.95; } 50% { opacity: 1; transform: scale(1.01); } }
 
+        /* Premium Urgency Box */
         .timer-box { 
             background: rgba(184, 134, 11, 0.06); 
             border: 1px solid rgba(184, 134, 11, 0.2); 
@@ -111,7 +109,7 @@
         }
 
         form { padding: 20px 20px; }
-        .field-group { margin-bottom: 20px; position: relative; }
+        .field-group { margin-bottom: 20px; }
         
         label { 
             display: block; 
@@ -123,6 +121,7 @@
             letter-spacing: 0.5px;
         }
         
+        /* Clean Input Box Styles */
         input, textarea { 
             width: 100%; 
             padding: 14px; 
@@ -142,6 +141,7 @@
             box-shadow: 0 0 0 4px rgba(184, 134, 11, 0.1); 
         }
         
+        /* Trust Badges matching landing page style */
         .badges-grid { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
@@ -158,6 +158,7 @@
         .badge-icon { font-size: 18px; margin-bottom: 4px; }
         .badge-text { font-size: 11px; font-weight: 700; color: #444; }
 
+        /* Premium Gold Dynamic Submit Button */
         .btn-submit { 
             width: 100%; 
             padding: 16px; 
@@ -182,39 +183,6 @@
 
         .secure-text { text-align: center; font-size: 11px; color: #777; margin-top: 15px; font-weight: 500; }
 
-        /* OTP Modal Styling */
-        .otp-modal {
-            display: none;
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            z-index: 10;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 30px;
-            box-sizing: border-box;
-            text-align: center;
-        }
-        .otp-title { font-size: 20px; font-weight: 800; color: var(--dark); margin-bottom: 10px; }
-        .otp-subtitle { font-size: 13px; color: #666; margin-bottom: 20px; }
-        .otp-input-container { display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; }
-        .otp-digit { 
-            width: 50px; height: 50px; 
-            font-size: 22px; font-weight: 700; 
-            text-align: center; border: 2px solid #dcdcdc; 
-            border-radius: 8px; background: var(--bg-light);
-        }
-        .otp-digit:focus { border-color: var(--gold); background: #fff; outline: none; }
-        .btn-verify {
-            width: 100%; max-width: 280px; padding: 14px;
-            background: linear-gradient(45deg, var(--green), #1e8449);
-            color: #fff; border: none; border-radius: 8px;
-            font-size: 15px; font-weight: 700; cursor: pointer; text-transform: uppercase;
-        }
-        .error-msg { color: var(--red); font-size: 13px; margin-top: 10px; font-weight: 600; display: none; }
-        .resend-text { font-size: 12px; color: #0066cc; margin-top: 15px; cursor: pointer; font-weight: 600; }
-
         /* Success Screen State */
         #success-msg { display: none; padding: 60px 20px; text-align: center; background: #ffffff; }
         .success-icon { font-size: 65px; color: var(--green); }
@@ -223,7 +191,6 @@
 <body>
 
 <div class="order-container">
-    <!-- Header, Ribbon, & Timer -->
     <div class="form-header" id="headerSection">
         <h2>Power Of Thor Plus</h2>
         <p>⭐ 50,000+ Happy Customers Choice Formula</p>
@@ -237,8 +204,8 @@
         This exclusive deal is reserved for: <span class="timer-digits" id="countdown">10:00</span> minutes!
     </div>
 
-    <!-- Main Lead Form -->
     <form id="leadForm">
+        
         <div class="badges-grid">
             <div class="badge-item">
                 <div class="badge-icon">🌿</div>
@@ -261,7 +228,7 @@
 
         <div class="field-group">
             <label>Mobile Number</label>
-            <input type="tel" id="phone" placeholder="Enter 10-digit phone number..." pattern="[6-9][0-9]{9}" maxlength="10" required>
+            <input type="tel" id="phone" placeholder="Enter 10-digit phone number..." pattern="[0-9]{10}" maxlength="10" required>
         </div>
 
         <div class="field-group">
@@ -274,29 +241,11 @@
         <div class="secure-text">🔒 100% Private & Discreet Packaging Promised.</div>
     </form>
 
-    <!-- OTP Verification Screen Container -->
-    <div class="otp-modal" id="otpModal">
-        <div class="otp-title">Verify Your Mobile Number</div>
-        <div class="otp-subtitle">We have sent a 4-digit OTP to <br><strong id="displayPhone">+91 XXXXX XXXXX</strong></div>
-        
-        <div class="otp-input-container">
-            <input type="text" class="otp-digit" maxlength="1" oninput="moveNext(this, 1)" id="otp1">
-            <input type="text" class="otp-digit" maxlength="1" oninput="moveNext(this, 2)" id="otp2">
-            <input type="text" class="otp-digit" maxlength="1" oninput="moveNext(this, 3)" id="otp3">
-            <input type="text" class="otp-digit" maxlength="1" oninput="moveNext(this, 4)" id="otp4">
-        </div>
-
-        <button type="button" class="btn-verify" id="verifyBtn" onclick="validateOTP()">Verify & Confirm Order</button>
-        <div class="error-msg" id="otpError">Invalid OTP! Please try again.</div>
-        <div class="resend-text" onclick="resendOTP()">Resend OTP</div>
-    </div>
-
-    <!-- Success Screen State -->
     <div id="success-msg">
         <div class="success-icon">✅</div>
         <h2 style="color: var(--green); margin-top: 15px; font-weight: 800;">ORDER RECEIVED!</h2>
         <p style="color: #444; font-size: 15px; font-weight: 500; line-height: 1.6;">
-            Thank you! Your verified order details have been submitted successfully. Our health expert will call you shortly on your number to confirm delivery.
+            Thank you! Your order details have been submitted. Our health expert will call you shortly on your number to confirm the delivery address.
         </p>
     </div>
 </div>
@@ -313,67 +262,26 @@
         if (time > 0) { time--; } else { clearInterval(timerInterval); }
     }, 1000);
 
-    // Auto-focus move logic for OTP inputs
-    function moveNext(current, index) {
-        if (current.value.length === 1 && index < 4) {
-            document.getElementById(`otp${index + 1}`).focus();
-        }
-    }
-
-    let generatedOTP = "1234"; // Testing ke liye defaults value. Isse aap dynamic dynamic gateway se badal sakte hain.
-
-    // Form Submit handling (Trigger OTP instead of sending direct order)
-    document.getElementById('leadForm').addEventListener('submit', function(e) {
+    // 🚀 LeadVertex API Integration (Direct Order Submission)
+    document.getElementById('leadForm').addEventListener('submit', async function(e) {
         e.preventDefault();
-        
-        const phoneInput = document.getElementById('phone').value;
-        document.getElementById('displayPhone').innerText = "+91 " + phoneInput;
-        
-        // Modal ko open karein
-        document.getElementById('otpModal').style.display = 'flex';
-        
-        // Yahan par aap apni OTP API call kar sakte hain (e.g., Fast2SMS, TextLocal, etc.)
-        console.log("OTP Sent to " + phoneInput);
-    });
+        const btn = document.getElementById('submitBtn');
+        btn.innerHTML = "Processing Order...";
+        btn.disabled = true;
 
-    // Validate OTP and push to LeadVertex
-    async function validateOTP() {
-        const enteredOTP = document.getElementById('otp1').value + 
-                           document.getElementById('otp2').value + 
-                           document.getElementById('otp3').value + 
-                           document.getElementById('otp4').value;
-
-        const errorEl = document.getElementById('otpError');
-        const verifyBtn = document.getElementById('verifyBtn');
-
-        if (enteredOTP === generatedOTP || enteredOTP === "1234") { // Allow 1234 for easy fallback
-            errorEl.style.display = 'none';
-            verifyBtn.innerHTML = "Submitting Order...";
-            verifyBtn.disabled = true;
-
-            // Trigger actual API save
-            await submitOrderToLeadVertex();
-        } else {
-            errorEl.style.display = 'block';
-            errorEl.innerText = "Incorrect OTP. Please enter correct code.";
-        }
-    }
-
-    // LeadVertex integration function
-    async function submitOrderToLeadVertex() {
         const api_url = "https://powerofthorplus.leadvertex.ru/api/webmaster/v2/addOrder.html?webmasterID=7&token=Shiv%402026";
 
         let addressValue = document.getElementById('address').value.trim();
         if (addressValue === "") {
-            addressValue = "Not Provided (Verified on OTP Call)";
+            addressValue = "Not Provided (Will ask on call)";
         }
 
         const formData = new URLSearchParams();
         formData.append('fio', document.getElementById('fio').value);
         formData.append('phone', document.getElementById('phone').value);
-        formData.append('address', addressValue + " [OTP VERIFIED]");
+        formData.append('address', addressValue);
         formData.append('domain', 'powerofthorplus.leadvertex.info');
-        formData.append('utm_source', 'web_form_otp');
+        formData.append('utm_source', 'web_form');
         
         formData.append('goods[0][goodID]', '15'); 
         formData.append('goods[0][quantity]', '1'); 
@@ -387,23 +295,13 @@
             });
             showSuccess();
         } catch (error) {
-            // Safe fallback to success screen to avoid dropping leads in bad network
+            // Fallback to success page if network blocks CORS
             showSuccess();
         }
-    }
-
-    function resendOTP() {
-        alert("A new OTP code has been sent to your phone.");
-        document.getElementById('otp1').value = '';
-        document.getElementById('otp2').value = '';
-        document.getElementById('otp3').value = '';
-        document.getElementById('otp4').value = '';
-        document.getElementById('otp1').focus();
-    }
+    });
 
     function showSuccess() {
         document.getElementById('leadForm').style.display = 'none';
-        document.getElementById('otpModal').style.display = 'none';
         document.getElementById('headerSection').style.display = 'none';
         document.getElementById('ribbonSection').style.display = 'none';
         document.getElementById('timerSection').style.display = 'none';
