@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>POWER OF THOR Wellness | Premium Men's Health & Vitality Store</title>
+    <title>THOR Wellness | Premium Men's Health & Vitality Store</title>
     <!-- Google Fonts: Premium Clinical Sans-Serif -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1144,7 +1144,6 @@
                     </div>
                 </div>
                 <div class="hero-image-wrapper">
-                    <!-- Is image ko aap hero-bg.jpg naam de sakte hain -->
                     <img src="thor-capsule.jpg" alt="Power of Thor Plus Capsule representing premium safety and strength">
                 </div>
             </div>
@@ -1252,7 +1251,26 @@
                         </div>
                     </div>
 
-                    <!-- Product 5: Power of Thor Plus Combo Pack -->
+                    <!-- Product 5: Power of Thor Plus Powder (NEWLY ADDED) -->
+                    <div class="product-card">
+                        <div class="product-image">
+                            <span class="tag-badge" style="background-color: #be123c;">Premium Powder</span>
+                            <img src="thor-powder.jpg" alt="Power of Thor Plus Powder">
+                        </div>
+                        <div class="product-info">
+                            <h3>Power of Thor Plus Powder</h3>
+                            <p class="product-desc">Pure, highly concentrated Ayurvedic blend in powder form. Enhances body metabolism, stamina, and cellular rejuvenation smoothly.</p>
+                            <div class="product-meta">
+                                <div class="price-tag">
+                                    <span class="old-price">₹4,990</span>
+                                    <span class="new-price">₹2,990</span>
+                                </div>
+                                <button class="add-to-cart-btn" onclick="cartAction('add', 'p5')">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 6: Power of Thor Plus Combo Pack -->
                     <div class="product-card">
                         <div class="product-image">
                             <span class="tag-badge" style="background-color: #0f766e;">Best Value</span>
@@ -1266,7 +1284,7 @@
                                     <span class="old-price">₹5,999</span>
                                     <span class="new-price">₹3,490</span>
                                 </div>
-                                <button class="add-to-cart-btn" onclick="cartAction('add', 'p5')">Add to Cart</button>
+                                <button class="add-to-cart-btn" onclick="cartAction('add', 'p6')">Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -1287,7 +1305,6 @@
 
         <section class="ingredient-details-section">
             <div class="container">
-                <!-- Ingredient Block 1 -->
                 <div class="ingredient-block">
                     <div class="ingredient-img">
                         <img src="thor-capsule.jpg" alt="Premium organic raw root herbs representation">
@@ -1304,7 +1321,6 @@
                     </div>
                 </div>
 
-                <!-- Ingredient Block 2 -->
                 <div class="ingredient-block">
                     <div class="ingredient-img">
                         <img src="thor-oil.jpg" alt="Pure organic Himalayan minerals source shilajit">
@@ -1372,7 +1388,6 @@
                 <button class="policy-tab" onclick="switchPolicyTab('policy-refund', this)">Refund & Returns</button>
             </div>
 
-            <!-- Privacy Policy Tab Pane -->
             <div id="policy-privacy" class="policy-content-pane active">
                 <h2>Privacy & Data Security Rules</h2>
                 <p>At THOR Wellness, accessible via this online eCommerce portal, one of our main priorities is the absolute security and privacy of our visitors.</p>
@@ -1384,7 +1399,6 @@
                 </ul>
             </div>
 
-            <!-- Terms of Service Tab Pane -->
             <div id="policy-terms" class="policy-content-pane">
                 <h2>eCommerce Terms of Service</h2>
                 <p>Please review these terms and conditions of service thoroughly before purchasing from our online digital domain storefront.</p>
@@ -1392,7 +1406,6 @@
                 <p>By agreeing directly to these Terms of Service protocols, you affirm that you have attained the age of majority in your respective state or territory of residence to purchase nutritional supplements.</p>
             </div>
 
-            <!-- Refund & Returns Tab Pane -->
             <div id="policy-refund" class="policy-content-pane">
                 <h2>Refund, Cancellation & Returns Guidelines</h2>
                 <p>We stand firmly behind the efficacy and structural quality of our wellness supplements. Please read our guidelines regarding product returns:</p>
@@ -1520,6 +1533,7 @@
                         <li><a href="#policies" onclick="navigateTo('policies'); switchPolicyTab('policy-refund')">Refund & Cancellation</a></li>
                     </ul>
                 </div>
+                <!-- Company Name Added precisely under Customer Support -->
                 <div class="footer-col">
                     <h4>Customer Support</h4>
                     <p style="font-size: 14px; color: var(--secondary); margin-bottom: 8px; font-weight: 700;">🏢 S.R Ayurveda Pvt. Ltd.</p>
@@ -1529,7 +1543,7 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2026 THOR Wellness Private Limited. All Rights Reserved.</p>
+                <p>&copy; 2026 S.R Ayurveda Pvt. Ltd. (THOR Wellness). All Rights Reserved.</p>
                 <div class="footer-certificates">
                     <span>🔬 GMP CERTIFIED</span>
                     <span>🌿 AYUSH COMPLIANT</span>
@@ -1542,7 +1556,7 @@
 
     <!-- ==================== INTERACTIVE ECOMMERCE ENGINE ==================== -->
     <script>
-        // --- 1. PRODUCT METADATA (EXACTLY 5 PRODUCTS AS REQUESTED) ---
+        // --- 1. PRODUCT METADATA (TOTAL 6 PRODUCTS DYNAMICALLY LOADED) ---
         const productsDatabase = {
             p1: {
                 id: 'p1',
@@ -1570,6 +1584,12 @@
             },
             p5: {
                 id: 'p5',
+                name: 'Power of Thor Plus Powder',
+                price: 2990,
+                img: 'thor-powder.jpg'
+            },
+            p6: {
+                id: 'p6',
                 name: 'Power of Thor Plus Combo Pack',
                 price: 3490,
                 img: 'thor-combo.jpg'
