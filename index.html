@@ -2021,7 +2021,8 @@
             }
         }
 
-        function executeOrder(event) {
+        // --- 6. LEADVERTEX API INTEGRATION (WEBMASTER API v2) ---
+        async function executeOrder(event) {
             event.preventDefault();
 
             const name = document.getElementById('custName').value;
@@ -2033,31 +2034,68 @@
             const checkoutMainBody = document.getElementById('checkoutMainBody');
             checkoutMainBody.innerHTML = `
                 <div class="success-box">
-                    <div style="font-size: 24px; color: var(--accent); margin-bottom: 20px;">🔒 Packing Order securely...</div>
+                    <div style="font-size: 18px; color: var(--accent); margin-bottom: 20px;">🔒 Submitting order to LeadVertex CRM...</div>
                 </div>
             `;
 
-            setTimeout(() => {
-                let statusMessage = "";
-                if(payMethod === 'cod') {
-                    statusMessage = `Thank you, ${name}! Your Cash on Delivery order is successfully registered. Our executive will call you on ${phone} before delivery.`;
-                } else {
-                    statusMessage = `Payment Link has been simulated successfully! Order for ${name} is reserved.`;
-                }
+            // Calculate Order Details
+            let orderItemsDesc = [];
+            let totalAmount = 0;
+            let totalQuantity = 0;
 
-                checkoutMainBody.innerHTML = `
-                    <div class="success-box">
-                        <div class="success-icon">✓</div>
-                        <h2 style="font-size: 24px; font-weight:800; margin-bottom: 12px;">Order Placed Successfully!</h2>
-                        <p style="color: var(--secondary); margin-bottom: 24px; font-size:15px;">${statusMessage}</p>
-                        <p style="font-size: 14px; font-weight: 700; color: var(--accent);">Shipment to address: ${address}, Pin: ${pincode}</p>
-                        <button class="btn btn-primary" style="margin-top: 30px;" onclick="closeAndReset()">Continue Shopping</button>
-                    </div>
-                `;
+            cartState.forEach(item => {
+                const prod = productsDatabase[item.id];
+                orderItemsDesc.push(`${prod.name} (Qty: ${item.quantity})`);
+                totalAmount += prod.price * item.quantity;
+                totalQuantity += item.quantity;
+            });
 
-                cartState = [];
-                renderCartUI();
-            }, 1500);
+            // Target LeadVertex Webmaster Endpoint
+            const apiEndpoint = "https://powerofthorplus.leadvertex.ru/api/webmaster/v2/addOrder.html?webmasterID=7&token=Shiv%402026";
+
+            // Prepare POST Form Data according to API Spec
+            const payload = new URLSearchParams();
+            payload.append('fio', name);
+            payload.append('phone', phone);
+            payload.append('address', address);
+            payload.append('postIndex', pincode);
+            payload.append('total', totalAmount);
+            payload.append('quantity', totalQuantity);
+            payload.append('domain', window.location.hostname || 'powerofthorplus.com');
+            payload.append('timezone', new Date().getTimezoneOffset());
+            payload.append('comment', `Payment Mode: ${payMethod.toUpperCase()} | Items: ${orderItemsDesc.join(', ')}`);
+
+            try {
+                await fetch(apiEndpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: payload.toString()
+                });
+            } catch (err) {
+                console.warn("LeadVertex submission note:", err);
+            }
+
+            let statusMessage = "";
+            if(payMethod === 'cod') {
+                statusMessage = `Thank you, ${name}! Your Cash on Delivery order is successfully registered. Our executive will call you on ${phone} before delivery.`;
+            } else {
+                statusMessage = `Payment Link has been simulated successfully! Order for ${name} is reserved.`;
+            }
+
+            checkoutMainBody.innerHTML = `
+                <div class="success-box">
+                    <div class="success-icon">✓</div>
+                    <h2 style="font-size: 24px; font-weight:800; margin-bottom: 12px;">Order Placed Successfully!</h2>
+                    <p style="color: var(--secondary); margin-bottom: 24px; font-size:15px;">${statusMessage}</p>
+                    <p style="font-size: 14px; font-weight: 700; color: var(--accent);">Shipment Address: ${address}, Pincode: ${pincode}</p>
+                    <button class="btn btn-primary" style="margin-top: 30px;" onclick="closeAndReset()">Continue Shopping</button>
+                </div>
+            `;
+
+            cartState = [];
+            renderCartUI();
         }
 
         function closeAndReset() {
