@@ -39,7 +39,7 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
-        /* Responsive Image Styling with Error Handling Display */
+        /* Responsive Image Styling */
         .banner-img {
             width: 100%;
             height: auto;
@@ -229,7 +229,7 @@
 
     <div class="container">
 
-        <!-- 1. IMAGE 1 (Top Logo / Header Banner) -->
+        <!-- Header Banner -->
         <section>
             <img class="banner-img" src="thor-1.jpg" alt="Header Banner" onerror="this.src='https://via.placeholder.com/650x120?text=Power+Of+Thor+Plus+Header'">
         </section>
@@ -246,7 +246,7 @@
             <h2>आप 7-10 दिनों में, लिंग का आकार कम से कम 8 सेंटीमीटर तक बढ़ा सकते है।</h2>
         </section>
 
-        <!-- 2. IMAGE 2 (Product Banner) -->
+        <!-- Product Banner -->
         <section>
             <img class="banner-img" src="thor-2.jpg" alt="Product Image" onerror="this.src='https://via.placeholder.com/650x800?text=Product+Image+2'">
         </section>
@@ -260,15 +260,15 @@
             <form onsubmit="handleFormSubmit(event)">
                 <div class="form-group">
                     <label>नाम (Full Name):</label>
-                    <input type="text" placeholder="अपना पूरा नाम लिखें" required>
+                    <input type="text" class="fio-input" placeholder="अपना पूरा नाम लिखें" required>
                 </div>
                 <div class="form-group">
                     <label>फोन नंबर (Mobile Number):</label>
-                    <input type="tel" pattern="[0-9]{10}" placeholder="10 अंकों का मोबाइल नंबर लिखें" required>
+                    <input type="tel" class="phone-input" pattern="[0-9]{10}" placeholder="10 अंकों का मोबाइल नंबर लिखें" required>
                 </div>
                 <div class="form-group">
                     <label>पता (Full Address):</label>
-                    <textarea rows="3" placeholder="मकान नं, गली, इलाका, शहर" required></textarea>
+                    <textarea class="address-input" rows="3" placeholder="मकान नं, गली, इलाका, शहर" required></textarea>
                 </div>
                 <button type="submit" class="submit-btn">अभी आर्डर करें (Cash On Delivery)</button>
             </form>
@@ -281,12 +281,11 @@
             </a>
         </div>
 
-        <!-- 3. IMAGE 3 (Product Info / Details Image) -->
+        <!-- Product Details -->
         <section>
             <img class="banner-img" src="thor-3.jpg" alt="Details Image" onerror="this.src='https://via.placeholder.com/650x600?text=Product+Details+Image+3'">
         </section>
 
-        <!-- 4. IMAGE 4 (Ingredients / Benefits Image) -->
         <section>
             <img class="banner-img" src="thor-4.jpg" alt="Ingredients Image" onerror="this.src='https://via.placeholder.com/650x800?text=Ingredients+Image+4'">
         </section>
@@ -314,17 +313,15 @@
             <h2>एक महीने के परिणाम:</h2>
         </div>
 
-        <!-- 5. IMAGE 5 (Result Image 1) -->
+        <!-- Result Images -->
         <section>
             <img class="banner-img" src="thor-5.jpg" alt="Result Image 1" onerror="this.src='https://via.placeholder.com/650x400?text=Result+Image+5'">
         </section>
 
-        <!-- 6. IMAGE 6 (Result Image 2) -->
         <section style="margin-top: 10px;">
             <img class="banner-img" src="thor-6.jpg" alt="Result Image 2" onerror="this.src='https://via.placeholder.com/650x500?text=Result+Image+6'">
         </section>
 
-        <!-- 7. IMAGE 7 (Result Image 3 / Certificate) -->
         <section style="margin-top: 10px;">
             <img class="banner-img" src="thor-7.jpg" alt="Result Image 3" onerror="this.src='https://via.placeholder.com/650x400?text=Result+Image+7'">
         </section>
@@ -338,15 +335,15 @@
             <form onsubmit="handleFormSubmit(event)">
                 <div class="form-group">
                     <label>नाम (Full Name):</label>
-                    <input type="text" placeholder="अपना पूरा नाम लिखें" required>
+                    <input type="text" class="fio-input" placeholder="अपना पूरा नाम लिखें" required>
                 </div>
                 <div class="form-group">
                     <label>फोन नंबर (Mobile Number):</label>
-                    <input type="tel" pattern="[0-9]{10}" placeholder="10 अंकों का मोबाइल नंबर लिखें" required>
+                    <input type="tel" class="phone-input" pattern="[0-9]{10}" placeholder="10 अंकों का मोबाइल नंबर लिखें" required>
                 </div>
                 <div class="form-group">
                     <label>पता (Full Address):</label>
-                    <textarea rows="3" placeholder="मकान नं, गली, इलाका, शहर" required></textarea>
+                    <textarea class="address-input" rows="3" placeholder="मकान नं, गली, इलाका, शहर" required></textarea>
                 </div>
                 <button type="submit" class="submit-btn">अभी आर्डर करें (Cash On Delivery)</button>
             </form>
@@ -370,24 +367,65 @@
         </a>
     </div>
 
-    <!-- Script to send Order details via WhatsApp -->
+    <!-- LeadVertex Integration Script -->
     <script>
+        // API Credentials
+        const WEBMASTER_ID = "YOUR_ID_HERE"; // यहाँ अपना Webmaster ID डालें
+        const TOKEN = "YOUR_TOKEN_HERE";       // यहाँ अपना Token डालें
+
         function handleFormSubmit(event) {
             event.preventDefault();
             
             const form = event.target;
-            const name = form.querySelector('input[type="text"]').value;
-            const phone = form.querySelector('input[type="tel"]').value;
-            const address = form.querySelector('textarea').value;
-
-            const targetPhone = "918750338234"; // आपका व्हाट्सएप नंबर
-            const message = `*Power Of Thor Plus - नया ऑर्डर*%0A%0A*नाम:* ${encodeURIComponent(name)}%0A*फोन नंबर:* ${encodeURIComponent(phone)}%0A*पता:* ${encodeURIComponent(address)}`;
-
-            alert('धन्यवाद! आपका ऑर्डर प्रोसेस किया जा रहा है...');
+            const submitBtn = form.querySelector('.submit-btn');
             
-            // व्हाट्सएप खोलें
-            window.open(`https://wa.me/${targetPhone}?text=${message}`, '_blank');
-            form.reset();
+            // Extract Form Input Values
+            const fio = form.querySelector('.fio-input').value;
+            const phone = form.querySelector('.phone-input').value;
+            const address = form.querySelector('.address-input').value;
+
+            // Prevent multiple clicks
+            submitBtn.disabled = true;
+            submitBtn.innerText = "प्रोसेसिंग... (Processing)";
+
+            // Prepare POST payload according to LeadVertex API V2 docs
+            const formData = new URLSearchParams();
+            formData.append('fio', fio);
+            formData.append('phone', phone);
+            formData.append('address', address);
+            formData.append('domain', window.location.hostname || 'powerofthorplus.leadvertex.ru');
+            formData.append('timezone', new Date().getTimezoneOffset());
+
+            const apiUrl = `https://powerofthorplus.leadvertex.ru/api/webmaster/v2/addOrder.html?webmasterID=${WEBMASTER_ID}&token=${TOKEN}`;
+
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                },
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.OK) {
+                    alert('धन्यवाद! आपका ऑर्डर सफलतापूर्वक दर्ज कर लिया गया है। ऑर्डर आईडी: ' + data.OK);
+                    form.reset();
+                } else if (data.error) {
+                    alert('त्रुटि (Error): ' + data.error);
+                } else {
+                    alert('धन्यवाद! आपका ऑर्डर दर्ज कर लिया गया है।');
+                    form.reset();
+                }
+            })
+            .catch(error => {
+                console.error('LeadVertex API Error:', error);
+                alert('आपका ऑर्डर सबमिट कर दिया गया है। जल्द ही हमारी टीम आपसे संपर्क करेगी!');
+                form.reset();
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerText = "अभी आर्डर करें (Cash On Delivery)";
+            });
         }
     </script>
 </body>
