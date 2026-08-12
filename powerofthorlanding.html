@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Of Thor Plus - आयुर्वेदिक शक्ति एवं स्टैमिना</title>
+    
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Hind:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #d32f2f;
+            --primary-dark: #9a0007;
+            --accent-color: #ff9800;
+            --bg-color: #f9f9f9;
+            --text-color: #222222;
+            --white: #ffffff;
+            --green: #2e7d32;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Hind', 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-bottom: 70px; /* Space for fixed bottom bar */
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        /* Header / Logo */
+        header {
+            text-align: center;
+            padding: 15px;
+            background: #fff;
+            border-bottom: 2px solid #eee;
+        }
+
+        header h1 {
+            font-size: 26px;
+            color: var(--primary-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Headline Section */
+        .hero-banner {
+            background: linear-gradient(135deg, #b71c1c, #d32f2f);
+            color: var(--white);
+            text-align: center;
+            padding: 20px 15px;
+        }
+
+        .hero-banner h2 {
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        /* Call CTA Button */
+        .cta-call-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #25d366;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 14px 20px;
+            margin: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        /* Image Placeholder / Banner */
+        .product-image {
+            width: 100%;
+            display: block;
+        }
+
+        /* Content Card */
+        .content-box {
+            padding: 20px;
+            font-size: 17px;
+        }
+
+        .content-box p {
+            margin-bottom: 15px;
+        }
+
+        .highlight-box {
+            background: #fff3e0;
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .guarantee-badge {
+            background: #e8f5e9;
+            border: 2px dashed var(--green);
+            color: var(--green);
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 18px;
+            margin: 20px 0;
+        }
+
+        /* Form Container */
+        .form-container {
+            background: #fdf2f2;
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 15px;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .form-header h3 {
+            color: var(--primary-color);
+            font-size: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            font-size: 20px;
+            color: var(--primary-color);
+            padding: 15px 0 5px;
+            font-weight: 700;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #222;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        /* Fixed Bottom Call Bar (Mobile Friendly) */
+        .fixed-bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #ffffff;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.15);
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 10px;
+            z-index: 1000;
+        }
+
+        .fixed-bar-btn {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 6px;
+            margin: 0 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-call {
+            background: var(--primary-color);
+        }
+
+        .btn-order {
+            background: var(--green);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Header / Brand Name -->
+        <header>
+            <h1>Power Of Thor Plus</h1>
+        </header>
+
+        <!-- Call CTA Button Top -->
+        <a href="tel:7065875508" class="cta-call-btn">
+            <i class="fa-solid fa-phone-volume"></i> Direct Call Now: 7065875508
+        </a>
+
+        <!-- Main Headline -->
+        <section class="hero-banner">
+            <h2>Power Of Thor Plus - आप 7-10 दिनों में अपनी खोई हुई शक्ति और स्टैमिना वापस पा सकते हैं!</h2>
+        </section>
+
+        <!-- Main Banner Image Placeholder -->
+        <img src="https://via.placeholder.com/600x400/d32f2f/ffffff?text=Power+Of+Thor+Plus" alt="Power Of Thor Plus" class="product-image">
+
+        <!-- Description Content -->
+        <section class="content-box">
+            <p><strong>क्या बचपन की गलतियों या कमजोरी की वजह से आप परेशान हैं?</strong> तो आप बिल्कुल सही जगह पर आए हैं।</p>
+            
+            <div class="highlight-box">
+                हमने आयुर्वेदिक जड़ी-बूटियों से निर्मित <strong>Power Of Thor Plus</strong> तैयार किया है जो पुरुषों की शारीरिक कमजोरी और स्टैमिना की समस्या को प्राकृतिक रूप से ठीक करने में कारगर है।
+            </div>
+
+            <p>इसमें <strong>अश्वगंधा चूर्ण, शुद्ध शिलाजीत, कौंच बीज, सफेद मूसली और तिल तेल</strong> जैसे 100% प्राकृतिक तत्व शामिल हैं।</p>
+
+            <div class="guarantee-badge">
+                <i class="fa-solid fa-shield-halved"></i> Power Of Thor Plus - 100% आयुर्वेदिक एवं सुरक्षित
+            </div>
+        </section>
+
+        <!-- Order Form Section -->
+        <section class="form-container" id="order-form">
+            <div class="form-header">
+                <h3>📦 Power Of Thor Plus ऑर्डर करें</h3>
+                <p>Complete Your Order (Cash on Delivery Available)</p>
+            </div>
+
+            <form id="leadForm" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label for="name">पूरा नाम (Full Name):</label>
+                    <input type="text" id="name" name="name" placeholder="अपना नाम दर्ज करें" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">मोबाइल नंबर (Phone Number):</label>
+                    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="10 अंकों का नंबर दर्ज करें" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">पूरा पता (Delivery Address):</label>
+                    <textarea id="address" name="address" rows="3" placeholder="मकान नंबर, गली, लैंडमार्क और शहर" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="pincode">पिनकोड (Pincode):</label>
+                    <input type="text" id="pincode" name="pincode" placeholder="पिनकोड लिखें" required>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fa-solid fa-truck-fast"></i> अभी Order करें (Cash On Delivery)
+                </button>
+            </form>
+        </section>
+
+        <!-- Call CTA Button Middle -->
+        <a href="tel:7065875508" class="cta-call-btn">
+            <i class="fa-solid fa-phone-volume"></i> परामर्श के लिए कॉल करें: 7065875508
+        </a>
+
+        <!-- Results / Benefits Section -->
+        <div class="section-title">
+            <h2>Power Of Thor Plus के 1 महीने के परिणाम:</h2>
+        </div>
+
+        <img src="https://via.placeholder.com/600x350/f0f0f0/333333?text=Power+Of+Thor+Plus+Benefits" alt="Benefits" class="product-image">
+        <img src="https://via.placeholder.com/600x350/e0e0e0/333333?text=Customer+Reviews+%26+Results" alt="Reviews" class="product-image" style="margin-top: 10px;">
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 Power Of Thor Plus. All Rights Reserved.</p>
+            <p style="margin-top: 5px; font-size: 12px;">डिस्कलेमर: इस उत्पाद के परिणाम हर व्यक्ति की शारीरिक स्थिति के अनुसार अलग हो सकते हैं।</p>
+        </footer>
+
+    </div>
+
+    <!-- Fixed Sticky Bottom Bar for Mobile -->
+    <div class="fixed-bottom-bar">
+        <a href="tel:7065875508" class="fixed-bar-btn btn-call">
+            <i class="fa-solid fa-phone"></i> Call Now
+        </a>
+        <a href="#order-form" class="fixed-bar-btn btn-order">
+            <i class="fa-solid fa-cart-shopping"></i> Order Now
+        </a>
+    </div>
+
+    <!-- JavaScript for Handling Form Submit -->
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+
+            alert(`धन्यवाद ${name}!\nPower Of Thor Plus का आपका ऑर्डर सफलतापूर्वक दर्ज हो गया है। हमारी टीम जल्द ही आपसे संपर्क करेगी।`);
+            
+            document.getElementById('leadForm').reset();
+        }
+    </script>
+</body>
+</html>
