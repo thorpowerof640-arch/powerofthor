@@ -319,7 +319,7 @@
         </section>
 
         <section style="margin-top: 10px;">
-            <img class="banner-img" src="thor-6.jpg" alt="Result Image 2" onerror="this.src='https://via.placeholder.com/650x500?text=Result+Image+6'">
+            <img class="banner-img" src="thor-6.jpg" alt="Result Image 2" onerror="this.src='https://via.placeholder.com/650x500?text=Result+Image+2'">
         </section>
 
         <section style="margin-top: 10px;">
@@ -367,11 +367,9 @@
         </a>
     </div>
 
-    <!-- LeadVertex Integration Script -->
+    <!-- LeadVertex API Integration Script -->
     <script>
-        // API Credentials
-        const WEBMASTER_ID = "YOUR_ID_HERE"; // यहाँ अपना Webmaster ID डालें
-        const TOKEN = "YOUR_TOKEN_HERE";       // यहाँ अपना Token डालें
+        const API_URL = "https://powerofthorplus.leadvertex.ru/api/webmaster/v2/addOrder.html?webmasterID=7&token=Shiv%402026";
 
         function handleFormSubmit(event) {
             event.preventDefault();
@@ -379,16 +377,13 @@
             const form = event.target;
             const submitBtn = form.querySelector('.submit-btn');
             
-            // Extract Form Input Values
             const fio = form.querySelector('.fio-input').value;
             const phone = form.querySelector('.phone-input').value;
             const address = form.querySelector('.address-input').value;
 
-            // Prevent multiple clicks
             submitBtn.disabled = true;
             submitBtn.innerText = "प्रोसेसिंग... (Processing)";
 
-            // Prepare POST payload according to LeadVertex API V2 docs
             const formData = new URLSearchParams();
             formData.append('fio', fio);
             formData.append('phone', phone);
@@ -396,9 +391,7 @@
             formData.append('domain', window.location.hostname || 'powerofthorplus.leadvertex.ru');
             formData.append('timezone', new Date().getTimezoneOffset());
 
-            const apiUrl = `https://powerofthorplus.leadvertex.ru/api/webmaster/v2/addOrder.html?webmasterID=${WEBMASTER_ID}&token=${TOKEN}`;
-
-            fetch(apiUrl, {
+            fetch(API_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -411,7 +404,7 @@
                     alert('धन्यवाद! आपका ऑर्डर सफलतापूर्वक दर्ज कर लिया गया है। ऑर्डर आईडी: ' + data.OK);
                     form.reset();
                 } else if (data.error) {
-                    alert('त्रुटि (Error): ' + data.error);
+                    alert('त्रुटि: ' + data.error);
                 } else {
                     alert('धन्यवाद! आपका ऑर्डर दर्ज कर लिया गया है।');
                     form.reset();
@@ -419,7 +412,7 @@
             })
             .catch(error => {
                 console.error('LeadVertex API Error:', error);
-                alert('आपका ऑर्डर सबमिट कर दिया गया है। जल्द ही हमारी टीम आपसे संपर्क करेगी!');
+                alert('धन्यवाद! आपका ऑर्डर सबमिट कर दिया गया है। जल्द ही हमारी टीम आपसे संपर्क करेगी!');
                 form.reset();
             })
             .finally(() => {
