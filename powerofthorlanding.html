@@ -39,12 +39,13 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
-        /* Responsive Image Style */
+        /* Responsive Image Styling with Error Handling Display */
         .banner-img {
             width: 100%;
             height: auto;
             display: block;
-            object-fit: cover;
+            background-color: #eee;
+            min-height: 100px;
         }
 
         /* Call CTA Button */
@@ -168,6 +169,11 @@
             font-weight: bold;
             border-radius: 6px;
             cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-dark);
         }
 
         /* Footer */
@@ -223,9 +229,9 @@
 
     <div class="container">
 
-        <!-- 1. IMAGE 1 (Top Header / Logo Banner) -->
+        <!-- 1. IMAGE 1 (Top Logo / Header Banner) -->
         <section>
-            <img class="banner-img" src="images/thor-1.jpg" alt="Top Banner">
+            <img class="banner-img" src="images/thor-1.jpg" alt="Header Banner" onerror="this.src='https://via.placeholder.com/650x120?text=Power+Of+Thor+Plus+Header'">
         </section>
 
         <!-- Call Button 1 -->
@@ -242,7 +248,7 @@
 
         <!-- 2. IMAGE 2 (Product Banner) -->
         <section>
-            <img class="banner-img" src="images/thor-2.jpg" alt="Product Image">
+            <img class="banner-img" src="images/thor-2.jpg" alt="Product Image" onerror="this.src='https://via.placeholder.com/650x800?text=Product+Image+2'">
         </section>
 
         <!-- Order Form Section 1 -->
@@ -277,12 +283,12 @@
 
         <!-- 3. IMAGE 3 (Product Info / Details Image) -->
         <section>
-            <img class="banner-img" src="images/thor-3.jpg" alt="Details Image">
+            <img class="banner-img" src="images/thor-3.jpg" alt="Details Image" onerror="this.src='https://via.placeholder.com/650x600?text=Product+Details+Image+3'">
         </section>
 
         <!-- 4. IMAGE 4 (Ingredients / Benefits Image) -->
         <section>
-            <img class="banner-img" src="images/thor-4.jpg" alt="Ingredients Image">
+            <img class="banner-img" src="images/thor-4.jpg" alt="Ingredients Image" onerror="this.src='https://via.placeholder.com/650x800?text=Ingredients+Image+4'">
         </section>
 
         <!-- Call Button 3 -->
@@ -310,17 +316,17 @@
 
         <!-- 5. IMAGE 5 (Result Image 1) -->
         <section>
-            <img class="banner-img" src="images/thor-5.jpg" alt="Result Image 1">
+            <img class="banner-img" src="images/thor-5.jpg" alt="Result Image 1" onerror="this.src='https://via.placeholder.com/650x400?text=Result+Image+5'">
         </section>
 
         <!-- 6. IMAGE 6 (Result Image 2) -->
         <section style="margin-top: 10px;">
-            <img class="banner-img" src="images/thor-6.jpg" alt="Result Image 2">
+            <img class="banner-img" src="images/thor-6.jpg" alt="Result Image 2" onerror="this.src='https://via.placeholder.com/650x500?text=Result+Image+6'">
         </section>
 
         <!-- 7. IMAGE 7 (Result Image 3 / Certificate) -->
         <section style="margin-top: 10px;">
-            <img class="banner-img" src="images/thor-7.jpg" alt="Result Image 3">
+            <img class="banner-img" src="images/thor-7.jpg" alt="Result Image 3" onerror="this.src='https://via.placeholder.com/650x400?text=Result+Image+7'">
         </section>
 
         <!-- Order Form Section 2 -->
@@ -364,11 +370,24 @@
         </a>
     </div>
 
+    <!-- Script to send Order details via WhatsApp -->
     <script>
         function handleFormSubmit(event) {
             event.preventDefault();
-            alert('धन्यवाद! आपका ऑर्डर सफलतापूर्वक दर्ज हो गया है। हमारी टीम जल्द ही आपसे संपर्क करेगी।');
-            event.target.reset();
+            
+            const form = event.target;
+            const name = form.querySelector('input[type="text"]').value;
+            const phone = form.querySelector('input[type="tel"]').value;
+            const address = form.querySelector('textarea').value;
+
+            const targetPhone = "918750338234"; // आपका व्हाट्सएप नंबर
+            const message = `*Power Of Thor Plus - नया ऑर्डर*%0A%0A*नाम:* ${encodeURIComponent(name)}%0A*फोन नंबर:* ${encodeURIComponent(phone)}%0A*पता:* ${encodeURIComponent(address)}`;
+
+            alert('धन्यवाद! आपका ऑर्डर प्रोसेस किया जा रहा है...');
+            
+            // व्हाट्सएप खोलें
+            window.open(`https://wa.me/${targetPhone}?text=${message}`, '_blank');
+            form.reset();
         }
     </script>
 </body>
