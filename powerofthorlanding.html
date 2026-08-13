@@ -264,7 +264,7 @@
                 </div>
                 <div class="form-group">
                     <label>फोन नंबर (Mobile Number):</label>
-                    <input type="tel" class="phone-input" pattern="[0-9]{10}" placeholder="10 अंकों का मोबाइल नंबर लिखें" required>
+                    <input type="tel" class="phone-input" pattern="[6-9][0-9]{9}" maxlength="10" placeholder="10 अंकों का मोबाइल नंबर लिखें" required>
                 </div>
                 <div class="form-group">
                     <label>पता (Full Address):</label>
@@ -339,7 +339,7 @@
                 </div>
                 <div class="form-group">
                     <label>फोन नंबर (Mobile Number):</label>
-                    <input type="tel" class="phone-input" pattern="[0-9]{10}" placeholder="10 अंकों का मोबाइल नंबर लिखें" required>
+                    <input type="tel" class="phone-input" pattern="[6-9][0-9]{9}" maxlength="10" placeholder="10 अंकों का मोबाइल नंबर लिखें" required>
                 </div>
                 <div class="form-group">
                     <label>पता (Full Address):</label>
@@ -381,6 +381,13 @@
             const phone = form.querySelector('.phone-input').value;
             const address = form.querySelector('.address-input').value;
 
+            // Indian Mobile Number Validation (10 Digits & Starts with 6, 7, 8, or 9)
+            const indiaPhoneRegex = /^[6-9]\d{9}$/;
+            if (!indiaPhoneRegex.test(phone)) {
+                alert("कृपया 10 अंकों का सही भारतीय मोबाइल नंबर दर्ज करें (जो 6, 7, 8 या 9 से शुरू होता हो)।");
+                return;
+            }
+
             submitBtn.disabled = true;
             submitBtn.innerText = "प्रोसेसिंग... (Processing)";
 
@@ -400,24 +407,11 @@
             })
             .then(response => response.json())
             .then(data => {
-                if (data.OK) {
-                    alert('धन्यवाद! आपका ऑर्डर सफलतापूर्वक दर्ज कर लिया गया है। ऑर्डर आईडी: ' + data.OK);
-                    form.reset();
-                } else if (data.error) {
-                    alert('त्रुटि: ' + data.error);
-                } else {
-                    alert('धन्यवाद! आपका ऑर्डर दर्ज कर लिया गया है।');
-                    form.reset();
-                }
+                window.location.href = "thankyou.html";
             })
             .catch(error => {
                 console.error('LeadVertex API Error:', error);
-                alert('धन्यवाद! आपका ऑर्डर सबमिट कर दिया गया है। जल्द ही हमारी टीम आपसे संपर्क करेगी!');
-                form.reset();
-            })
-            .finally(() => {
-                submitBtn.disabled = false;
-                submitBtn.innerText = "अभी आर्डर करें (Cash On Delivery)";
+                window.location.href = "thankyou.html";
             });
         }
     </script>
