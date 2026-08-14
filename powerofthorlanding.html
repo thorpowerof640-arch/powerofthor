@@ -15,7 +15,7 @@
             --primary-dark: #9a0007;
             --bg-color: #f5f5f5;
             --white: #ffffff;
-            --green: #2e7d32;
+            --green: #25d366;
         }
 
         * {
@@ -48,7 +48,7 @@
             min-height: 100px;
         }
 
-        /* Call CTA Button */
+        /* WhatsApp CTA Button */
         .call-btn-container {
             padding: 10px 15px;
             text-align: center;
@@ -221,8 +221,8 @@
             gap: 8px;
         }
 
-        .btn-call-fixed { background: var(--primary-color); }
-        .btn-order-fixed { background: var(--green); }
+        .btn-whatsapp-fixed { background: #25d366; }
+        .btn-order-fixed { background: #2e7d32; }
     </style>
 </head>
 <body>
@@ -234,10 +234,10 @@
             <img class="banner-img" src="thor-1.jpg" alt="Header Banner" onerror="this.src='https://via.placeholder.com/650x120?text=Power+Of+Thor+Plus+Header'">
         </section>
 
-        <!-- Call Button 1 -->
+        <!-- WhatsApp Button 1 -->
         <div class="call-btn-container">
-            <a href="tel:8750338234" class="call-btn">
-                <i class="fa-solid fa-phone-volume"></i> Call Now- 8750338234
+            <a href="https://wa.me/918750338234" target="_blank" class="call-btn">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp - 8750338234
             </a>
         </div>
 
@@ -264,7 +264,7 @@
                 </div>
                 <div class="form-group">
                     <label>फोन नंबर (Mobile Number):</label>
-                    <input type="tel" class="phone-input" pattern="[6-9][0-9]{9}" maxlength="10" placeholder="10 अंकों का मोबाइल नंबर लिखें" required>
+                    <input type="tel" class="phone-input" pattern="[0-9]{10}" placeholder="10 अंकों का मोबाइल नंबर लिखें" required>
                 </div>
                 <div class="form-group">
                     <label>पता (Full Address):</label>
@@ -274,10 +274,10 @@
             </form>
         </section>
 
-        <!-- Call Button 2 -->
+        <!-- WhatsApp Button 2 -->
         <div class="call-btn-container">
-            <a href="tel:8750338234" class="call-btn">
-                <i class="fa-solid fa-phone-volume"></i> Call Now- 8750338234
+            <a href="https://wa.me/918750338234" target="_blank" class="call-btn">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp - 8750338234
             </a>
         </div>
 
@@ -290,10 +290,10 @@
             <img class="banner-img" src="thor-4.jpg" alt="Ingredients Image" onerror="this.src='https://via.placeholder.com/650x800?text=Ingredients+Image+4'">
         </section>
 
-        <!-- Call Button 3 -->
+        <!-- WhatsApp Button 3 -->
         <div class="call-btn-container">
-            <a href="tel:8750338234" class="call-btn">
-                <i class="fa-solid fa-phone-volume"></i> Call Now- 8750338234
+            <a href="https://wa.me/918750338234" target="_blank" class="call-btn">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp - 8750338234
             </a>
         </div>
 
@@ -339,7 +339,7 @@
                 </div>
                 <div class="form-group">
                     <label>फोन नंबर (Mobile Number):</label>
-                    <input type="tel" class="phone-input" pattern="[6-9][0-9]{9}" maxlength="10" placeholder="10 अंकों का मोबाइल नंबर लिखें" required>
+                    <input type="tel" class="phone-input" pattern="[0-9]{10}" placeholder="10 अंकों का मोबाइल नंबर लिखें" required>
                 </div>
                 <div class="form-group">
                     <label>पता (Full Address):</label>
@@ -359,8 +359,8 @@
 
     <!-- Fixed Bottom Buttons for Mobile -->
     <div class="fixed-bottom-bar">
-        <a href="tel:8750338234" class="fixed-btn btn-call-fixed">
-            <i class="fa-solid fa-phone"></i> Call Now
+        <a href="https://wa.me/918750338234" target="_blank" class="fixed-btn btn-whatsapp-fixed">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp
         </a>
         <a href="#order-form-2" class="fixed-btn btn-order-fixed">
             <i class="fa-solid fa-cart-shopping"></i> Order Now
@@ -381,13 +381,6 @@
             const phone = form.querySelector('.phone-input').value;
             const address = form.querySelector('.address-input').value;
 
-            // Indian Mobile Number Validation (10 Digits & Starts with 6, 7, 8, or 9)
-            const indiaPhoneRegex = /^[6-9]\d{9}$/;
-            if (!indiaPhoneRegex.test(phone)) {
-                alert("कृपया 10 अंकों का सही भारतीय मोबाइल नंबर दर्ज करें (जो 6, 7, 8 या 9 से शुरू होता हो)।");
-                return;
-            }
-
             submitBtn.disabled = true;
             submitBtn.innerText = "प्रोसेसिंग... (Processing)";
 
@@ -407,10 +400,12 @@
             })
             .then(response => response.json())
             .then(data => {
+                // Submit hone ke baad sidhe Thank You page par redirect
                 window.location.href = "thankyou.html";
             })
             .catch(error => {
                 console.error('LeadVertex API Error:', error);
+                // Error aaye tab bhi user ko Thank You page par bhej de
                 window.location.href = "thankyou.html";
             });
         }
