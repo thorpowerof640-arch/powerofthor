@@ -141,35 +141,6 @@
             color: #1b5e20;
         }
 
-        /* WhatsApp CTA Button */
-        .call-btn-container {
-            padding: 10px 15px;
-            text-align: center;
-        }
-
-        .call-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: #25d366;
-            color: var(--white);
-            text-decoration: none;
-            font-size: 22px;
-            font-weight: 700;
-            padding: 12px 25px;
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            animation: pulse 1.8s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
-        }
-
         /* Red Headline Text Section */
         .headline-section {
             background: var(--primary-color);
@@ -323,28 +294,26 @@
             background: #ffffff;
             box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             padding: 8px 10px;
             z-index: 1000;
         }
 
         .fixed-btn {
-            flex: 1;
+            width: 100%;
             text-align: center;
             padding: 12px;
             color: white;
             text-decoration: none;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 18px;
             border-radius: 6px;
-            margin: 0 5px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
         }
 
-        .btn-whatsapp-fixed { background: #25d366; }
         .btn-order-fixed { background: #2e7d32; }
     </style>
 </head>
@@ -390,13 +359,6 @@
             </div>
         </div>
 
-        <!-- WhatsApp Button 1 -->
-        <div class="call-btn-container">
-            <a href="https://wa.me/918750338234" target="_blank" class="call-btn">
-                <i class="fa-brands fa-whatsapp"></i> WhatsApp - 8750338234
-            </a>
-        </div>
-
         <!-- Red Banner Headline Text -->
         <section class="headline-section">
             <h2>आप 7-10 दिनों में, लिंग का आकार कम से कम 8 सेंटीमीटर तक बढ़ा सकते है।</h2>
@@ -410,8 +372,8 @@
         <!-- Order Form Section 1 -->
         <section class="order-form-wrapper" id="order-form-1">
             <div class="form-header">
-                <h3>📦 अपना ऑर्डर पूरा करें</h3>
-                <p>Complete Your Order (100% गोपनीय और सुरक्षित डिलीवरी)</p>
+                <h3>👨‍⚕️ डॉक्टर से मुफ़्त सलाह लें</h3>
+                <p>फॉर्म भरें और हमारे विशेषज्ञ डॉक्टर से मुफ़्त परामर्श पाएं (100% गोपनीय)</p>
             </div>
             <form onsubmit="handleFormSubmit(event)">
                 <div class="form-group">
@@ -426,7 +388,7 @@
                     <label>पता (Full Address):</label>
                     <textarea class="address-input" rows="3" placeholder="मकान नं, गली, इलाका, शहर" required></textarea>
                 </div>
-                <button type="submit" class="submit-btn">अभी आर्डर करें (Cash On Delivery)</button>
+                <button type="submit" class="submit-btn">डॉक्टर से मुफ़्त सलाह लें</button>
             </form>
             <div class="privacy-notice">
                 <i class="fa-solid fa-lock"></i> <strong>100% गुप्त पैकिंग:</strong> पार्सल पर कोई दवा का नाम नहीं लिखा होगा।
@@ -449,13 +411,6 @@
             </div>
         </div>
 
-        <!-- WhatsApp Button 2 -->
-        <div class="call-btn-container">
-            <a href="https://wa.me/918750338234" target="_blank" class="call-btn">
-                <i class="fa-brands fa-whatsapp"></i> WhatsApp - 8750338234
-            </a>
-        </div>
-
         <!-- Product Details -->
         <section>
             <img class="banner-img" src="thor-3.jpg" alt="Details Image" onerror="this.src='https://via.placeholder.com/650x600?text=Product+Details+Image+3'">
@@ -464,13 +419,6 @@
         <section>
             <img class="banner-img" src="thor-4.jpg" alt="Ingredients Image" onerror="this.src='https://via.placeholder.com/650x800?text=Ingredients+Image+4'">
         </section>
-
-        <!-- WhatsApp Button 3 -->
-        <div class="call-btn-container">
-            <a href="https://wa.me/918750338234" target="_blank" class="call-btn">
-                <i class="fa-brands fa-whatsapp"></i> WhatsApp - 8750338234
-            </a>
-        </div>
 
         <!-- Description Paragraph -->
         <section class="text-content-box">
@@ -510,8 +458,8 @@
         <!-- Order Form Section 2 -->
         <section class="order-form-wrapper" id="order-form-2" style="margin-top: 20px;">
             <div class="form-header">
-                <h3>📦 अपना ऑर्डर पूरा करें</h3>
-                <p>Complete Your Order (100% गोपनीय और सुरक्षित डिलीवरी)</p>
+                <h3>👨‍⚕️ डॉक्टर से मुफ़्त सलाह लें</h3>
+                <p>फॉर्म भरें और हमारे विशेषज्ञ डॉक्टर से मुफ़्त परामर्श पाएं (100% गोपनीय)</p>
             </div>
             <form onsubmit="handleFormSubmit(event)">
                 <div class="form-group">
@@ -526,7 +474,7 @@
                     <label>पता (Full Address):</label>
                     <textarea class="address-input" rows="3" placeholder="मकान नं, गली, इलाका, शहर" required></textarea>
                 </div>
-                <button type="submit" class="submit-btn">अभी आर्डर करें (Cash On Delivery)</button>
+                <button type="submit" class="submit-btn">डॉक्टर से मुफ़्त सलाह लें</button>
             </form>
             <div class="privacy-notice">
                 <i class="fa-solid fa-lock"></i> <strong>100% गुप्त पैकिंग:</strong> पार्सल पर कोई दवा का नाम नहीं लिखा होगा।
@@ -542,13 +490,10 @@
 
     </div>
 
-    <!-- Fixed Bottom Buttons for Mobile -->
+    <!-- Fixed Bottom Button for Mobile -->
     <div class="fixed-bottom-bar">
-        <a href="https://wa.me/918750338234" target="_blank" class="fixed-btn btn-whatsapp-fixed">
-            <i class="fa-brands fa-whatsapp"></i> WhatsApp
-        </a>
         <a href="#order-form-2" class="fixed-btn btn-order-fixed">
-            <i class="fa-solid fa-cart-shopping"></i> Order Now
+            <i class="fa-solid fa-user-doctor"></i> डॉक्टर से बात करें
         </a>
     </div>
 
